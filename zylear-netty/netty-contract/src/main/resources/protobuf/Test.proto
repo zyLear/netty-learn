@@ -1,0 +1,14 @@
+
+syntax = "proto2";
+
+option java_package = "com.zylear.proto";
+option java_outer_classname = "TestOuterClass";
+
+
+message Test {
+
+  optional string name = 1;
+
+  optional int32 number = 2;
+
+}

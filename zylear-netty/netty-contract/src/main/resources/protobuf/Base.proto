@@ -1,0 +1,17 @@
+
+syntax = "proto2";
+
+option java_package = "com.zylear.netty.contract";
+option java_outer_classname = "BaseOuterClass";
+
+
+message BaseMessage {
+
+  optional int32 operation_code = 1;
+
+  optional int32 status_code=2;
+
+  optional string data = 3;
+
+}
+
