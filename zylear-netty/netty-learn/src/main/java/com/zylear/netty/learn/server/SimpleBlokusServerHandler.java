@@ -1,6 +1,8 @@
 package com.zylear.netty.learn.server;
 
+import com.zylear.netty.learn.bean.MessageBean;
 import com.zylear.netty.learn.manager.BlokusMessageManager;
+import com.zylear.netty.learn.queue.MessageQueue;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -18,15 +20,8 @@ import java.util.Map;
  * @date 2018/1/9.
  */
 
-public class SimpleBlokusServerHandler extends SimpleChannelInboundHandler<byte []> {
+public class SimpleBlokusServerHandler extends SimpleChannelInboundHandler<MessageBean> {
 
-
-
-    private BlokusMessageManager blokusMessageManager;
-
-    SimpleBlokusServerHandler(BlokusMessageManager blokusMessageManager) {
-        this.blokusMessageManager = blokusMessageManager;
-    }
 
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
@@ -42,15 +37,15 @@ public class SimpleBlokusServerHandler extends SimpleChannelInboundHandler<byte 
         System.out.println("removed");
     }
 
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("channelActive");
-    }
-
-    @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("channelInactive");
-    }
+//    @Override
+//    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+//        System.out.println("channelActive");
+//    }
+//
+//    @Override
+//    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+//        System.out.println("channelInactive");
+//    }
 
 
     @Override
@@ -62,18 +57,9 @@ public class SimpleBlokusServerHandler extends SimpleChannelInboundHandler<byte 
         ctx.close();
     }
 
-//    @Override
-//    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-//        blokusMessageManager.handle(ctx.channel(), msg);
-//    }
-
-
-    public void setBlokusMessageManager(BlokusMessageManager blokusMessageManager) {
-        this.blokusMessageManager = blokusMessageManager;
-    }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, byte[] bytes) throws Exception {
-        blokusMessageManager.handle(channelHandlerContext.channel(), bytes);
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageBean messageBean) throws Exception {
+        MessageQueue.getInstance().put(messageBean);
     }
 }

@@ -5,7 +5,7 @@ option java_package = "com.zylear.netty.contract";
 option java_outer_classname = "BaseOuterClass";
 
 
-message BaseMessage {
+message NETTY {
 
   optional int32 operation_code = 1;
 
