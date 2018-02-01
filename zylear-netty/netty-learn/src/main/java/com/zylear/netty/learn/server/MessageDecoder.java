@@ -45,10 +45,10 @@ public class MessageDecoder extends LengthFieldBasedFrameDecoder {
         byte[] data = new byte[frame.readableBytes()];// 其它数据为实际数据
         frame.readBytes(data);
 
-        MsgEntity msgVO = new MsgEntity();
-        msgVO.setCmdCode(cmd);
-        msgVO.setData(data);
-        return msgVO;
+//        MsgEntity msgVO = new MsgEntity();
+//        msgVO.setCmdCode(cmd);
+//        msgVO.setData(data);
+        return 1;
     }
 
 }

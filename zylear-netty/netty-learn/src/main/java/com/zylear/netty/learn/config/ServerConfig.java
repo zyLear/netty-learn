@@ -3,7 +3,6 @@ package com.zylear.netty.learn.config;
 import com.zylear.netty.learn.manager.BlokusMessageManager;
 import com.zylear.netty.learn.netty.SimpleChatServerInitializer;
 import com.zylear.netty.learn.server.SimpleBlokusServerHandler;
-import com.zylear.netty.learn.server.SimpleBlokusServerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
