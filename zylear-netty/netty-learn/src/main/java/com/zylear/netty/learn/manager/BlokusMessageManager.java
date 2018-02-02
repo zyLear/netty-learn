@@ -2,7 +2,6 @@ package com.zylear.netty.learn.manager;
 
 
 import com.google.gson.Gson;
-import com.zylear.netty.contract.BaseOuterClass.BaseMessage;
 import io.netty.channel.Channel;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
