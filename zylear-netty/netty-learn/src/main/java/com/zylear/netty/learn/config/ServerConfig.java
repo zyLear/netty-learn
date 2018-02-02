@@ -1,7 +1,7 @@
 package com.zylear.netty.learn.config;
 
-import com.zylear.netty.learn.manager.BlokusMessageManager;
-import com.zylear.netty.learn.netty.SimpleChatServerInitializer;
+import com.zylear.netty.learn.server.MessageDecoder;
+import com.zylear.netty.learn.server.MessageEncoder;
 import com.zylear.netty.learn.server.SimpleBlokusServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
@@ -42,9 +42,8 @@ public class ServerConfig {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
                         ChannelPipeline pipeline = socketChannel.pipeline();
-                        //行分割
-                        pipeline.addLast("decoder", new StringDecoder());
-                        pipeline.addLast("encoder", new StringEncoder());
+                        pipeline.addLast("decoder", new MessageDecoder());
+                        pipeline.addLast("encoder", new MessageEncoder());
                         pipeline.addLast("handler", new SimpleBlokusServerHandler());
                     }
                 });

@@ -77,12 +77,21 @@
 			<version>5.1.44</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<!--&lt;!&ndash; https://mvnrepository.com/artifact/com.google.code.gson/gson &ndash;&gt;-->
+		<!--<dependency>-->
+			<!--<groupId>com.google.code.gson</groupId>-->
+			<!--<artifactId>gson</artifactId>-->
+			<!--<version>2.8.0</version>-->
+		<!--</dependency>-->
+
+
+		<!-- https://mvnrepository.com/artifact/net.sf.trove4j/trove4j -->
 		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.8.0</version>
+			<groupId>net.sf.trove4j</groupId>
+			<artifactId>trove4j</artifactId>
+			<version>3.0.3</version>
 		</dependency>
+
 
 
 	</dependencies>

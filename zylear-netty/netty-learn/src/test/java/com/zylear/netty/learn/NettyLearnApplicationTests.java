@@ -1,4 +1,4 @@
-package com.zylear;
+package com.zylear.netty.learn;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
