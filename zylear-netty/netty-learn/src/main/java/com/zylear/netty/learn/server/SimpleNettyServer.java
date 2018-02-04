@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  * @author 28444
  * @date 2018/1/9.
  */
-@Component
+
 public class SimpleNettyServer {
 
     private static Integer port = 9090;
