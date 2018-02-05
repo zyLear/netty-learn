@@ -8,10 +8,10 @@ ECHO "gonna generate project specific protos..."
 
 SET CURRENT_PATH=%~dp0
 
-set tmp=%CURRENT_PATH%\..\java\com\zylear
+set tmp=%CURRENT_PATH%..\java\com\zylear
 if exist %tmp% ((RD /s /q %tmp%) & (ECHO "%tmp% deleted"))
 
-SET GEN_PATH=%CURRENT_PATH%\..\java
+SET GEN_PATH=%CURRENT_PATH%..\java
 CD %CURRENT_PATH%
  
 CD %PROTO_BASE%

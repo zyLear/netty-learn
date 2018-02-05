@@ -15,11 +15,14 @@ public class MessageBean {
     private byte[] data;
 
 
-
     public static final MessageBean LOGIN_SUCCESS = new MessageBean(OperationCode.LOGIN, StatusCode.SUCCESS);
     public static final MessageBean LOGIN_FAIL = new MessageBean(OperationCode.LOGIN, StatusCode.FAIL);
     public static final MessageBean CREATE_ROOM_SUCCESS = new MessageBean(OperationCode.CREATE_ROOM, StatusCode.SUCCESS);
     public static final MessageBean CREATE_ROOM_FAIL = new MessageBean(OperationCode.CREATE_ROOM, StatusCode.FAIL);
+    public static final MessageBean JOIN_ROOM_SUCCESS = new MessageBean(OperationCode.JOIN_ROOM, StatusCode.SUCCESS);
+    public static final MessageBean JOIN_ROOM_FAIL = new MessageBean(OperationCode.JOIN_ROOM, StatusCode.FAIL);
+    public static final MessageBean LEAVE_ROOM_SUCCESS = new MessageBean(OperationCode.LEAVE_ROOM, StatusCode.SUCCESS);
+    public static final MessageBean LEAVE_ROOM_FAIL = new MessageBean(OperationCode.LEAVE_ROOM, StatusCode.FAIL);
 
     public MessageBean() {
 
