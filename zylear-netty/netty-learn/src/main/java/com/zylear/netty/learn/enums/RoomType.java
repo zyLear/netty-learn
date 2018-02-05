@@ -5,7 +5,7 @@ package com.zylear.netty.learn.enums;
  * @date 2018/2/4.
  */
 public enum RoomType {
-    unknown(-2),
+    unknown(-1),
     blokus_two(1),
     block_four(2);
 

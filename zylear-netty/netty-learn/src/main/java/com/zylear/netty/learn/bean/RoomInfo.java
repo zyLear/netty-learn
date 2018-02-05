@@ -1,9 +1,13 @@
 package com.zylear.netty.learn.bean;
 
+import com.zylear.netty.learn.enums.ChooseColor;
 import com.zylear.netty.learn.enums.RoomStatus;
 import com.zylear.netty.learn.enums.RoomType;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -17,7 +21,7 @@ public class RoomInfo {
     private RoomType roomType;
     private Integer playerCount;
     private Integer maxPlayerCount;
-    private Set<String> players = new HashSet<>();
+    private Map<String, PlayerRoomInfo> players = new HashMap<>(4);
 
     public String getRoomName() {
         return roomName;
@@ -59,11 +63,21 @@ public class RoomInfo {
         this.maxPlayerCount = maxPlayerCount;
     }
 
-    public Set<String> getPlayers() {
+    public Map<String, PlayerRoomInfo> getPlayers() {
         return players;
     }
 
-    public void setPlayers(Set<String> players) {
+    public void setPlayers(Map<String, PlayerRoomInfo> players) {
         this.players = players;
+    }
+
+    public Boolean canStartGame() {
+
+        for (Entry<String, PlayerRoomInfo> entry : players.entrySet()) {
+            if (!entry.getValue().getReady()) {
+                return false;
+            }
+        }
+        return true;
     }
 }
