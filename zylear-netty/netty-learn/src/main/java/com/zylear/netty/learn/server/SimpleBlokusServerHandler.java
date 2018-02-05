@@ -1,6 +1,7 @@
 package com.zylear.netty.learn.server;
 
 import com.zylear.netty.learn.bean.MessageBean;
+import com.zylear.netty.learn.bean.TransferBean;
 import com.zylear.netty.learn.manager.MessageManager;
 import com.zylear.netty.learn.queue.MessageQueue;
 import io.netty.channel.Channel;
@@ -20,6 +21,7 @@ public class SimpleBlokusServerHandler extends SimpleChannelInboundHandler<Messa
 //        Channel incoming = ctx.channel();
 //        MessageManager.connectChannelGroup.add(incoming);
 //        System.out.println("handlerAdded");
+
     }
 
     @Override
@@ -51,8 +53,10 @@ public class SimpleBlokusServerHandler extends SimpleChannelInboundHandler<Messa
 
 
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageBean messageBean) throws Exception {
-        messageBean.setChannel(channelHandlerContext.channel());
-        MessageQueue.getInstance().put(messageBean);
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageBean message) throws Exception {
+        TransferBean transferBean = new TransferBean();
+        transferBean.setMessage(message);
+        transferBean.setChannel(channelHandlerContext.channel());
+        MessageQueue.getInstance().put(transferBean);
     }
 }

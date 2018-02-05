@@ -1,5 +1,7 @@
 package com.zylear.netty.learn.bean;
 
+import com.zylear.netty.learn.constant.OperationCode;
+import com.zylear.netty.learn.constant.StatusCode;
 import io.netty.channel.Channel;
 
 /**
@@ -11,7 +13,38 @@ public class MessageBean {
     private short operationCode;
     private short statusCode;
     private byte[] data;
-    private Channel channel;
+
+
+
+    public static final MessageBean LOGIN_SUCCESS = new MessageBean(OperationCode.LOGIN, StatusCode.SUCCESS);
+    public static final MessageBean LOGIN_FAIL = new MessageBean(OperationCode.LOGIN, StatusCode.FAIL);
+    public static final MessageBean CREATE_ROOM_SUCCESS = new MessageBean(OperationCode.CREATE_ROOM, StatusCode.SUCCESS);
+    public static final MessageBean CREATE_ROOM_FAIL = new MessageBean(OperationCode.CREATE_ROOM, StatusCode.FAIL);
+
+    public MessageBean() {
+
+    }
+
+//    public static MessageBean loginSucess(Channel channel) {
+//        return new MessageBean(OperationCode.LOGIN, StatusCode.SUCCESS, channel);
+//    }
+//
+//    public static MessageBean loginFail(Channel channel) {
+//        return new MessageBean(OperationCode.LOGIN, StatusCode.FAIL, channel);
+//    }
+//
+//    public static MessageBean createRoomSucess(Channel channel) {
+//        return new MessageBean(OperationCode.CREATE_ROOM, StatusCode.SUCCESS);
+//    }
+//
+//    public static MessageBean createRoomFail(Channel channel) {
+//        return new MessageBean(OperationCode.CREATE_ROOM, StatusCode.FAIL);
+//    }
+//
+    public MessageBean(short operationCode, short statusCode) {
+        this.operationCode = operationCode;
+        this.statusCode = statusCode;
+    }
 
     public short getStatusCode() {
         return statusCode;
@@ -35,14 +68,6 @@ public class MessageBean {
 
     public void setData(byte[] data) {
         this.data = data;
-    }
-
-    public Channel getChannel() {
-        return channel;
-    }
-
-    public void setChannel(Channel channel) {
-        this.channel = channel;
     }
 
     @Override

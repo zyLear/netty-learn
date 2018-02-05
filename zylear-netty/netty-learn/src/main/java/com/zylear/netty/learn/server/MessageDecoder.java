@@ -36,11 +36,12 @@ public class MessageDecoder extends LengthFieldBasedFrameDecoder {
     @Override
     protected Object decode(ChannelHandlerContext ctx, ByteBuf byteBuf) throws Exception {
 
-        ByteBuf frame = (ByteBuf) super.decode(ctx, byteBuf);
+        ByteBuf frame  /*=byteBuf; */  = (ByteBuf) super.decode(ctx, byteBuf);
         if (frame == null) {
             return null;
         }
 
+//        int length=frame.readInt();
 
         short code = frame.readShort();// read  short type operationCode
         short statusCode = frame.readShort(); // read short tye operationCode

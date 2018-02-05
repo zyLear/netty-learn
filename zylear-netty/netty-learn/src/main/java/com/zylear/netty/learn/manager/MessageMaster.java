@@ -1,6 +1,7 @@
 package com.zylear.netty.learn.manager;
 
 import com.zylear.netty.learn.bean.MessageBean;
+import com.zylear.netty.learn.bean.TransferBean;
 import com.zylear.netty.learn.queue.MessageQueue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,11 +41,11 @@ public class MessageMaster {
     public void getMessageLoop() {
         while (true) {
             if (AtomicVar.currentRunningCount.get() < maxThreadCount) {
-                MessageBean message = MessageQueue.getInstance().take();
-                if (message != null) {
+                TransferBean transferBean = MessageQueue.getInstance().take();
+                if (transferBean != null) {
                     int count = AtomicVar.currentRunningCount.incrementAndGet();
                     logger.info("begin handle msg. current:{}", count);
-                    executorServices.submit(new MessageWorker(messageManager, message));
+                    executorServices.submit(new MessageWorker(messageManager, transferBean));
                 } else {
                     try {
                         Thread.sleep(50);

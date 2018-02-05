@@ -1,6 +1,7 @@
 package com.zylear.netty.learn.manager;
 
 import com.zylear.netty.learn.bean.MessageBean;
+import com.zylear.netty.learn.bean.TransferBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,19 +14,19 @@ public class MessageWorker implements Runnable {
 
     private static final Logger logger = LoggerFactory.getLogger(MessageManager.class);
 
-    private MessageHandler<MessageBean, List<MessageBean>> messageHandler;
-    private MessageBean message;
+    private MessageHandler<TransferBean, List<TransferBean>> messageHandler;
+    private TransferBean transferBean;
 
-    public MessageWorker(MessageHandler messageHandler, MessageBean message) {
+    public MessageWorker(MessageHandler messageHandler, TransferBean transferBean) {
         this.messageHandler = messageHandler;
-        this.message = message;
+        this.transferBean = transferBean;
     }
 
     @Override
     public void run() {
         try {
             if (messageHandler != null) {
-                List<MessageBean> responses = messageHandler.handle(message);
+                List<TransferBean> responses = messageHandler.handle(transferBean);
                 messageHandler.send(responses);
             }
         } catch (Exception e) {

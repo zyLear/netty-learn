@@ -1,9 +1,8 @@
 package com.zylear.netty.learn.client;
 
-import com.zylear.netty.contract.BaseOuterClass.NETTY;
 import com.zylear.netty.learn.bean.MessageBean;
 import com.zylear.netty.learn.netty.SimpleChatClientInitializer;
-import com.zylear.proto.AccountOuterClass.NETTYAccount;
+import com.zylear.proto.BlokusOuterClass.BLOKUSAccount;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
@@ -65,7 +64,7 @@ public class SimpleChatClient {
         MessageBean messageBean = new MessageBean();
         messageBean.setOperationCode((short) 0);
         messageBean.setStatusCode((short) 0);
-        NETTYAccount.Builder builder = NETTYAccount.newBuilder();
+        BLOKUSAccount.Builder builder = BLOKUSAccount.newBuilder();
         builder.setAccount("123456");
         builder.setPassword("xzyxzy");
         messageBean.setData(builder.build().toByteArray());

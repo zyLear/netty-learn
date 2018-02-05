@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+option java_package = "com.zylear.proto";
+option java_outer_classname = "BlokusOuterClass";
+
+//1.0.0
+message BLOKUSAccount {
+    optional string account = 1;
+    optional string password = 2;
+}
+
+//1.0.0
+message BLOKUSCreateRoom {
+    optional string roomName = 1;
+    optional int32 roomType = 2;
+}
