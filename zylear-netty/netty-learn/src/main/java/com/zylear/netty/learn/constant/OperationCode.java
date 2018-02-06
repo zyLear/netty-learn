@@ -20,16 +20,12 @@ public class OperationCode {
 
     public static final short CHESS_DONE = 7;
 
+    public static final short UPDATE_ROOM_PLAYERS_INFO = 8;
 
-//    public static final short
+    public static final short CHOOSE_COLOR = 9;
 
-//    unknown((short) 10000),
-//
-//    check_version((short) 1),
-//
-//    login((short) 2),
-//
-//    create_room((short) 3),
-//
-//    join_room((short) 4),
+
+    public static final short QUIT = 10001;
+
+
 }

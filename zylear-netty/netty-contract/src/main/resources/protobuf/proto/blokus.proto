@@ -19,3 +19,15 @@ message BLOKUSCreateRoom {
 message BLOKUSRoomName {
     optional string roomName = 1;
 }
+
+//1.0.0
+message BLOKUSRoomPlayerInfo {
+    optional string account = 1;
+    optional int32 color = 2;
+    optional bool isReady = 3;
+}
+
+//1.0.0
+message BLOKUSRoomPlayerList {
+    repeated BLOKUSRoomPlayerInfo itmes = 1;
+}

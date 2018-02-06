@@ -80,4 +80,25 @@ public class RoomInfo {
         }
         return true;
     }
+
+
+    @Override
+    public String toString() {
+        return "RoomInfo{" +
+                "roomName='" + roomName + '\'' +
+                ", roomStatus=" + roomStatus +
+                ", roomType=" + roomType +
+                ", playerCount=" + playerCount +
+                ", maxPlayerCount=" + maxPlayerCount +
+                ", playerRoomInfo=" + showPlayerRoomInfo() +
+                '}';
+    }
+
+    private String showPlayerRoomInfo() {
+        StringBuilder stringBuilder = new StringBuilder("[");
+        for (Entry<String, PlayerRoomInfo> entry : players.entrySet()) {
+            stringBuilder.append(entry.getValue().toString());
+        }
+        return stringBuilder.append("]").toString();
+    }
 }
