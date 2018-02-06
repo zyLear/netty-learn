@@ -2,11 +2,14 @@ package com.zylear.netty.learn.server;
 
 import com.zylear.netty.learn.bean.MessageBean;
 import com.zylear.netty.learn.bean.TransferBean;
+import com.zylear.netty.learn.constant.OperationCode;
+import com.zylear.netty.learn.constant.StatusCode;
 import com.zylear.netty.learn.manager.MessageManager;
 import com.zylear.netty.learn.queue.MessageQueue;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+
 
 /**
  * @author 28444
@@ -44,8 +47,9 @@ public class SimpleBlokusServerHandler extends SimpleChannelInboundHandler<Messa
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        Channel incoming = ctx.channel();
-        System.out.println("client " + incoming.remoteAddress() + " 异常");
+        Channel channel = ctx.channel();
+        MessageQueue.getInstance().put(new TransferBean(MessageBean.QUIT, ctx.channel()));
+        System.out.println("client " + channel.remoteAddress() + " 异常");
         // 当出现异常就关闭连接
         cause.printStackTrace();
         ctx.close();
@@ -53,10 +57,8 @@ public class SimpleBlokusServerHandler extends SimpleChannelInboundHandler<Messa
 
 
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageBean message) throws Exception {
-        TransferBean transferBean = new TransferBean();
-        transferBean.setMessage(message);
-        transferBean.setChannel(channelHandlerContext.channel());
-        MessageQueue.getInstance().put(transferBean);
+    protected void channelRead0(ChannelHandlerContext ctx, MessageBean message) throws Exception {
+        MessageQueue.getInstance().put(new TransferBean(message, ctx.channel()));
     }
+
 }

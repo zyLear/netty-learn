@@ -1,11 +1,15 @@
 package com.zylear.netty.learn.manager;
 
+import com.zylear.netty.learn.bean.TransferBean;
+
+import java.util.List;
+
 /**
  * Created by xiezongyu on 2018/2/2.
  */
 public interface MessageHandler<T, K> {
 
-    public K handle(T t);
+    public void handle(T t, K k);
 
     public void send(K t);
 }

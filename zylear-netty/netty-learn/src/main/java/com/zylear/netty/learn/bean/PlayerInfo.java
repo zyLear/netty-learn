@@ -11,6 +11,7 @@ public class PlayerInfo {
     private String account;
     private String roomName;
     private Channel channel;
+    private RoomInfo roomInfo;
 
     public String getAccount() {
         return account;
@@ -34,5 +35,13 @@ public class PlayerInfo {
 
     public void setChannel(Channel channel) {
         this.channel = channel;
+    }
+
+    public RoomInfo getRoomInfo() {
+        return roomInfo;
+    }
+
+    public void setRoomInfo(RoomInfo roomInfo) {
+        this.roomInfo = roomInfo;
     }
 }

@@ -5,6 +5,7 @@ import com.zylear.netty.learn.bean.TransferBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -26,7 +27,8 @@ public class MessageWorker implements Runnable {
     public void run() {
         try {
             if (messageHandler != null) {
-                List<TransferBean> responses = messageHandler.handle(transferBean);
+                List<TransferBean> responses = new LinkedList();
+                messageHandler.handle(transferBean, responses);
                 messageHandler.send(responses);
             }
         } catch (Exception e) {

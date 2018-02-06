@@ -1,12 +1,14 @@
 package com.zylear.netty.learn.bean;
 
 import com.zylear.netty.learn.enums.ChooseColor;
+import io.netty.channel.Channel;
 
 /**
  * Created by xiezongyu on 2018/2/5.
  */
 public class PlayerRoomInfo {
 
+    private Channel channel;
     private String account;
     private ChooseColor color;
     private Boolean isReady;
@@ -33,5 +35,22 @@ public class PlayerRoomInfo {
 
     public void setReady(Boolean ready) {
         isReady = ready;
+    }
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(Channel channel) {
+        this.channel = channel;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerRoomInfo{" +
+                "account='" + account + '\'' +
+                ", color=" + color +
+                ", isReady=" + isReady +
+                '}';
     }
 }

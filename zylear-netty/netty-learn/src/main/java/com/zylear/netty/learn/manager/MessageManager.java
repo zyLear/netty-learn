@@ -1,29 +1,23 @@
 package com.zylear.netty.learn.manager;
 
 
-import com.google.protobuf.InvalidProtocolBufferException;
 import com.zylear.netty.learn.bean.MessageBean;
-import com.zylear.netty.learn.bean.PlayerInfo;
-import com.zylear.netty.learn.bean.RoomInfo;
+import com.zylear.netty.learn.bean.PlayerRoomInfo;
 import com.zylear.netty.learn.bean.TransferBean;
 import com.zylear.netty.learn.cache.ServerCache;
 import com.zylear.netty.learn.constant.OperationCode;
-import com.zylear.netty.learn.constant.StatusCode;
-import com.zylear.netty.learn.enums.RoomStatus;
 import com.zylear.netty.learn.enums.RoomType;
+import com.zylear.netty.learn.util.MessageFormater;
 import com.zylear.proto.BlokusOuterClass.BLOKUSAccount;
 import com.zylear.proto.BlokusOuterClass.BLOKUSCreateRoom;
 import com.zylear.proto.BlokusOuterClass.BLOKUSRoomName;
 import io.netty.channel.Channel;
-import io.netty.channel.group.ChannelGroup;
-import io.netty.channel.group.DefaultChannelGroup;
-import io.netty.util.concurrent.GlobalEventExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Map.Entry;
 
 /**
  * @author 28444
@@ -36,45 +30,69 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
     // division different function later. different kinds of handlers
 
-    public List<TransferBean> handle(TransferBean transferBean) {
+    public void handle(TransferBean transferBean, List<TransferBean> responses) {
         System.out.println(transferBean.getMessage().toString());
 
         switch (transferBean.getMessage().getOperationCode()) {
             case OperationCode.CHECK_VERSION:
-                return checkVersion(transferBean);
+                checkVersion(transferBean, responses);
+                break;
             case OperationCode.LOGIN:
-                return login(transferBean);
+                login(transferBean, responses);
+                break;
             case OperationCode.CREATE_ROOM:
-                return createRoom(transferBean);
+                createRoom(transferBean, responses);
+                break;
             case OperationCode.JOIN_ROOM:
-                return joinRoom(transferBean);
+                joinRoom(transferBean, responses);
+                break;
             case OperationCode.LEAVE_ROOM:
-                return leaveRoom(transferBean);
+                leaveRoom(transferBean, responses);
+                break;
+            case OperationCode.CHOOSE_COLOR:
+                chooseColor(transferBean, responses);
+                break;
             case OperationCode.READY:
-                return ready(transferBean);
+                ready(transferBean, responses);
+                break;
             case OperationCode.CHESS_DONE:
-                return chessDone(transferBean);
+                chessDone(transferBean, responses);
+                break;
+            case OperationCode.QUIT:
+                quit(transferBean, responses);
+                break;
             default:
-                return Collections.EMPTY_LIST;
         }
     }
 
-    private List<TransferBean> chessDone(TransferBean transferBean) {
+    private void chooseColor(TransferBean transferBean, List<TransferBean> responses) {
 
-        return null;
+        MessageBean message = transferBean.getMessage();
+
+
+    }
+
+    private void quit(TransferBean transferBean, List<TransferBean> responses) {
+        ServerCache.quit(transferBean.getChannel());
+//        return Collections.EMPTY_LIST;
+    }
+
+    private void chessDone(TransferBean transferBean, List<TransferBean> responses) {
+
+//        return null;
 
 
     }
 
 
-    private synchronized List<TransferBean> ready(TransferBean transferBean) {
+    private synchronized List<TransferBean> ready(TransferBean transferBean, List<TransferBean> responses) {
 
         ServerCache.ready(transferBean.getChannel());
         return Collections.EMPTY_LIST;
     }
 
 
-    private List<TransferBean> joinRoom(TransferBean transferBean) {
+    private void joinRoom(TransferBean transferBean, List<TransferBean> responses) {
         MessageBean message = transferBean.getMessage();
         BLOKUSRoomName blokusRoomName;
         try {
@@ -83,24 +101,30 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         } catch (Exception e) {
             logger.warn("parse BLOKUSRoomName exception. ", e);
             transferBean.setMessage(MessageBean.CREATE_ROOM_FAIL);
-            return Arrays.asList(transferBean);
+            responses.add(transferBean);
+            return;
         }
 
         if (ServerCache.joinRoom(transferBean.getChannel(), blokusRoomName.getRoomName())) {
-            transferBean.setMessage(MessageBean.JOIN_ROOM_SUCCESS);
+            responses.add(new TransferBean(MessageBean.JOIN_ROOM_SUCCESS, transferBean.getChannel()));
+            updateRoomPlayersInfo(blokusRoomName.getRoomName(), responses);
+//            List<RoomInfo> rooms = ServerCache.getAllRooms();
+//            List<Channel> var2 = ServerCache.getPlayersInLobby();
         } else {
             transferBean.setMessage(MessageBean.JOIN_ROOM_FAIL);
+            responses.add(transferBean);
         }
-        return Arrays.asList(transferBean);
+
     }
 
-    private List<TransferBean> checkVersion(TransferBean transferBean) {
+
+    private void checkVersion(TransferBean transferBean, List<TransferBean> responses) {
 
 
-        return null;
+//        return null;
     }
 
-    private List<TransferBean> createRoom(TransferBean transferBean) {
+    private void createRoom(TransferBean transferBean, List<TransferBean> responses) {
         MessageBean message = transferBean.getMessage();
         BLOKUSCreateRoom blokusCreateRoom = null;
         try {
@@ -110,41 +134,39 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         } catch (Exception e) {
             logger.warn("parse BLOKUSCreateRoom exception. ", e);
             transferBean.setMessage(MessageBean.CREATE_ROOM_FAIL);
-            return Arrays.asList(transferBean);
+            responses.add(transferBean);
+            return;
         }
 
         if (ServerCache.createRoom(transferBean.getChannel(), blokusCreateRoom.getRoomName(),
                 RoomType.valueOf(blokusCreateRoom.getRoomType()))) {
             transferBean.setMessage(MessageBean.CREATE_ROOM_SUCCESS);
+            responses.add(transferBean);
+            updateRoomPlayersInfo(blokusCreateRoom.getRoomName(), responses);
         } else {
             transferBean.setMessage(MessageBean.CREATE_ROOM_FAIL);
+            responses.add(transferBean);
         }
-        return Arrays.asList(transferBean);
+//        ServerCache.showAllRooms();
+
     }
 
 
-    private List<TransferBean> leaveRoom(TransferBean transferBean) {
-//        MessageBean message = transferBean.getMessage();
-//        BLOKUSRoomName blokusRoomName;
-//        try {
-//            blokusRoomName = BLOKUSRoomName.parseFrom(message.getData());
-//            logger.info("join room. roomName:{}", blokusRoomName.getRoomName());
-//        } catch (Exception e) {
-//            logger.warn("parse BLOKUSRoomName exception. ", e);
-//            transferBean.setMessage(MessageBean.LEAVE_ROOM_FAIL);
-//            return Arrays.asList(transferBean);
-//        }
-
-        if (ServerCache.leaveRoom(transferBean.getChannel())) {
+    private void leaveRoom(TransferBean transferBean, List<TransferBean> responses) {
+        String roomName = ServerCache.leaveRoom(transferBean.getChannel());
+        if (roomName != null) {
             transferBean.setMessage(MessageBean.LEAVE_ROOM_SUCCESS);
+            responses.add(transferBean);
+            updateRoomPlayersInfo(roomName, responses);
         } else {
             transferBean.setMessage(MessageBean.LEAVE_ROOM_FAIL);
         }
-        return Arrays.asList(transferBean);
+//        ServerCache.showAllRooms();
+        responses.add(transferBean);
     }
 
 
-    private List<TransferBean> login(TransferBean transferBean) {
+    private void login(TransferBean transferBean, List<TransferBean> responses) {
         MessageBean message = transferBean.getMessage();
         BLOKUSAccount account;
         try {
@@ -154,23 +176,34 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         } catch (Exception e) {
             logger.warn("parse BLOKUSAccount exception. ", e);
             transferBean.setMessage(MessageBean.LOGIN_FAIL);
-            return Arrays.asList(transferBean);
+            responses.add(transferBean);
+            return;
         }
 
-        if ("123456".equals(account.getAccount()) && "123456".equals(account.getPassword())) {
-            ServerCache.login(transferBean.getChannel(), account.getAccount());
-            transferBean.setMessage(MessageBean.LOGIN_SUCCESS);
-        } else {
-            transferBean.setMessage(MessageBean.LOGIN_FAIL);
+        if (("123456".equals(account.getAccount())) || "654321".equals(account.getAccount()) &&
+                "123456".equals(account.getPassword())) {
+            if (ServerCache.login(transferBean.getChannel(), account.getAccount())) {
+                transferBean.setMessage(MessageBean.LOGIN_SUCCESS);
+                responses.add(transferBean);
+                return;
+            }
         }
-        return Arrays.asList(transferBean);
+        transferBean.setMessage(MessageBean.LOGIN_FAIL);
+        responses.add(transferBean);
+    }
+
+    private void roomStatusChange(Channel channel) {
+
+//        return null;
     }
 
 
-    private List<TransferBean> roomChange() {
-
-
-        return null;
+    private void updateRoomPlayersInfo(String roomName, List<TransferBean> transferBeans) {
+        Map<String, PlayerRoomInfo> playerRoomInfoMap = ServerCache.getPlayerRoomInfos(roomName);
+        MessageBean needSendMessage = MessageFormater.formatPlayerRoomInfoMessage(playerRoomInfoMap);
+        for (Entry<String, PlayerRoomInfo> entry : playerRoomInfoMap.entrySet()) {
+            transferBeans.add(new TransferBean(needSendMessage, entry.getValue().getChannel()));
+        }
     }
 
 

@@ -24,11 +24,14 @@ public class MessageBean {
     public static final MessageBean LEAVE_ROOM_SUCCESS = new MessageBean(OperationCode.LEAVE_ROOM, StatusCode.SUCCESS);
     public static final MessageBean LEAVE_ROOM_FAIL = new MessageBean(OperationCode.LEAVE_ROOM, StatusCode.FAIL);
 
+
+    public static final MessageBean QUIT = new MessageBean(OperationCode.QUIT, StatusCode.SUCCESS);
+
     public MessageBean() {
 
     }
 
-//    public static MessageBean loginSucess(Channel channel) {
+    //    public static MessageBean loginSucess(Channel channel) {
 //        return new MessageBean(OperationCode.LOGIN, StatusCode.SUCCESS, channel);
 //    }
 //
