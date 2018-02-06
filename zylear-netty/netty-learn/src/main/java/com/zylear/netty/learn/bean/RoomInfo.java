@@ -72,13 +72,17 @@ public class RoomInfo {
     }
 
     public Boolean canStartGame() {
-
+        int count = 0;
         for (Entry<String, PlayerRoomInfo> entry : players.entrySet()) {
-            if (!entry.getValue().getReady()) {
-                return false;
+            if (entry.getValue().getReady()) {
+                count++;
             }
         }
-        return true;
+        if (count == maxPlayerCount - 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
@@ -100,5 +104,18 @@ public class RoomInfo {
             stringBuilder.append(entry.getValue().toString());
         }
         return stringBuilder.append("]").toString();
+    }
+
+    public boolean canReady() {
+        if (players.size() == maxPlayerCount) {
+            Set<ChooseColor> colorSet = new HashSet<>();
+            for (Entry<String, PlayerRoomInfo> entry : players.entrySet()) {
+                colorSet.add(entry.getValue().getColor());
+            }
+            if (colorSet.size() == maxPlayerCount) {
+                return true;
+            }
+        }
+        return true;
     }
 }

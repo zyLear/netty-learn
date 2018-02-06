@@ -26,6 +26,8 @@ public class MessageBean {
 
 
     public static final MessageBean QUIT = new MessageBean(OperationCode.QUIT, StatusCode.SUCCESS);
+    public static final MessageBean START_BLOKUS  = new MessageBean(OperationCode.START_BLOKUS, StatusCode.SUCCESS);
+    public static final MessageBean START_BLOKUS_TWO_PEOPLE  = new MessageBean(OperationCode.START_BLOKUS_TWO_PEOPLE, StatusCode.SUCCESS);
 
     public MessageBean() {
 
