@@ -116,6 +116,6 @@ public class RoomInfo {
                 return true;
             }
         }
-        return true;
+        return false;
     }
 }

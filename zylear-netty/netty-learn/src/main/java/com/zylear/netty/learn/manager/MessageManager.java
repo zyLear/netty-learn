@@ -125,7 +125,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         }
 
 
-        updateRoomPlayersInfo(blokusChooseColor.getRoomName(), responses);
+//        updateRoomPlayersInfo(blokusChooseColor.getRoomName(), responses);
     }
 
     private void startGame(String roomName, List<TransferBean> responses) {
@@ -238,7 +238,9 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             return;
         }
 
-        if (("123456".equals(account.getAccount())) || "654321".equals(account.getAccount()) &&
+        if (("123456".equals(account.getAccount())) ||
+                "654321".equals(account.getAccount()) ||
+                account.getAccount().length() > 5 &&
                 "123456".equals(account.getPassword())) {
             if (ServerCache.login(transferBean.getChannel(), account.getAccount())) {
                 transferBean.setMessage(MessageBean.LOGIN_SUCCESS);
