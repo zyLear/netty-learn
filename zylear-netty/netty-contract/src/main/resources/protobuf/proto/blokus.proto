@@ -36,5 +36,15 @@ message BLOKUSRoomPlayerList {
 message BLOKUSChooseColor {
     optional string account = 1;
     optional string roomName = 2;
-    optional int32 color=3;
+    optional int32 color = 3;
+}
+
+//1.0.0
+message BLOKUSChessDoneInfo {
+    optional int32 x = 1;
+    optional int32 y = 2;
+    optional string squareName=3;
+    optional int32 rotationFlag = 4;
+    optional int32 symmetryFlag = 5;
+    optional bytes model = 6;
 }

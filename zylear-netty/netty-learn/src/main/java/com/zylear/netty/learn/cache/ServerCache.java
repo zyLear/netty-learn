@@ -9,6 +9,7 @@ import com.zylear.netty.learn.enums.RoomType;
 import io.netty.channel.Channel;
 import io.netty.util.internal.ConcurrentSet;
 
+import java.nio.channels.Channels;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
@@ -46,6 +47,7 @@ public class ServerCache {
                 roomInfo.setPlayerCount(1);
                 roomInfo.setMaxPlayerCount(4);
                 roomInfo.setRoomName(roomName);
+                roomInfo.setRoomType(roomType);
                 roomInfo.setRoomStatus(RoomStatus.waiting);
 
                 PlayerRoomInfo playerRoomInfo = new PlayerRoomInfo();
@@ -157,7 +159,15 @@ public class ServerCache {
             if (playerRoomInfo != null) {
                 boolean ready = playerRoomInfo.getReady();
                 if (!ready) {
+
+                    roomInfo.setRoomStatus(RoomStatus.gaming);
+                    for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
+                        entry.getValue().setReady(false);
+                        return 0;
+                    }
+
                     if (roomInfo.canStartGame()) {
+                        roomInfo.setRoomStatus(RoomStatus.gaming);
                         for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
                             entry.getValue().setReady(false);
                             return 0;
@@ -235,4 +245,24 @@ public class ServerCache {
     }
 
 
+    public static List<Channel> getOtherPlayersInRoom(Channel channel) {
+
+
+        PlayerInfo player = playerMap.get(channel);
+
+        List<Channel> channels = new ArrayList<>(4);
+        if (player != null) {
+            String account = player.getAccount();
+            RoomInfo roomInfo = player.getRoomInfo();
+            if (roomInfo != null) {
+                for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
+                    channels.add(entry.getValue().getChannel());
+                }
+                return channels;
+            }
+        }
+        return Collections.EMPTY_LIST;
+    }
 }
+
+
