@@ -92,6 +92,7 @@ public class ServerCache {
                     roomInfo.getPlayers().remove(playerInfo.getAccount());
                 }
             }
+            playerMap.remove(channel);
         }
     }
 
@@ -142,41 +143,63 @@ public class ServerCache {
         return null;
     }
 
+    public static void startGame(String account, String roomName) {
+        RoomInfo roomInfo = roomMap.get(roomName);
+        if (roomInfo != null) {
 
-    public static void ready(Channel channel) {
-        PlayerInfo player = playerMap.get(channel);
-        if (player == null) {
-            return;
-        } else {
-            String roomName = player.getRoomName();
-            if (roomName == null) {
-                return;
-            }
+        }
+    }
 
-            RoomInfo roomInfo = roomMap.get(roomName);
-            if (roomInfo == null) {
-                return;
-            } else {
-                if (RoomStatus.waiting.equals(roomInfo.getRoomStatus()) &&
-                        roomInfo.getPlayerCount() > 0) {
-
-                    return;
+    public static int ready(String account, String roomName) {
+        RoomInfo roomInfo = roomMap.get(roomName);
+        if (roomInfo != null) {
+            PlayerRoomInfo playerRoomInfo = roomInfo.getPlayers().get(account);
+            if (playerRoomInfo != null) {
+                boolean ready = playerRoomInfo.getReady();
+                if (!ready) {
+                    if (roomInfo.canStartGame()) {
+                        roomInfo.setRoomStatus(RoomStatus.gaming);
+                        for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
+                            entry.getValue().setReady(false);
+                            return 0;
+                        }
+                    } else if (roomInfo.canReady()) {
+                        roomInfo.getPlayers().get(account).setReady(true);
+                        return 1;
+                    }
                 } else {
-                    return;
+                    playerRoomInfo.setReady(false);
+                    return 1;
                 }
             }
         }
+        return 2;
     }
 
 
     public static Map<String, PlayerRoomInfo> getPlayerRoomInfos(String roomName) {
         try {
-
             return roomMap.get(roomName).getPlayers();
         } catch (Exception e) {
             return Collections.EMPTY_MAP;
         }
+    }
 
+    public static RoomInfo getRoomInfo(String roomName) {
+        return roomMap.get(roomName);
+
+    }
+
+    public static void chooseColor(String account, String roomName, ChooseColor chooseColor) {
+        RoomInfo roomInfo = roomMap.get(roomName);
+        if (roomInfo != null) {
+            for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
+                if (entry.getKey().equals(account)) {
+                    entry.getValue().setColor(chooseColor);
+                }
+                entry.getValue().setReady(false);
+            }
+        }
     }
 
 

@@ -31,3 +31,10 @@ message BLOKUSRoomPlayerInfo {
 message BLOKUSRoomPlayerList {
     repeated BLOKUSRoomPlayerInfo itmes = 1;
 }
+
+//1.0.0
+message BLOKUSChooseColor {
+    optional string account = 1;
+    optional string roomName = 2;
+    optional int32 color=3;
+}

@@ -24,6 +24,10 @@ public class OperationCode {
 
     public static final short CHOOSE_COLOR = 9;
 
+    public static final short START_BLOKUS = 10;
+
+    public static final short START_BLOKUS_TWO_PEOPLE = 11;
+
 
     public static final short QUIT = 10001;
 

@@ -8,8 +8,9 @@ public enum ChooseColor {
     unknown(-1),
     blue(1),
     green(2),
-    yellow(3),
-    red(4);
+    red(3),
+    yellow(4);
+
 
     private Integer value;
 
