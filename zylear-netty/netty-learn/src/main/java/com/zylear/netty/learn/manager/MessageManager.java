@@ -10,15 +10,13 @@ import com.zylear.netty.learn.constant.OperationCode;
 import com.zylear.netty.learn.enums.ChooseColor;
 import com.zylear.netty.learn.enums.RoomType;
 import com.zylear.netty.learn.util.MessageFormater;
-import com.zylear.proto.BlokusOuterClass.BLOKUSAccount;
-import com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor;
-import com.zylear.proto.BlokusOuterClass.BLOKUSCreateRoom;
-import com.zylear.proto.BlokusOuterClass.BLOKUSRoomName;
+import com.zylear.proto.BlokusOuterClass.*;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.nio.channels.Channels;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -95,9 +93,11 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
     private void chessDone(TransferBean transferBean, List<TransferBean> responses) {
 
+        List<Channel> channels = ServerCache.getOtherPlayersInRoom(transferBean.getChannel());
+        for (Channel channel : channels) {
+            responses.add(new TransferBean(transferBean.getMessage(), channel));
+        }
 //        return null;
-
-
     }
 
 
@@ -112,6 +112,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             logger.warn("parse BLOKUSRoomName exception. ", e);
             return;
         }
+
 
         int result = ServerCache.ready(blokusChooseColor.getAccount(), blokusChooseColor.getRoomName());
         switch (result) {
@@ -241,7 +242,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         if (("123456".equals(account.getAccount())) ||
                 "654321".equals(account.getAccount()) ||
                 account.getAccount().length() > 5 &&
-                "123456".equals(account.getPassword())) {
+                        "123456".equals(account.getPassword())) {
             if (ServerCache.login(transferBean.getChannel(), account.getAccount())) {
                 transferBean.setMessage(MessageBean.LOGIN_SUCCESS);
                 responses.add(transferBean);
