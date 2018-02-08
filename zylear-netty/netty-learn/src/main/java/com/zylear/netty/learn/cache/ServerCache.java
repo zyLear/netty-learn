@@ -187,12 +187,25 @@ public class ServerCache {
 
 
     public static Map<String, PlayerRoomInfo> getPlayerRoomInfos(String roomName) {
-        try {
-            return roomMap.get(roomName).getPlayers();
-        } catch (Exception e) {
+        RoomInfo roomInfo = roomMap.get(roomName);
+        if (roomInfo != null) {
+            return roomInfo.getPlayers();
+        } else {
             return Collections.EMPTY_MAP;
         }
     }
+
+    public static Map<String, PlayerRoomInfo> getPlayerRoomInfos(Channel channel) {
+        PlayerInfo player = playerMap.get(channel);
+        if (player != null) {
+            RoomInfo roomInfo = player.getRoomInfo();
+            if (roomInfo != null) {
+                return roomInfo.getPlayers();
+            }
+        }
+        return Collections.EMPTY_MAP;
+    }
+
 
     public static RoomInfo getRoomInfo(String roomName) {
         return roomMap.get(roomName);
@@ -262,6 +275,15 @@ public class ServerCache {
             }
         }
         return Collections.EMPTY_LIST;
+    }
+
+    public static RoomInfo getRoomInfo(Channel channel) {
+        PlayerInfo player = playerMap.get(channel);
+        if (player != null) {
+            return player.getRoomInfo();
+        } else {
+            return null;
+        }
     }
 }
 

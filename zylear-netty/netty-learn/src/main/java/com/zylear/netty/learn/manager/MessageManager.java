@@ -1,10 +1,7 @@
 package com.zylear.netty.learn.manager;
 
 
-import com.zylear.netty.learn.bean.MessageBean;
-import com.zylear.netty.learn.bean.PlayerRoomInfo;
-import com.zylear.netty.learn.bean.RoomInfo;
-import com.zylear.netty.learn.bean.TransferBean;
+import com.zylear.netty.learn.bean.*;
 import com.zylear.netty.learn.cache.ServerCache;
 import com.zylear.netty.learn.constant.OperationCode;
 import com.zylear.netty.learn.enums.ChooseColor;
@@ -16,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.nio.channels.Channels;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -59,10 +55,74 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             case OperationCode.CHESS_DONE:
                 chessDone(transferBean, responses);
                 break;
+            case OperationCode.WIN:
+                win(transferBean, responses);
+                break;
+            case OperationCode.FAIL:
+                fail(transferBean, responses);
+                break;
+            case OperationCode.GIVE_UP:
+                giveUp(transferBean, responses);
+                break;
             case OperationCode.QUIT:
                 quit(transferBean, responses);
                 break;
             default:
+        }
+    }
+
+    private void giveUp(TransferBean transferBean, List<TransferBean> responses) {
+        PlayerInfo playerInfo = ServerCache.getPlayerInfo(transferBean.getChannel());
+
+        BLOKUSChooseColor blokusChooseColor;
+        try {
+            blokusChooseColor = BLOKUSChooseColor.parseFrom(transferBean.getMessage().getData());
+            logger.info("give up. color:{}", ChooseColor.valueOf(blokusChooseColor.getColor()));
+        } catch (Exception e) {
+            logger.warn("parse blokusChooseColor exception. ", e);
+            return;
+        }
+
+        if (playerInfo != null) {
+            RoomInfo roomInfo = playerInfo.getRoomInfo();
+            if (roomInfo != null) {
+                PlayerRoomInfo playerRoomInfo = roomInfo.getPlayers().get(playerInfo.getAccount());
+                if (!playerRoomInfo.getIsFail()) {
+                    playerRoomInfo.setIsFail(false);
+                    //do fail , sub score;
+                }
+                MessageBean message = MessageFormater.formatGiveUpMessage(blokusChooseColor.getColor());
+                for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
+                    if (!entry.getKey().equals(playerInfo.getAccount())) {
+                        responses.add(new TransferBean(message, entry.getValue().getChannel()));
+                    }
+                }
+            }
+        }
+    }
+
+    private void fail(TransferBean transferBean, List<TransferBean> responses) {
+        PlayerInfo playerInfo = ServerCache.getPlayerInfo(transferBean.getChannel());
+        if (playerInfo != null) {
+            RoomInfo roomInfo = playerInfo.getRoomInfo();
+            if (roomInfo != null) {
+                PlayerRoomInfo playerRoomInfo = roomInfo.getPlayers().get(playerInfo.getAccount());
+                if (!playerRoomInfo.getIsFail()) {
+                    playerRoomInfo.setIsFail(false);
+                    //do fail , sub score;
+                }
+            }
+        }
+    }
+
+    private void win(TransferBean transferBean, List<TransferBean> responses) {
+
+        RoomInfo roomInfo = ServerCache.getRoomInfo(transferBean.getChannel());
+        if (roomInfo != null) {
+            Map<String, PlayerRoomInfo> playerRoomInfos = roomInfo.getPlayers();
+            for (Entry<String, PlayerRoomInfo> entry : playerRoomInfos.entrySet()) {
+
+            }
         }
     }
 

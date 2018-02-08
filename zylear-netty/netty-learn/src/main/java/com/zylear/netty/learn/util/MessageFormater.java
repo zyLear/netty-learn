@@ -4,6 +4,7 @@ import com.zylear.netty.learn.bean.MessageBean;
 import com.zylear.netty.learn.bean.PlayerRoomInfo;
 import com.zylear.netty.learn.constant.OperationCode;
 import com.zylear.netty.learn.constant.StatusCode;
+import com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor;
 import com.zylear.proto.BlokusOuterClass.BLOKUSRoomPlayerInfo;
 import com.zylear.proto.BlokusOuterClass.BLOKUSRoomPlayerList;
 
@@ -28,6 +29,16 @@ public class MessageFormater {
             itemBuilder.setIsReady(playerRoomInfo.getReady());
             builder.addItmes(itemBuilder);
         }
+        message.setData(builder.build().toByteArray());
+        return message;
+    }
+
+    public static MessageBean formatGiveUpMessage(int color) {
+        MessageBean message = new MessageBean();
+        message.setOperationCode(OperationCode.GIVE_UP);
+        message.setStatusCode(StatusCode.SUCCESS);
+        BLOKUSChooseColor.Builder builder = BLOKUSChooseColor.newBuilder();
+        builder.setColor(color);
         message.setData(builder.build().toByteArray());
         return message;
     }

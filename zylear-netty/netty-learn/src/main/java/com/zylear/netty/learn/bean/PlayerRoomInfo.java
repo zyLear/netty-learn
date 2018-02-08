@@ -12,6 +12,7 @@ public class PlayerRoomInfo {
     private String account;
     private ChooseColor color;
     private Boolean isReady;
+    private Boolean isFail;
 
     public String getAccount() {
         return account;
@@ -43,6 +44,14 @@ public class PlayerRoomInfo {
 
     public void setChannel(Channel channel) {
         this.channel = channel;
+    }
+
+    public Boolean getIsFail() {
+        return isFail;
+    }
+
+    public void setIsFail(Boolean fail) {
+        isFail = fail;
     }
 
     @Override
