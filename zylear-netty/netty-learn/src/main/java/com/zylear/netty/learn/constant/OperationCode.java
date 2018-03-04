@@ -28,6 +28,12 @@ public class OperationCode {
 
     public static final short START_BLOKUS_TWO_PEOPLE = 11;
 
+    public static final short WIN = 12;
+
+    public static final short FAIL = 13;
+
+    public static final short GIVE_UP = 14;
+
 
     public static final short QUIT = 10001;
 

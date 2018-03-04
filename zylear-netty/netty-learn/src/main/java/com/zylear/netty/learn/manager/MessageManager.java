@@ -1,13 +1,13 @@
 package com.zylear.netty.learn.manager;
 
 
-import com.zylear.netty.learn.bean.MessageBean;
-import com.zylear.netty.learn.bean.PlayerRoomInfo;
-import com.zylear.netty.learn.bean.RoomInfo;
-import com.zylear.netty.learn.bean.TransferBean;
+import com.alibaba.druid.util.StringUtils;
+import com.zylear.netty.learn.bean.*;
 import com.zylear.netty.learn.cache.ServerCache;
 import com.zylear.netty.learn.constant.OperationCode;
 import com.zylear.netty.learn.enums.ChooseColor;
+import com.zylear.netty.learn.enums.GameStatus;
+import com.zylear.netty.learn.enums.RoomStatus;
 import com.zylear.netty.learn.enums.RoomType;
 import com.zylear.netty.learn.util.MessageFormater;
 import com.zylear.proto.BlokusOuterClass.*;
@@ -16,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.nio.channels.Channels;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -59,10 +58,54 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             case OperationCode.CHESS_DONE:
                 chessDone(transferBean, responses);
                 break;
+            case OperationCode.GIVE_UP:
+                giveUp(transferBean, responses);
+                break;
+            case OperationCode.FAIL:
+                fail(transferBean, responses);
+                break;
+            case OperationCode.WIN:
+                win(transferBean, responses);
+                break;
             case OperationCode.QUIT:
                 quit(transferBean, responses);
                 break;
             default:
+        }
+    }
+
+    private void win(TransferBean transferBean, List<TransferBean> responses) {
+        PlayerRoomInfo playerRoomInfo = ServerCache.getPlayerRoomInfo(transferBean.getChannel());
+        if (playerRoomInfo != null && !GameStatus.win.equals(playerRoomInfo.getGameStatus())) {
+            logger.info("{} win", playerRoomInfo.getAccount());
+            playerRoomInfo.setGameStatus(GameStatus.win);
+            // todo db
+        }
+    }
+
+    private void fail(TransferBean transferBean, List<TransferBean> responses) {
+        PlayerRoomInfo playerRoomInfo = ServerCache.getPlayerRoomInfo(transferBean.getChannel());
+        if (playerRoomInfo != null && !GameStatus.fail.equals(playerRoomInfo.getGameStatus())) {
+            logger.info("{} fail", playerRoomInfo.getAccount());
+            playerRoomInfo.setGameStatus(GameStatus.fail);
+            // todo db
+        }
+    }
+
+    private void giveUp(TransferBean transferBean, List<TransferBean> responses) {
+        MessageBean message = transferBean.getMessage();
+        BLOKUSChooseColor blokusChooseColor;
+        try {
+            blokusChooseColor = BLOKUSChooseColor.parseFrom(message.getData());
+            logger.info("giveUp. color:{}", blokusChooseColor.getAccount());
+        } catch (Exception e) {
+            logger.warn("parse BLOKUSChooseColor exception. ", e);
+            return;
+        }
+
+        List<Channel> players = ServerCache.getPlayersInRoom(transferBean.getChannel());
+        for (Channel channel : players) {
+            responses.add(new TransferBean(message, channel));
         }
     }
 
@@ -88,12 +131,42 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
     }
 
     private void quit(TransferBean transferBean, List<TransferBean> responses) {
-        ServerCache.quit(transferBean.getChannel());
+//        ServerCache.quit(transferBean.getChannel());
+        PlayerInfo playerInfo = ServerCache.getPlayerInfo(transferBean.getChannel());
+        if (playerInfo != null) {
+            RoomInfo roomInfo = playerInfo.getRoomInfo();
+            if (roomInfo != null) {
+                int playerCount = roomInfo.getPlayerCount();
+                if (playerCount <= 1) {
+                    ServerCache.removeRoom(roomInfo.getRoomName());
+                } else {
+                    PlayerRoomInfo playerRoomInfo = roomInfo.getPlayers().get(playerInfo.getAccount());
+                    roomInfo.setPlayerCount(playerCount - 1);
+                    roomInfo.getPlayers().remove(playerInfo.getAccount());
+                    if (RoomStatus.gaming.equals(roomInfo.getRoomStatus())) {
+                        for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
+
+                            MessageBean messageBean=MessageFormater.formatGiveUpMessage(playerRoomInfo.getColor());
+
+                            responses.add(new TransferBean(messageBean, entry.getValue().getChannel()));
+                        }
+                    } else if (RoomStatus.waiting.equals(roomInfo.getRoomStatus())) {
+                        MessageBean needSendMessage = MessageFormater.formatPlayerRoomInfoMessage(roomInfo.getPlayers());
+                        for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
+                            responses.add(new TransferBean(needSendMessage, entry.getValue().getChannel()));
+                        }
+                    }
+                }
+            }
+            ServerCache.removePlayer(transferBean.getChannel());
+
+            //todo db score
+        }
     }
 
     private void chessDone(TransferBean transferBean, List<TransferBean> responses) {
 
-        List<Channel> channels = ServerCache.getOtherPlayersInRoom(transferBean.getChannel());
+        List<Channel> channels = ServerCache.getPlayersInRoom(transferBean.getChannel());
         for (Channel channel : channels) {
             responses.add(new TransferBean(transferBean.getMessage(), channel));
         }
@@ -102,25 +175,30 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
 
     private synchronized void ready(TransferBean transferBean, List<TransferBean> responses) {
-        MessageBean message = transferBean.getMessage();
-        BLOKUSChooseColor blokusChooseColor;
-        try {
-            blokusChooseColor = BLOKUSChooseColor.parseFrom(message.getData());
-            logger.info("choose color. account:{}", blokusChooseColor.getAccount());
-            logger.info("choose color. roomName:{}", blokusChooseColor.getRoomName());
-        } catch (Exception e) {
-            logger.warn("parse BLOKUSRoomName exception. ", e);
+//        MessageBean message = transferBean.getMessage();
+//        BLOKUSChooseColor blokusChooseColor;
+//        try {
+//            blokusChooseColor = BLOKUSChooseColor.parseFrom(message.getData());
+//            logger.info("choose color. account:{}", blokusChooseColor.getAccount());
+//            logger.info("choose color. roomName:{}", blokusChooseColor.getRoomName());
+//        } catch (Exception e) {
+//            logger.warn("parse BLOKUSRoomName exception. ", e);
+//            return;
+//        }
+
+        PlayerInfo player = ServerCache.getPlayerInfo(transferBean.getChannel());
+        if (player == null) {
             return;
         }
 
 
-        int result = ServerCache.ready(blokusChooseColor.getAccount(), blokusChooseColor.getRoomName());
+        int result = ServerCache.ready(player.getAccount(), player.getRoomName());
         switch (result) {
             case 0:
-                startGame(blokusChooseColor.getRoomName(), responses);
+                startGame(player.getRoomName(), responses);
                 break;
             case 1:
-                updateRoomPlayersInfo(blokusChooseColor.getRoomName(), responses);
+                updateRoomPlayersInfo(player.getRoomName(), responses);
                 break;
             default:
         }
@@ -239,16 +317,18 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             return;
         }
 
-        if (("123456".equals(account.getAccount())) ||
-                "654321".equals(account.getAccount()) ||
-                account.getAccount().length() > 5 &&
-                        "123456".equals(account.getPassword())) {
+//        if (("123456".equals(account.getAccount())) ||
+//                "654321".equals(account.getAccount()) ||
+//                account.getAccount().length() > 5 &&
+//                        "123456".equals(account.getPassword())) {
+        if (!StringUtils.isEmpty(account.getAccount())) {
             if (ServerCache.login(transferBean.getChannel(), account.getAccount())) {
                 transferBean.setMessage(MessageBean.LOGIN_SUCCESS);
                 responses.add(transferBean);
                 return;
             }
         }
+//        }
         transferBean.setMessage(MessageBean.LOGIN_FAIL);
         responses.add(transferBean);
     }

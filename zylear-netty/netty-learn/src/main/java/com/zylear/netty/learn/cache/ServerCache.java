@@ -81,21 +81,7 @@ public class ServerCache {
     }
 
     public static void quit(Channel channel) {
-        PlayerInfo playerInfo = playerMap.get(channel);
-        if (playerInfo != null) {
-//            playerAccountSet.remove(playerInfo.getAccount());
-            RoomInfo roomInfo = playerInfo.getRoomInfo();
-            if (roomInfo != null) {
-                int playerCount = roomInfo.getPlayerCount();
-                if (playerCount <= 1) {
-                    roomMap.remove(roomInfo.getRoomName());
-                } else {
-                    roomInfo.setPlayerCount(playerCount - 1);
-                    roomInfo.getPlayers().remove(playerInfo.getAccount());
-                }
-            }
-            playerMap.remove(channel);
-        }
+
     }
 
     public static PlayerInfo getPlayerInfo(Channel channel) {
@@ -120,6 +106,7 @@ public class ServerCache {
 
                 roomInfo.getPlayers().put(player.getAccount(), playerRoomInfo);
                 player.setRoomInfo(roomInfo);
+                player.setRoomName(roomName);
                 return true;
             }
         }
@@ -130,7 +117,7 @@ public class ServerCache {
         PlayerInfo player = playerMap.get(channel);
         if (player != null) {
             RoomInfo roomInfo = player.getRoomInfo();
-            if (roomInfo != null && RoomStatus.waiting.equals(roomInfo.getRoomStatus()) &&
+            if (roomInfo != null && /*RoomStatus.waiting.equals(roomInfo.getRoomStatus()) &&*/
                     roomInfo.getPlayerCount() > 0) {
                 player.setRoomInfo(null);
                 if (roomInfo.getPlayerCount() == 1) {
@@ -160,11 +147,13 @@ public class ServerCache {
                 boolean ready = playerRoomInfo.getReady();
                 if (!ready) {
 
+                    //**************just for test***************
                     roomInfo.setRoomStatus(RoomStatus.gaming);
                     for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
                         entry.getValue().setReady(false);
                         return 0;
                     }
+                    //********************************************
 
                     if (roomInfo.canStartGame()) {
                         roomInfo.setRoomStatus(RoomStatus.gaming);
@@ -192,6 +181,14 @@ public class ServerCache {
         } catch (Exception e) {
             return Collections.EMPTY_MAP;
         }
+    }
+
+    public static void removePlayer(Channel channel) {
+        playerMap.remove(channel);
+    }
+
+    public static void removeRoom(String roomName) {
+        roomMap.remove(roomName);
     }
 
     public static RoomInfo getRoomInfo(String roomName) {
@@ -245,14 +242,12 @@ public class ServerCache {
     }
 
 
-    public static List<Channel> getOtherPlayersInRoom(Channel channel) {
-
+    public static List<Channel> getPlayersInRoom(Channel channel) {
 
         PlayerInfo player = playerMap.get(channel);
 
         List<Channel> channels = new ArrayList<>(4);
         if (player != null) {
-            String account = player.getAccount();
             RoomInfo roomInfo = player.getRoomInfo();
             if (roomInfo != null) {
                 for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
@@ -262,6 +257,37 @@ public class ServerCache {
             }
         }
         return Collections.EMPTY_LIST;
+    }
+
+    public static List<Channel> getOtherPlayersInRoom(Channel channel) {
+
+        PlayerInfo player = playerMap.get(channel);
+
+        List<Channel> channels = new ArrayList<>(4);
+        if (player != null) {
+            String account = player.getAccount();
+            RoomInfo roomInfo = player.getRoomInfo();
+            if (roomInfo != null) {
+                for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
+                    if (!account.equals(entry.getValue().getAccount())) {
+                        channels.add(entry.getValue().getChannel());
+                    }
+                }
+                return channels;
+            }
+        }
+        return Collections.EMPTY_LIST;
+    }
+
+    public static PlayerRoomInfo getPlayerRoomInfo(Channel channel) {
+        PlayerInfo player = playerMap.get(channel);
+        if (player != null) {
+            RoomInfo roomInfo = player.getRoomInfo();
+            if (roomInfo != null) {
+                return roomInfo.getPlayers().get(player.getAccount());
+            }
+        }
+        return null;
     }
 }
 
