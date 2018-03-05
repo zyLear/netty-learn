@@ -45,9 +45,11 @@ public class ServerCache {
             if (playerInfo != null) {
                 RoomInfo roomInfo = new RoomInfo();
                 roomInfo.setPlayerCount(1);
-                roomInfo.setMaxPlayerCount(4);
                 roomInfo.setRoomName(roomName);
                 roomInfo.setRoomType(roomType);
+                if (RoomType.blokus_two.equals(roomType)) {
+                    roomInfo.setMaxPlayerCount(2);
+                }
                 roomInfo.setRoomStatus(RoomStatus.waiting);
 
                 PlayerRoomInfo playerRoomInfo = new PlayerRoomInfo();
@@ -148,11 +150,11 @@ public class ServerCache {
                 if (!ready) {
 
                     //**************just for test***************
-                    roomInfo.setRoomStatus(RoomStatus.gaming);
-                    for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
-                        entry.getValue().setReady(false);
-                        return 0;
-                    }
+//                    roomInfo.setRoomStatus(RoomStatus.gaming);
+//                    for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
+//                        entry.getValue().setReady(false);
+//                        return 0;
+//                    }
                     //********************************************
 
                     if (roomInfo.canStartGame()) {

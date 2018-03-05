@@ -5,6 +5,7 @@ import com.zylear.netty.learn.bean.PlayerRoomInfo;
 import com.zylear.netty.learn.constant.OperationCode;
 import com.zylear.netty.learn.constant.StatusCode;
 import com.zylear.netty.learn.enums.ChooseColor;
+import com.zylear.netty.learn.enums.RoomType;
 import com.zylear.proto.BlokusOuterClass.*;
 
 import java.util.Map;
@@ -42,5 +43,20 @@ public class MessageFormater {
 
         message.setData(builder.build().toByteArray());
         return message;
+    }
+
+    public static MessageBean formatJoinRoomMessage(String roomName, RoomType roomType) {
+
+        MessageBean message = new MessageBean();
+        message.setOperationCode(OperationCode.JOIN_ROOM);
+        message.setStatusCode(StatusCode.SUCCESS);
+
+        BLOKUSCreateRoom.Builder builder = BLOKUSCreateRoom.newBuilder();
+        builder.setRoomName(roomName);
+        builder.setRoomType(roomType.getValue());
+
+        message.setData(builder.build().toByteArray());
+        return message;
+
     }
 }

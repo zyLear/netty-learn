@@ -19,6 +19,8 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 import java.util.Map.Entry;
 
+import static sun.audio.AudioPlayer.player;
+
 /**
  * @author 28444
  * @date 2018/1/10.
@@ -146,7 +148,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                     if (RoomStatus.gaming.equals(roomInfo.getRoomStatus())) {
                         for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
 
-                            MessageBean messageBean=MessageFormater.formatGiveUpMessage(playerRoomInfo.getColor());
+                            MessageBean messageBean = MessageFormater.formatGiveUpMessage(playerRoomInfo.getColor());
 
                             responses.add(new TransferBean(messageBean, entry.getValue().getChannel()));
                         }
@@ -210,21 +212,21 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
     private void startGame(String roomName, List<TransferBean> responses) {
         Map<String, PlayerRoomInfo> playerRoomInfoMap = ServerCache.getPlayerRoomInfos(roomName);
 //        MessageBean needSendMessage = MessageFormater.formatPlayerRoomInfoMessage(playerRoomInfoMap);
-        RoomInfo roomInfo = ServerCache.getRoomInfo(roomName);
-        if (roomInfo != null) {
-            MessageBean message;
-            if (RoomType.blokus_four.equals(roomInfo.getRoomType())) {
-                message = MessageBean.START_BLOKUS;
-            } else if (RoomType.blokus_two.equals(roomInfo.getRoomType())) {
-                message = MessageBean.START_BLOKUS_TWO_PEOPLE;
-            } else {
-                return;
-            }
+//        RoomInfo roomInfo = ServerCache.getRoomInfo(roomName);
+//        if (roomInfo != null) {
+        MessageBean message;
+//            if (RoomType.blokus_four.equals(roomInfo.getRoomType())) {
+        message = MessageBean.START_BLOKUS;
+//            } else if (RoomType.blokus_two.equals(roomInfo.getRoomType())) {
+//                message = MessageBean.START_BLOKUS_TWO_PEOPLE;
+//            } else {
+//                return;
+//            }
 
-            for (Entry<String, PlayerRoomInfo> entry : playerRoomInfoMap.entrySet()) {
-                responses.add(new TransferBean(message, entry.getValue().getChannel()));
-            }
+        for (Entry<String, PlayerRoomInfo> entry : playerRoomInfoMap.entrySet()) {
+            responses.add(new TransferBean(message, entry.getValue().getChannel()));
         }
+//        }
     }
 
 
@@ -242,15 +244,18 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         }
 
         if (ServerCache.joinRoom(transferBean.getChannel(), blokusRoomName.getRoomName())) {
-            responses.add(new TransferBean(MessageBean.JOIN_ROOM_SUCCESS, transferBean.getChannel()));
-            updateRoomPlayersInfo(blokusRoomName.getRoomName(), responses);
+            RoomInfo roomInfo = ServerCache.getRoomInfo(blokusRoomName.getRoomName());
+            if (roomInfo != null) {
+                MessageBean messageBean = MessageFormater.formatJoinRoomMessage(roomInfo.getRoomName(), roomInfo.getRoomType());
+                responses.add(new TransferBean(messageBean, transferBean.getChannel()));
+                updateRoomPlayersInfo(blokusRoomName.getRoomName(), responses);
+            }
+
 //            List<RoomInfo> rooms = ServerCache.getAllRooms();
 //            List<Channel> var2 = ServerCache.getPlayersInLobby();
-        } else {
-            transferBean.setMessage(MessageBean.JOIN_ROOM_FAIL);
-            responses.add(transferBean);
         }
-
+        transferBean.setMessage(MessageBean.JOIN_ROOM_FAIL);
+        responses.add(transferBean);
     }
 
 
@@ -276,7 +281,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
         if (ServerCache.createRoom(transferBean.getChannel(), blokusCreateRoom.getRoomName(),
                 RoomType.valueOf(blokusCreateRoom.getRoomType()))) {
-            transferBean.setMessage(MessageBean.CREATE_ROOM_SUCCESS);
+            transferBean.setMessage(transferBean.getMessage());
             responses.add(transferBean);
             updateRoomPlayersInfo(blokusCreateRoom.getRoomName(), responses);
         } else {
