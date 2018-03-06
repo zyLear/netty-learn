@@ -19,8 +19,6 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 import java.util.Map.Entry;
 
-import static sun.audio.AudioPlayer.player;
-
 /**
  * @author 28444
  * @date 2018/1/10.
@@ -73,7 +71,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                 chatInGame(transferBean, responses);
                 break;
             case OperationCode.ROOM_LIST:
-                chatInGame(transferBean, responses);
+                roomList(transferBean, responses);
                 break;
 
 
@@ -82,6 +80,13 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                 break;
             default:
         }
+    }
+
+    private void roomList(TransferBean transferBean, List<TransferBean> responses) {
+        Collection<RoomInfo> roomList = ServerCache.roomList();
+        MessageBean message = MessageFormater.formatRoomListMessage(roomList);
+        responses.add(new TransferBean(message, transferBean.getChannel()));
+
     }
 
     private void chatInGame(TransferBean transferBean, List<TransferBean> responses) {
@@ -95,22 +100,28 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 //            return;
 //        }
 
-        List<Channel> players = ServerCache.getPlayersInRoom(transferBean.getChannel());
+        List<Channel> players = ServerCache.getPlayerChannelsInRoom(transferBean.getChannel());
         for (Channel channel : players) {
             responses.add(new TransferBean(message, channel));
         }
     }
 
-    private void win(TransferBean transferBean, List<TransferBean> responses) {
+    private synchronized void win(TransferBean transferBean, List<TransferBean> responses) {
         PlayerRoomInfo playerRoomInfo = ServerCache.getPlayerRoomInfo(transferBean.getChannel());
-        if (playerRoomInfo != null && !GameStatus.win.equals(playerRoomInfo.getGameStatus())) {
+        RoomInfo roomInfo = ServerCache.getRoomInfo(transferBean.getChannel());
+        if (playerRoomInfo != null && roomInfo != null &&
+                RoomStatus.gaming.equals(roomInfo.getRoomStatus()) &&
+                !GameStatus.win.equals(playerRoomInfo.getGameStatus())) {
             logger.info("{} win", playerRoomInfo.getAccount());
             playerRoomInfo.setGameStatus(GameStatus.win);
+
+                roomInfo.setRoomStatus(RoomStatus.waiting);
+
             // todo db
         }
     }
 
-    private void fail(TransferBean transferBean, List<TransferBean> responses) {
+    private synchronized void fail(TransferBean transferBean, List<TransferBean> responses) {
         PlayerRoomInfo playerRoomInfo = ServerCache.getPlayerRoomInfo(transferBean.getChannel());
         if (playerRoomInfo != null && !GameStatus.fail.equals(playerRoomInfo.getGameStatus())) {
             logger.info("{} fail", playerRoomInfo.getAccount());
@@ -130,13 +141,13 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 //            return;
 //        }
 
-        List<Channel> players = ServerCache.getPlayersInRoom(transferBean.getChannel());
+        List<Channel> players = ServerCache.getPlayerChannelsInRoom(transferBean.getChannel());
         for (Channel channel : players) {
             responses.add(new TransferBean(message, channel));
         }
     }
 
-    private void chooseColor(TransferBean transferBean, List<TransferBean> responses) {
+    private synchronized void chooseColor(TransferBean transferBean, List<TransferBean> responses) {
 
         MessageBean message = transferBean.getMessage();
         BLOKUSChooseColor blokusChooseColor;
@@ -157,7 +168,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         updateRoomPlayersInfo(blokusChooseColor.getRoomName(), responses);
     }
 
-    private void quit(TransferBean transferBean, List<TransferBean> responses) {
+    private synchronized void quit(TransferBean transferBean, List<TransferBean> responses) {
 //        ServerCache.quit(transferBean.getChannel());
         PlayerInfo playerInfo = ServerCache.getPlayerInfo(transferBean.getChannel());
         if (playerInfo != null) {
@@ -193,7 +204,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
     private void chessDone(TransferBean transferBean, List<TransferBean> responses) {
 
-        List<Channel> channels = ServerCache.getPlayersInRoom(transferBean.getChannel());
+        List<Channel> channels = ServerCache.getPlayerChannelsInRoom(transferBean.getChannel());
         for (Channel channel : channels) {
             responses.add(new TransferBean(transferBean.getMessage(), channel));
         }
@@ -260,7 +271,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
     }
 
 
-    private void joinRoom(TransferBean transferBean, List<TransferBean> responses) {
+    private synchronized void joinRoom(TransferBean transferBean, List<TransferBean> responses) {
         MessageBean message = transferBean.getMessage();
         BLOKUSRoomName blokusRoomName;
         try {
@@ -297,7 +308,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 //        return null;
     }
 
-    private void createRoom(TransferBean transferBean, List<TransferBean> responses) {
+    private synchronized void createRoom(TransferBean transferBean, List<TransferBean> responses) {
         MessageBean message = transferBean.getMessage();
         BLOKUSCreateRoom blokusCreateRoom = null;
         try {
@@ -326,7 +337,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
     }
 
 
-    private void leaveRoom(TransferBean transferBean, List<TransferBean> responses) {
+    private synchronized void leaveRoom(TransferBean transferBean, List<TransferBean> responses) {
         String roomName = ServerCache.leaveRoom(transferBean.getChannel());
         if (roomName != null) {
             transferBean.setMessage(MessageBean.LEAVE_ROOM_SUCCESS);
@@ -341,7 +352,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
     }
 
 
-    private void login(TransferBean transferBean, List<TransferBean> responses) {
+    private synchronized void login(TransferBean transferBean, List<TransferBean> responses) {
         MessageBean message = transferBean.getMessage();
         BLOKUSAccount account;
         try {
@@ -362,7 +373,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 //                        "123456".equals(account.getPassword())) {
         if (!StringUtils.isEmpty(account.getAccount())) {
             if (ServerCache.login(transferBean.getChannel(), account.getAccount())) {
-                transferBean.setMessage(MessageBean.LOGIN_SUCCESS);
+//                transferBean.setMessage(message);
                 responses.add(transferBean);
                 return;
             }

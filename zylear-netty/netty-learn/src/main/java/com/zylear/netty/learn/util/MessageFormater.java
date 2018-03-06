@@ -2,12 +2,14 @@ package com.zylear.netty.learn.util;
 
 import com.zylear.netty.learn.bean.MessageBean;
 import com.zylear.netty.learn.bean.PlayerRoomInfo;
+import com.zylear.netty.learn.bean.RoomInfo;
 import com.zylear.netty.learn.constant.OperationCode;
 import com.zylear.netty.learn.constant.StatusCode;
 import com.zylear.netty.learn.enums.ChooseColor;
 import com.zylear.netty.learn.enums.RoomType;
 import com.zylear.proto.BlokusOuterClass.*;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -58,5 +60,24 @@ public class MessageFormater {
         message.setData(builder.build().toByteArray());
         return message;
 
+    }
+
+    public static MessageBean formatRoomListMessage(Collection<RoomInfo> roomList) {
+        MessageBean message = new MessageBean();
+        message.setOperationCode(OperationCode.ROOM_LIST);
+        message.setStatusCode(StatusCode.SUCCESS);
+
+        BLOKUSRoomList.Builder builder = BLOKUSRoomList.newBuilder();
+        for (RoomInfo roomInfo : roomList) {
+            BLOKUSRoomInfo.Builder roomInfoBuilder = BLOKUSRoomInfo.newBuilder();
+            roomInfoBuilder.setRoomName(roomInfo.getRoomName());
+            roomInfoBuilder.setRoomType(roomInfo.getRoomType().getValue());
+            roomInfoBuilder.setRoomStatus(roomInfo.getRoomStatus().getValue());
+            roomInfoBuilder.setCurrentPlayers(roomInfo.getPlayerCount());
+            builder.addRoomItems(roomInfoBuilder.build());
+        }
+
+        message.setData(builder.build().toByteArray());
+        return message;
     }
 }

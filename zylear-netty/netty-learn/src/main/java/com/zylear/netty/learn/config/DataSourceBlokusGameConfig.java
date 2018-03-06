@@ -56,7 +56,6 @@ public class DataSourceBlokusGameConfig {
 
     @Bean(SQL_SESSION_TEMPLATE)
     public SqlSessionTemplate sqlSessionTemplate(@Qualifier(SQL_SESSION_FACTORY) SqlSessionFactory sqlSessionFactory) {
-        System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 
