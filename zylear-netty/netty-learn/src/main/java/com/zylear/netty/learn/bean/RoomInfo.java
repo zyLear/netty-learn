@@ -71,6 +71,7 @@ public class RoomInfo {
         this.players = players;
     }
 
+
     public Boolean canStartGame() {
         int count = 0;
         for (Entry<String, PlayerRoomInfo> entry : players.entrySet()) {

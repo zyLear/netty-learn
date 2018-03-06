@@ -24,6 +24,8 @@ public class MessageBean {
     public static final MessageBean LEAVE_ROOM_SUCCESS = new MessageBean(OperationCode.LEAVE_ROOM, StatusCode.SUCCESS);
     public static final MessageBean LEAVE_ROOM_FAIL = new MessageBean(OperationCode.LEAVE_ROOM, StatusCode.FAIL);
 
+    public static final MessageBean GIVE_UP_SUCCESS = new MessageBean(OperationCode.GIVE_UP, StatusCode.SUCCESS);
+
 
     public static final MessageBean QUIT = new MessageBean(OperationCode.QUIT, StatusCode.SUCCESS);
     public static final MessageBean START_BLOKUS  = new MessageBean(OperationCode.START_BLOKUS, StatusCode.SUCCESS);

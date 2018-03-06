@@ -1,6 +1,7 @@
 package com.zylear.netty.learn.bean;
 
 import com.zylear.netty.learn.enums.ChooseColor;
+import com.zylear.netty.learn.enums.GameStatus;
 import io.netty.channel.Channel;
 
 /**
@@ -11,7 +12,8 @@ public class PlayerRoomInfo {
     private Channel channel;
     private String account;
     private ChooseColor color;
-    private Boolean isReady;
+    private Boolean isReady = false;
+    private GameStatus gameStatus = GameStatus.gaming;
     private Boolean isFail;
 
     public String getAccount() {
@@ -46,12 +48,12 @@ public class PlayerRoomInfo {
         this.channel = channel;
     }
 
-    public Boolean getIsFail() {
-        return isFail;
+    public GameStatus getGameStatus() {
+        return gameStatus;
     }
 
-    public void setIsFail(Boolean fail) {
-        isFail = fail;
+    public void setGameStatus(GameStatus gameStatus) {
+        this.gameStatus = gameStatus;
     }
 
     @Override

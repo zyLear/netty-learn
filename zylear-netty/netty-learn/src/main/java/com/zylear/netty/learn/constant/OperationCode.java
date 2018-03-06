@@ -35,7 +35,6 @@ public class OperationCode {
     public static final short GIVE_UP = 14;
 
 
-
     public static final short QUIT = 10001;
 
 

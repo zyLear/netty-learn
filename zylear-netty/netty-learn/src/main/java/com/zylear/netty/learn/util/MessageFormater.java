@@ -4,9 +4,9 @@ import com.zylear.netty.learn.bean.MessageBean;
 import com.zylear.netty.learn.bean.PlayerRoomInfo;
 import com.zylear.netty.learn.constant.OperationCode;
 import com.zylear.netty.learn.constant.StatusCode;
-import com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor;
-import com.zylear.proto.BlokusOuterClass.BLOKUSRoomPlayerInfo;
-import com.zylear.proto.BlokusOuterClass.BLOKUSRoomPlayerList;
+import com.zylear.netty.learn.enums.ChooseColor;
+import com.zylear.netty.learn.enums.RoomType;
+import com.zylear.proto.BlokusOuterClass.*;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -33,13 +33,30 @@ public class MessageFormater {
         return message;
     }
 
-    public static MessageBean formatGiveUpMessage(int color) {
+    public static MessageBean formatGiveUpMessage(ChooseColor color) {
         MessageBean message = new MessageBean();
         message.setOperationCode(OperationCode.GIVE_UP);
         message.setStatusCode(StatusCode.SUCCESS);
+
         BLOKUSChooseColor.Builder builder = BLOKUSChooseColor.newBuilder();
-        builder.setColor(color);
+        builder.setColor(color.getValue());
+
         message.setData(builder.build().toByteArray());
         return message;
+    }
+
+    public static MessageBean formatJoinRoomMessage(String roomName, RoomType roomType) {
+
+        MessageBean message = new MessageBean();
+        message.setOperationCode(OperationCode.JOIN_ROOM);
+        message.setStatusCode(StatusCode.SUCCESS);
+
+        BLOKUSCreateRoom.Builder builder = BLOKUSCreateRoom.newBuilder();
+        builder.setRoomName(roomName);
+        builder.setRoomType(roomType.getValue());
+
+        message.setData(builder.build().toByteArray());
+        return message;
+
     }
 }
