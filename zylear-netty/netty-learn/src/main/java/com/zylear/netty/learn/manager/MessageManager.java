@@ -69,10 +69,35 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             case OperationCode.WIN:
                 win(transferBean, responses);
                 break;
+            case OperationCode.CHAT_IN_GAME:
+                chatInGame(transferBean, responses);
+                break;
+            case OperationCode.ROOM_LIST:
+                chatInGame(transferBean, responses);
+                break;
+
+
             case OperationCode.QUIT:
                 quit(transferBean, responses);
                 break;
             default:
+        }
+    }
+
+    private void chatInGame(TransferBean transferBean, List<TransferBean> responses) {
+        MessageBean message = transferBean.getMessage();
+//        BLOKUSChatMessage blokusChatMessage;
+//        try {
+//            blokusChatMessage = BLOKUSChatMessage.parseFrom(message.getData());
+//            logger.info("chatInGame. message:{}", blokusChatMessage.getChatMessage());
+//        } catch (Exception e) {
+//            logger.warn("parse BLOKUSChatMessage exception. ", e);
+//            return;
+//        }
+
+        List<Channel> players = ServerCache.getPlayersInRoom(transferBean.getChannel());
+        for (Channel channel : players) {
+            responses.add(new TransferBean(message, channel));
         }
     }
 
@@ -96,14 +121,14 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
     private void giveUp(TransferBean transferBean, List<TransferBean> responses) {
         MessageBean message = transferBean.getMessage();
-        BLOKUSChooseColor blokusChooseColor;
-        try {
-            blokusChooseColor = BLOKUSChooseColor.parseFrom(message.getData());
-            logger.info("giveUp. color:{}", blokusChooseColor.getAccount());
-        } catch (Exception e) {
-            logger.warn("parse BLOKUSChooseColor exception. ", e);
-            return;
-        }
+//        BLOKUSChooseColor blokusChooseColor;
+//        try {
+//            blokusChooseColor = BLOKUSChooseColor.parseFrom(message.getData());
+//            logger.info("giveUp. color:{}", blokusChooseColor.getAccount());
+//        } catch (Exception e) {
+//            logger.warn("parse BLOKUSChooseColor exception. ", e);
+//            return;
+//        }
 
         List<Channel> players = ServerCache.getPlayersInRoom(transferBean.getChannel());
         for (Channel channel : players) {
@@ -177,6 +202,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
 
     private synchronized void ready(TransferBean transferBean, List<TransferBean> responses) {
+
 //        MessageBean message = transferBean.getMessage();
 //        BLOKUSChooseColor blokusChooseColor;
 //        try {
@@ -197,9 +223,11 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         int result = ServerCache.ready(player.getAccount(), player.getRoomName());
         switch (result) {
             case 0:
+
                 startGame(player.getRoomName(), responses);
                 break;
             case 1:
+
                 updateRoomPlayersInfo(player.getRoomName(), responses);
                 break;
             default:
@@ -212,6 +240,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
     private void startGame(String roomName, List<TransferBean> responses) {
         Map<String, PlayerRoomInfo> playerRoomInfoMap = ServerCache.getPlayerRoomInfos(roomName);
 //        MessageBean needSendMessage = MessageFormater.formatPlayerRoomInfoMessage(playerRoomInfoMap);
+
 //        RoomInfo roomInfo = ServerCache.getRoomInfo(roomName);
 //        if (roomInfo != null) {
         MessageBean message;
@@ -222,6 +251,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 //            } else {
 //                return;
 //            }
+
 
         for (Entry<String, PlayerRoomInfo> entry : playerRoomInfoMap.entrySet()) {
             responses.add(new TransferBean(message, entry.getValue().getChannel()));
@@ -244,6 +274,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         }
 
         if (ServerCache.joinRoom(transferBean.getChannel(), blokusRoomName.getRoomName())) {
+
             RoomInfo roomInfo = ServerCache.getRoomInfo(blokusRoomName.getRoomName());
             if (roomInfo != null) {
                 MessageBean messageBean = MessageFormater.formatJoinRoomMessage(roomInfo.getRoomName(), roomInfo.getRoomType());
@@ -253,9 +284,10 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
 //            List<RoomInfo> rooms = ServerCache.getAllRooms();
 //            List<Channel> var2 = ServerCache.getPlayersInLobby();
+
+            transferBean.setMessage(MessageBean.JOIN_ROOM_FAIL);
+            responses.add(transferBean);
         }
-        transferBean.setMessage(MessageBean.JOIN_ROOM_FAIL);
-        responses.add(transferBean);
     }
 
 
@@ -281,6 +313,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
         if (ServerCache.createRoom(transferBean.getChannel(), blokusCreateRoom.getRoomName(),
                 RoomType.valueOf(blokusCreateRoom.getRoomType()))) {
+
             transferBean.setMessage(transferBean.getMessage());
             responses.add(transferBean);
             updateRoomPlayersInfo(blokusCreateRoom.getRoomName(), responses);
@@ -321,6 +354,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             responses.add(transferBean);
             return;
         }
+
 
 //        if (("123456".equals(account.getAccount())) ||
 //                "654321".equals(account.getAccount()) ||

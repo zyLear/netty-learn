@@ -45,6 +45,7 @@ public class ServerCache {
             if (playerInfo != null) {
                 RoomInfo roomInfo = new RoomInfo();
                 roomInfo.setPlayerCount(1);
+
                 roomInfo.setRoomName(roomName);
                 roomInfo.setRoomType(roomType);
                 if (RoomType.blokus_two.equals(roomType)) {
@@ -84,6 +85,7 @@ public class ServerCache {
 
     public static void quit(Channel channel) {
 
+
     }
 
     public static PlayerInfo getPlayerInfo(Channel channel) {
@@ -119,6 +121,7 @@ public class ServerCache {
         PlayerInfo player = playerMap.get(channel);
         if (player != null) {
             RoomInfo roomInfo = player.getRoomInfo();
+
             if (roomInfo != null && /*RoomStatus.waiting.equals(roomInfo.getRoomStatus()) &&*/
                     roomInfo.getPlayerCount() > 0) {
                 player.setRoomInfo(null);
@@ -149,6 +152,7 @@ public class ServerCache {
                 boolean ready = playerRoomInfo.getReady();
                 if (!ready) {
 
+
                     //**************just for test***************
 //                    roomInfo.setRoomStatus(RoomStatus.gaming);
 //                    for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
@@ -178,9 +182,11 @@ public class ServerCache {
 
 
     public static Map<String, PlayerRoomInfo> getPlayerRoomInfos(String roomName) {
-        try {
-            return roomMap.get(roomName).getPlayers();
-        } catch (Exception e) {
+
+        RoomInfo roomInfo = roomMap.get(roomName);
+        if (roomInfo != null) {
+            return roomInfo.getPlayers();
+        } else {
             return Collections.EMPTY_MAP;
         }
     }
@@ -271,6 +277,7 @@ public class ServerCache {
             RoomInfo roomInfo = player.getRoomInfo();
             if (roomInfo != null) {
                 for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
+
                     if (!account.equals(entry.getValue().getAccount())) {
                         channels.add(entry.getValue().getChannel());
                     }

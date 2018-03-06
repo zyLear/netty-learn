@@ -14,6 +14,7 @@ public class PlayerRoomInfo {
     private ChooseColor color;
     private Boolean isReady = false;
     private GameStatus gameStatus = GameStatus.gaming;
+    private Boolean isFail;
 
     public String getAccount() {
         return account;

@@ -43,8 +43,21 @@ message BLOKUSChooseColor {
 message BLOKUSChessDoneInfo {
     optional int32 x = 1;
     optional int32 y = 2;
-    optional string squareName=3;
+    optional string squareName = 3;
     optional int32 rotationFlag = 4;
     optional int32 symmetryFlag = 5;
     optional bytes model = 6;
 }
+
+//1.0.0
+message BLOKUSChatMessage {
+    optional string chatMessage = 1;
+}
+
+//1.0.0
+message BLOKUSRoomInfo{
+    optional string roomName = 1;
+    optional int32 roomType = 2;
+
+}
+

@@ -34,6 +34,10 @@ public class OperationCode {
 
     public static final short GIVE_UP = 14;
 
+    public static final short CHAT_IN_GAME = 15;
+
+    public static final short ROOM_LIST = 16;
+
 
     public static final short QUIT = 10001;
 
