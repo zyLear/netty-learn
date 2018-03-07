@@ -4,15 +4,17 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <classPathEntry location="E:\maven\repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar" />
+    <!--C:\Develop\maven-repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar-->
+    <!--E:\maven\repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar-->
+    <classPathEntry location="C:\Develop\maven-repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar" />
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/blokus_socket?characterEncoding=UTF-8"
+                        connectionURL="jdbc:mysql://localhost:3306/blokus_game?characterEncoding=UTF-8"
                         userId="root"
-                        password="gxblxzy199511">
+                        password="">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -30,10 +32,16 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.zylear.netty.learn.dao.mybatis.blokusgame" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
+
+
         <table  tableName="t_game_account" domainObjectName="GameAccount"
                 enableCountByExample="false" enableSelectByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false">
+        </table>
 
+        <table  tableName="t_game_record" domainObjectName="GameRecord"
+                enableCountByExample="false" enableSelectByExample="false"
+                enableUpdateByExample="false" enableDeleteByExample="false">
         </table>
     </context>
 

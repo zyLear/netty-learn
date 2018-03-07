@@ -5,16 +5,22 @@ import com.alibaba.druid.util.StringUtils;
 import com.zylear.netty.learn.bean.*;
 import com.zylear.netty.learn.cache.ServerCache;
 import com.zylear.netty.learn.constant.OperationCode;
+import com.zylear.netty.learn.domain.GameAccount;
+import com.zylear.netty.learn.domain.GameRecord;
 import com.zylear.netty.learn.enums.ChooseColor;
 import com.zylear.netty.learn.enums.GameStatus;
 import com.zylear.netty.learn.enums.RoomStatus;
 import com.zylear.netty.learn.enums.RoomType;
+import com.zylear.netty.learn.service.GameAccountService;
+import com.zylear.netty.learn.service.GameRecordService;
 import com.zylear.netty.learn.util.MessageFormater;
 import com.zylear.proto.BlokusOuterClass.*;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -27,6 +33,9 @@ import java.util.Map.Entry;
 public class MessageManager implements MessageHandler<TransferBean, List<TransferBean>> {
 
     private static final Logger logger = LoggerFactory.getLogger(MessageManager.class);
+
+    private GameAccountService gameAccountService;
+    private GameRecordService gameRecordService;
 
     // division different function later. different kinds of handlers
 
@@ -73,6 +82,9 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             case OperationCode.ROOM_LIST:
                 roomList(transferBean, responses);
                 break;
+            case OperationCode.REGISTER:
+                register(transferBean, responses);
+                break;
 
 
             case OperationCode.QUIT:
@@ -80,6 +92,59 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                 break;
             default:
         }
+    }
+
+    @Transactional
+    private synchronized void register(TransferBean transferBean, List<TransferBean> responses) {
+
+        MessageBean message = transferBean.getMessage();
+        BLOKUSGameAccount blokusGameAccount;
+        try {
+            blokusGameAccount = BLOKUSGameAccount.parseFrom(message.getData());
+            logger.info("register. account:{}", blokusGameAccount.getAccount());
+            logger.info("register. roomName:{}", blokusGameAccount.getPassword());
+        } catch (Exception e) {
+            logger.warn("parse BLOKUSGameAccount exception. ", e);
+            responses.add(new TransferBean(MessageBean.REGISTER_FAIL, transferBean.getChannel()));
+            return;
+        }
+        String account = blokusGameAccount.getAccount();
+        String password = blokusGameAccount.getPassword();
+
+        try {
+            GameAccount gameAccount = gameAccountService.findByAccount(account);
+            if (gameAccount == null) {
+                Date date = new Date();
+                gameAccount = new GameAccount();
+                gameAccount.setAccount(account);
+                gameAccount.setPassword(password);
+                gameAccount.setStars(0);
+                gameAccount.setCreateTime(date);
+                gameAccount.setLastUpdateTime(date);
+                gameAccountService.insert(gameAccount);
+
+                GameRecord gameRecord = new GameRecord();
+                gameRecord.setAccount(account);
+                gameRecord.setGameType(RoomType.blokus_four.getValue());
+                gameRecord.setWinCount(0);
+                gameRecord.setFailCount(0);
+                gameRecord.setEscapeCount(0);
+                gameRecord.setRankScore(12000);
+                gameRecord.setRank(0);
+                gameRecord.setCreateTime(date);
+                gameRecord.setLastUpdateTime(date);
+                gameRecordService.insert(gameRecord);
+                gameRecord.setGameType(RoomType.blokus_two.getValue());
+                gameRecordService.insert(gameRecord);
+
+                responses.add(new TransferBean(MessageBean.REGISTER_SUCCESS, transferBean.getChannel()));
+            }
+        } catch (Exception e) {
+            responses.add(new TransferBean(MessageBean.REGISTER_FAIL, transferBean.getChannel()));
+            logger.info("register fail. ", e);
+        }
+
+
     }
 
     private void roomList(TransferBean transferBean, List<TransferBean> responses) {
@@ -115,7 +180,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             logger.info("{} win", playerRoomInfo.getAccount());
             playerRoomInfo.setGameStatus(GameStatus.win);
 
-                roomInfo.setRoomStatus(RoomStatus.waiting);
+            roomInfo.setRoomStatus(RoomStatus.waiting);
 
             // todo db
         }
@@ -367,21 +432,24 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             return;
         }
 
+        GameAccount gameAccount =
+                gameAccountService.findByAccountAndPassowrd(account.getAccount(), account.getPassword());
+        if (gameAccount != null && ServerCache.login(transferBean.getChannel(), account.getAccount())) {
+            responses.add(transferBean);
+        } else {
+            transferBean.setMessage(MessageBean.LOGIN_FAIL);
+            responses.add(transferBean);
+            return;
+        }
 
-//        if (("123456".equals(account.getAccount())) ||
-//                "654321".equals(account.getAccount()) ||
-//                account.getAccount().length() > 5 &&
-//                        "123456".equals(account.getPassword())) {
         if (!StringUtils.isEmpty(account.getAccount())) {
             if (ServerCache.login(transferBean.getChannel(), account.getAccount())) {
-//                transferBean.setMessage(message);
+
                 responses.add(transferBean);
                 return;
             }
         }
-//        }
-        transferBean.setMessage(MessageBean.LOGIN_FAIL);
-        responses.add(transferBean);
+
     }
 
     private void roomStatusChange(Channel channel) {
@@ -407,4 +475,13 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         }
     }
 
+    @Autowired
+    public void setGameAccountService(GameAccountService gameAccountService) {
+        this.gameAccountService = gameAccountService;
+    }
+
+    @Autowired
+    public void setGameRecordService(GameRecordService gameRecordService) {
+        this.gameRecordService = gameRecordService;
+    }
 }

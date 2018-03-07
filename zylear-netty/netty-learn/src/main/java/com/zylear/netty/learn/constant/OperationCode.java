@@ -38,6 +38,8 @@ public class OperationCode {
 
     public static final short ROOM_LIST = 16;
 
+    public static final short REGISTER = 17;
+
 
     public static final short QUIT = 10001;
 

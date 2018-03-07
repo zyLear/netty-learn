@@ -1,106 +1,135 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zylear.netty.learn.dao.mybatis.blokusgame.GameAccountMapper" >
-  <resultMap id="BaseResultMap" type="com.zylear.netty.learn.domain.GameAccount" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="account" property="account" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, account, password, is_deleted, create_time, last_update_time
+<mapper namespace="com.zylear.netty.learn.dao.mybatis.blokusgame.GameAccountMapper">
+    <resultMap id="BaseResultMap" type="com.zylear.netty.learn.domain.GameAccount">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="personality_signature" property="personalitySignature" jdbcType="VARCHAR"/>
+        <result column="stars" property="stars" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, account, password, personality_signature, stars, create_time, last_update_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from t_game_account
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_game_account
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_game_account
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zylear.netty.learn.domain.GameAccount" >
+    <insert id="insert" parameterType="com.zylear.netty.learn.domain.GameAccount">
     insert into t_game_account (id, account, password, 
-      is_deleted, create_time, last_update_time
-      )
-    values (#{id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}
-      )
+      personality_signature, stars, create_time, 
+      last_update_time)
+    values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{personalitySignature,jdbcType=VARCHAR}, #{stars,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.zylear.netty.learn.domain.GameAccount" >
-    insert into t_game_account
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="account != null" >
-        account,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="isDeleted != null" >
-        is_deleted,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="lastUpdateTime != null" >
-        last_update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="account != null" >
-        #{account,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="isDeleted != null" >
-        #{isDeleted,jdbcType=TINYINT},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastUpdateTime != null" >
-        #{lastUpdateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zylear.netty.learn.domain.GameAccount" >
-    update t_game_account
-    <set >
-      <if test="account != null" >
-        account = #{account,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="isDeleted != null" >
-        is_deleted = #{isDeleted,jdbcType=TINYINT},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastUpdateTime != null" >
-        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zylear.netty.learn.domain.GameAccount" >
+    <insert id="insertSelective" parameterType="com.zylear.netty.learn.domain.GameAccount">
+        insert into t_game_account
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="account != null">
+                account,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="personalitySignature != null">
+                personality_signature,
+            </if>
+            <if test="stars != null">
+                stars,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="account != null">
+                #{account,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="personalitySignature != null">
+                #{personalitySignature,jdbcType=VARCHAR},
+            </if>
+            <if test="stars != null">
+                #{stars,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateTime != null">
+                #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zylear.netty.learn.domain.GameAccount">
+        update t_game_account
+        <set>
+            <if test="account != null">
+                account = #{account,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="personalitySignature != null">
+                personality_signature = #{personalitySignature,jdbcType=VARCHAR},
+            </if>
+            <if test="stars != null">
+                stars = #{stars,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zylear.netty.learn.domain.GameAccount">
     update t_game_account
     set account = #{account,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      personality_signature = #{personalitySignature,jdbcType=VARCHAR},
+      stars = #{stars,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+    <select id="findByAccountAndPassowrd" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_game_account
+        WHERE account = #{account,jdbcType=VARCHAR}
+        AND password = #{password,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findByAccount" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_game_account
+        WHERE account = #{account,jdbcType=VARCHAR}
+    </select>
+
+
 </mapper>
