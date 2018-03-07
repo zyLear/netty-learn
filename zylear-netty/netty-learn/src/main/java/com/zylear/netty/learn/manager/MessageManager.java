@@ -170,6 +170,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
     private synchronized void quit(TransferBean transferBean, List<TransferBean> responses) {
 //        ServerCache.quit(transferBean.getChannel());
+        // need modify
         PlayerInfo playerInfo = ServerCache.getPlayerInfo(transferBean.getChannel());
         if (playerInfo != null) {
             RoomInfo roomInfo = playerInfo.getRoomInfo();
@@ -204,7 +205,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
     private void chessDone(TransferBean transferBean, List<TransferBean> responses) {
 
-        List<Channel> channels = ServerCache.getPlayerChannelsInRoom(transferBean.getChannel());
+        List<Channel> channels = ServerCache.getOtherPlayerChannelsInRoom(transferBean.getChannel());
         for (Channel channel : channels) {
             responses.add(new TransferBean(transferBean.getMessage(), channel));
         }

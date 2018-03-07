@@ -9,6 +9,8 @@ import com.zylear.netty.learn.queue.MessageQueue;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -18,6 +20,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 
 public class SimpleBlokusServerHandler extends SimpleChannelInboundHandler<MessageBean> {
 
+    private static final Logger logger = LoggerFactory.getLogger(SimpleBlokusServerHandler.class);
 
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
@@ -27,12 +30,12 @@ public class SimpleBlokusServerHandler extends SimpleChannelInboundHandler<Messa
 
     }
 
-    @Override
-    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-//        Channel incoming = ctx.channel();
-//        MessageManager.connectChannelGroup.remove(incoming);
-//        System.out.println("removed");
-    }
+//    @Override
+//    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+////        Channel incoming = ctx.channel();
+////        MessageManager.connectChannelGroup.remove(incoming);
+////        System.out.println("removed");
+//    }
 
 //    @Override
 //    public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -46,12 +49,31 @@ public class SimpleBlokusServerHandler extends SimpleChannelInboundHandler<Messa
 
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+//        Channel channel = ctx.channel();
+//        MessageQueue.getInstance().put(new TransferBean(MessageBean.QUIT, ctx.channel()));
+//        logger.info("client:{} handlerRemoved. ", channel.remoteAddress());
+//        ctx.close();
+    }
+
+
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
         MessageQueue.getInstance().put(new TransferBean(MessageBean.QUIT, ctx.channel()));
-        System.out.println("client " + channel.remoteAddress() + " 异常");
+        logger.info("client:{} channelInactive. ", channel.remoteAddress());
+        ctx.close();
+        //  channelInactive  ->  handlerRemoved
+    }
+
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable e) {
+        Channel channel = ctx.channel();
+        MessageQueue.getInstance().put(new TransferBean(MessageBean.QUIT, ctx.channel()));
+        logger.info("client:{} exceptionCaught. ", channel.remoteAddress(), e);
         // 当出现异常就关闭连接
-        cause.printStackTrace();
         ctx.close();
     }
 
