@@ -50,6 +50,8 @@ public class ServerCache {
                 roomInfo.setRoomType(roomType);
                 if (RoomType.blokus_two.equals(roomType)) {
                     roomInfo.setMaxPlayerCount(2);
+                } else if (RoomType.blokus_four.equals(roomType)) {
+                    roomInfo.setMaxPlayerCount(4);
                 }
                 roomInfo.setRoomStatus(RoomStatus.waiting);
 
@@ -217,6 +219,11 @@ public class ServerCache {
     }
 
 
+    public static Collection<RoomInfo> roomList() {
+        return roomMap.values();
+    }
+
+
 //    public static List<Channel> getPlayersChannelInRoom(String roomName) {
 //        try {
 //            RoomInfo roomInfo = roomMap.get(roomName);
@@ -250,7 +257,7 @@ public class ServerCache {
     }
 
 
-    public static List<Channel> getPlayersInRoom(Channel channel) {
+    public static List<Channel> getPlayerChannelsInRoom(Channel channel) {
 
         PlayerInfo player = playerMap.get(channel);
 
@@ -267,7 +274,7 @@ public class ServerCache {
         return Collections.EMPTY_LIST;
     }
 
-    public static List<Channel> getOtherPlayersInRoom(Channel channel) {
+    public static List<Channel> getOtherPlayerChannelsInRoom(Channel channel) {
 
         PlayerInfo player = playerMap.get(channel);
 
@@ -295,6 +302,14 @@ public class ServerCache {
             if (roomInfo != null) {
                 return roomInfo.getPlayers().get(player.getAccount());
             }
+        }
+        return null;
+    }
+
+    public static RoomInfo getRoomInfo(Channel channel) {
+        PlayerInfo player = playerMap.get(channel);
+        if (player != null) {
+            return player.getRoomInfo();
         }
         return null;
     }

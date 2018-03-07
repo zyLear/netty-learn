@@ -6,6 +6,7 @@ package com.zylear.netty.learn.enums;
  */
 public enum RoomStatus {
 
+    unknown(-1),
     waiting(1),
     gaming(2)
     ;
@@ -16,4 +17,19 @@ public enum RoomStatus {
         this.value=value;
     }
 
+    public Integer getValue() {
+        return value;
+    }
+
+    public static RoomStatus valueOf(Integer value) {
+        try {
+            for (RoomStatus roomStatus : RoomStatus.values()) {
+                if (roomStatus.getValue().equals(value)) {
+                    return roomStatus;
+                }
+            }
+        } catch (Exception e) {
+        }
+        return unknown;
+    }
 }
