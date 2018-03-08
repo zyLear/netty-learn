@@ -5,11 +5,13 @@ import com.zylear.netty.learn.bean.PlayerRoomInfo;
 import com.zylear.netty.learn.bean.RoomInfo;
 import com.zylear.netty.learn.constant.OperationCode;
 import com.zylear.netty.learn.constant.StatusCode;
+import com.zylear.netty.learn.domain.GameRecord;
 import com.zylear.netty.learn.enums.ChooseColor;
 import com.zylear.netty.learn.enums.RoomType;
 import com.zylear.proto.BlokusOuterClass.*;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -79,5 +81,63 @@ public class MessageFormater {
 
         message.setData(builder.build().toByteArray());
         return message;
+    }
+
+    public static MessageBean formatRankInfoMessage(List<GameRecord> twoPlayersRanks, List<GameRecord> fourPlayersRanks) {
+        MessageBean message = new MessageBean();
+        message.setOperationCode(OperationCode.RANK_INFO);
+        message.setStatusCode(StatusCode.SUCCESS);
+
+        BLOKUSRankInfo.Builder builder = BLOKUSRankInfo.newBuilder();
+        for (GameRecord record : twoPlayersRanks) {
+            BLOKUSRankItem.Builder rankItem = BLOKUSRankItem.newBuilder();
+            rankItem.setAccount(record.getAccount());
+            rankItem.setWinCount(record.getWinCount());
+            rankItem.setLoseCount(record.getLoseCount());
+            rankItem.setEscapeCount(record.getEscapeCount());
+            rankItem.setRankScore(record.getRankScore());
+            rankItem.setRank("gold");
+            builder.addTwoPlayersRankItems(rankItem.build());
+        }
+        for (GameRecord record : fourPlayersRanks) {
+            BLOKUSRankItem.Builder rankItem = BLOKUSRankItem.newBuilder();
+            rankItem.setAccount(record.getAccount());
+            rankItem.setWinCount(record.getWinCount());
+            rankItem.setLoseCount(record.getLoseCount());
+            rankItem.setEscapeCount(record.getEscapeCount());
+            rankItem.setRankScore(record.getRankScore());
+            rankItem.setRank("gold");
+            builder.addFourPlayersRankItems(rankItem.build());
+        }
+
+        message.setData(builder.build().toByteArray());
+        return message;
+
+    }
+
+    public static MessageBean formatProfileMessage(List<GameRecord> records) {
+        MessageBean message = new MessageBean();
+        message.setOperationCode(OperationCode.PROFILE);
+        message.setStatusCode(StatusCode.SUCCESS);
+
+        BLOKUSRankInfo.Builder builder = BLOKUSRankInfo.newBuilder();
+        for (GameRecord record : records) {
+            BLOKUSRankItem.Builder rankItem = BLOKUSRankItem.newBuilder();
+            rankItem.setAccount(record.getAccount());
+            rankItem.setWinCount(record.getWinCount());
+            rankItem.setLoseCount(record.getLoseCount());
+            rankItem.setEscapeCount(record.getEscapeCount());
+            rankItem.setRankScore(record.getRankScore());
+            rankItem.setRank("gold");
+            if (RoomType.blokus_four.getValue().equals(record.getGameType())) {
+                builder.addFourPlayersRankItems(rankItem.build());
+            } else {
+                builder.addTwoPlayersRankItems(rankItem.build());
+            }
+        }
+
+        message.setData(builder.build().toByteArray());
+        return message;
+
     }
 }

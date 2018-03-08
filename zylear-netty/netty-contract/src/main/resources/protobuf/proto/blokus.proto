@@ -72,3 +72,19 @@ message BLOKUSGameAccount {
     optional string account = 1;
     optional string password = 2;
 }
+
+//1.0.0
+message BLOKUSRankItem {
+    optional string account = 1;
+    optional int32 rankScore = 2;
+    optional int32 winCount = 3;
+    optional int32 loseCount = 4;
+    optional int32 escapeCount = 5;
+    optional string rank = 6;
+}
+
+//1.0.0
+message BLOKUSRankInfo {
+    repeated BLOKUSRankItem twoPlayersRankItems = 1;
+    repeated BLOKUSRankItem fourPlayersRankItems = 2;
+}

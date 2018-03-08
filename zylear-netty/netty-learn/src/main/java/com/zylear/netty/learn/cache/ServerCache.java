@@ -4,6 +4,7 @@ import com.zylear.netty.learn.bean.PlayerInfo;
 import com.zylear.netty.learn.bean.PlayerRoomInfo;
 import com.zylear.netty.learn.bean.RoomInfo;
 import com.zylear.netty.learn.enums.ChooseColor;
+import com.zylear.netty.learn.enums.GameStatus;
 import com.zylear.netty.learn.enums.RoomStatus;
 import com.zylear.netty.learn.enums.RoomType;
 import io.netty.channel.Channel;
@@ -167,6 +168,7 @@ public class ServerCache {
                         roomInfo.setRoomStatus(RoomStatus.gaming);
                         for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
                             entry.getValue().setReady(false);
+                            entry.getValue().setGameStatus(GameStatus.gaming);
                             return 0;
                         }
                     } else if (roomInfo.canReady()) {

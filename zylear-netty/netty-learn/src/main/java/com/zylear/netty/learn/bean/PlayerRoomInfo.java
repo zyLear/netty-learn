@@ -13,8 +13,7 @@ public class PlayerRoomInfo {
     private String account;
     private ChooseColor color;
     private Boolean isReady = false;
-    private GameStatus gameStatus = GameStatus.gaming;
-    private Boolean isFail;
+    private GameStatus gameStatus = GameStatus.unknown;
 
     public String getAccount() {
         return account;

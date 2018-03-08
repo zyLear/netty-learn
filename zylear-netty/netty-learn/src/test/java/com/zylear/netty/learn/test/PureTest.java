@@ -46,5 +46,13 @@ public class PureTest {
         System.out.println(map1.get(playerInfo2));
     }
 
+    @Test
+    public void testCollections() {
+        Map<String, String> map = new HashMap<>();
+        map.put("1", "1");
+        map.put("2", "2");
+        System.out.println(map.values().toString());
+    }
+
 
 }

@@ -2,16 +2,16 @@ package com.zylear.netty.learn.manager;
 
 
 import com.alibaba.druid.util.StringUtils;
+import com.sun.imageio.spi.RAFImageInputStreamSpi;
 import com.zylear.netty.learn.bean.*;
 import com.zylear.netty.learn.cache.ServerCache;
 import com.zylear.netty.learn.constant.OperationCode;
 import com.zylear.netty.learn.domain.GameAccount;
 import com.zylear.netty.learn.domain.GameRecord;
-import com.zylear.netty.learn.enums.ChooseColor;
-import com.zylear.netty.learn.enums.GameStatus;
-import com.zylear.netty.learn.enums.RoomStatus;
-import com.zylear.netty.learn.enums.RoomType;
+import com.zylear.netty.learn.domain.GameRecordDetail;
+import com.zylear.netty.learn.enums.*;
 import com.zylear.netty.learn.service.GameAccountService;
+import com.zylear.netty.learn.service.GameRecordDetailService;
 import com.zylear.netty.learn.service.GameRecordService;
 import com.zylear.netty.learn.util.MessageFormater;
 import com.zylear.proto.BlokusOuterClass.*;
@@ -36,6 +36,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
     private GameAccountService gameAccountService;
     private GameRecordService gameRecordService;
+    private GameRecordDetailService gameRecordDetailService;
 
     // division different function later. different kinds of handlers
 
@@ -70,8 +71,8 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             case OperationCode.GIVE_UP:
                 giveUp(transferBean, responses);
                 break;
-            case OperationCode.FAIL:
-                fail(transferBean, responses);
+            case OperationCode.LOSE:
+                lose(transferBean, responses);
                 break;
             case OperationCode.WIN:
                 win(transferBean, responses);
@@ -85,6 +86,12 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             case OperationCode.REGISTER:
                 register(transferBean, responses);
                 break;
+            case OperationCode.RANK_INFO:
+                rankInfo(transferBean, responses);
+                break;
+            case OperationCode.PROFILE:
+                profile(transferBean, responses);
+                break;
 
 
             case OperationCode.QUIT:
@@ -92,6 +99,31 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                 break;
             default:
         }
+    }
+
+    private void profile(TransferBean transferBean, List<TransferBean> responses) {
+
+        MessageBean message = transferBean.getMessage();
+        BLOKUSAccount account;
+        try {
+            account = BLOKUSAccount.parseFrom(message.getData());
+            logger.info("profile. account:{}", account.getAccount());
+        } catch (Exception e) {
+            logger.warn("parse BLOKUSAccount exception. ", e);
+            return;
+        }
+        List<GameRecord> gameRecord = gameRecordService.findRanksByAccount(account.getAccount());
+        message = MessageFormater.formatProfileMessage(gameRecord);
+        responses.add(new TransferBean(message, transferBean.getChannel()));
+    }
+
+    private void rankInfo(TransferBean transferBean, List<TransferBean> responses) {
+
+        List<GameRecord> twoPlayersRanks = gameRecordService.findRanks(RoomType.blokus_four.getValue());
+        List<GameRecord> fourPlayersRanks = gameRecordService.findRanks(RoomType.blokus_two.getValue());
+        MessageBean message = MessageFormater.formatRankInfoMessage(twoPlayersRanks, fourPlayersRanks);
+        responses.add(new TransferBean(message, transferBean.getChannel()));
+
     }
 
     @Transactional
@@ -127,7 +159,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                 gameRecord.setAccount(account);
                 gameRecord.setGameType(RoomType.blokus_four.getValue());
                 gameRecord.setWinCount(0);
-                gameRecord.setFailCount(0);
+                gameRecord.setLoseCount(0);
                 gameRecord.setEscapeCount(0);
                 gameRecord.setRankScore(12000);
                 gameRecord.setRank(0);
@@ -141,7 +173,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             }
         } catch (Exception e) {
             responses.add(new TransferBean(MessageBean.REGISTER_FAIL, transferBean.getChannel()));
-            logger.info("register fail. ", e);
+            logger.info("register lose. ", e);
         }
 
 
@@ -171,6 +203,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         }
     }
 
+    @Transactional
     private synchronized void win(TransferBean transferBean, List<TransferBean> responses) {
         PlayerRoomInfo playerRoomInfo = ServerCache.getPlayerRoomInfo(transferBean.getChannel());
         RoomInfo roomInfo = ServerCache.getRoomInfo(transferBean.getChannel());
@@ -179,19 +212,46 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                 !GameStatus.win.equals(playerRoomInfo.getGameStatus())) {
             logger.info("{} win", playerRoomInfo.getAccount());
             playerRoomInfo.setGameStatus(GameStatus.win);
-
             roomInfo.setRoomStatus(RoomStatus.waiting);
 
-            // todo db
+            gameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getRoomType().getValue(), 1, 0, 0, 25);
+
+            GameRecordDetail gameRecordDetail = new GameRecordDetail();
+            gameRecordDetail.setAccount(playerRoomInfo.getAccount());
+            gameRecordDetail.setRoomName(roomInfo.getRoomName());
+            gameRecordDetail.setRoomMembers(roomInfo.getPlayers().values().toString());
+            gameRecordDetail.setGameType(roomInfo.getRoomType().getValue());
+            gameRecordDetail.setGameResult(GameResult.win.getValue());
+            gameRecordDetail.setCreateTime(new Date());
+            gameRecordDetail.setLastUpdateTime(new Date());
+            gameRecordDetailService.insert(gameRecordDetail);
+
         }
     }
 
-    private synchronized void fail(TransferBean transferBean, List<TransferBean> responses) {
+    private synchronized void lose(TransferBean transferBean, List<TransferBean> responses) {
         PlayerRoomInfo playerRoomInfo = ServerCache.getPlayerRoomInfo(transferBean.getChannel());
-        if (playerRoomInfo != null && !GameStatus.fail.equals(playerRoomInfo.getGameStatus())) {
-            logger.info("{} fail", playerRoomInfo.getAccount());
+        RoomInfo roomInfo = ServerCache.getRoomInfo(transferBean.getChannel());
+        if (playerRoomInfo != null && roomInfo != null &&
+                RoomStatus.gaming.equals(roomInfo.getRoomStatus()) &&
+                GameStatus.gaming.equals(playerRoomInfo.getGameStatus())) {
+            logger.info("{} lose", playerRoomInfo.getAccount());
             playerRoomInfo.setGameStatus(GameStatus.fail);
-            // todo db
+
+
+            gameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getRoomType().getValue(), 0, 1, 0, -25);
+
+            GameRecordDetail gameRecordDetail = new GameRecordDetail();
+            gameRecordDetail.setAccount(playerRoomInfo.getAccount());
+            gameRecordDetail.setRoomName(roomInfo.getRoomName());
+            gameRecordDetail.setRoomMembers(roomInfo.getPlayers().values().toString());
+            gameRecordDetail.setGameType(roomInfo.getRoomType().getValue());
+            gameRecordDetail.setGameResult(GameResult.lose.getValue());
+            gameRecordDetail.setCreateTime(new Date());
+            gameRecordDetail.setLastUpdateTime(new Date());
+            gameRecordDetailService.insert(gameRecordDetail);
+
+
         }
     }
 
@@ -248,12 +308,28 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                     roomInfo.setPlayerCount(playerCount - 1);
                     roomInfo.getPlayers().remove(playerInfo.getAccount());
                     if (RoomStatus.gaming.equals(roomInfo.getRoomStatus())) {
+                        MessageBean messageBean = MessageFormater.formatGiveUpMessage(playerRoomInfo.getColor());
                         for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
-
-                            MessageBean messageBean = MessageFormater.formatGiveUpMessage(playerRoomInfo.getColor());
-
-                            responses.add(new TransferBean(messageBean, entry.getValue().getChannel()));
+                            if (!playerInfo.getAccount().equals(entry.getKey())) {
+                                responses.add(new TransferBean(messageBean, entry.getValue().getChannel()));
+                            }
                         }
+
+                        //change db
+
+                        gameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getRoomType().getValue(), 0, 0, 1, -25);
+
+                        GameRecordDetail gameRecordDetail = new GameRecordDetail();
+                        gameRecordDetail.setAccount(playerRoomInfo.getAccount());
+                        gameRecordDetail.setRoomName(roomInfo.getRoomName());
+                        gameRecordDetail.setRoomMembers(roomInfo.getPlayers().values().toString());
+                        gameRecordDetail.setGameType(roomInfo.getRoomType().getValue());
+                        gameRecordDetail.setGameResult(GameResult.escape.getValue());
+                        gameRecordDetail.setCreateTime(new Date());
+                        gameRecordDetail.setLastUpdateTime(new Date());
+                        gameRecordDetailService.insert(gameRecordDetail);
+
+
                     } else if (RoomStatus.waiting.equals(roomInfo.getRoomStatus())) {
                         MessageBean needSendMessage = MessageFormater.formatPlayerRoomInfoMessage(roomInfo.getPlayers());
                         for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
@@ -264,7 +340,6 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             }
             ServerCache.removePlayer(transferBean.getChannel());
 
-            //todo db score
         }
     }
 
@@ -452,11 +527,6 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
     }
 
-    private void roomStatusChange(Channel channel) {
-
-//        return null;
-    }
-
 
     private void updateRoomPlayersInfo(String roomName, List<TransferBean> responses) {
         Map<String, PlayerRoomInfo> playerRoomInfoMap = ServerCache.getPlayerRoomInfos(roomName);
@@ -483,5 +553,10 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
     @Autowired
     public void setGameRecordService(GameRecordService gameRecordService) {
         this.gameRecordService = gameRecordService;
+    }
+
+    @Autowired
+    public void setGameRecordDetailService(GameRecordDetailService gameRecordDetailService) {
+        this.gameRecordDetailService = gameRecordDetailService;
     }
 }

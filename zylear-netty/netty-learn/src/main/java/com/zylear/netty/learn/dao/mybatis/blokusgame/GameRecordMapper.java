@@ -14,4 +14,8 @@ public interface GameRecordMapper {
     int updateByPrimaryKeySelective(GameRecord record);
 
     int updateByPrimaryKey(GameRecord record);
+
+
+
+    void update(String account, Integer gameType, Integer winCount, Integer loseCount, Integer escapeCount, Integer rankScore);
 }

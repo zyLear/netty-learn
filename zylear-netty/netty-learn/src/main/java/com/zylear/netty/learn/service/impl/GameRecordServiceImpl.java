@@ -20,6 +20,11 @@ public class GameRecordServiceImpl implements GameRecordService {
         gameRecordMapper.insert(gameRecord);
     }
 
+    @Override
+    public void update(String account, Integer gameType, Integer winCount, Integer loseCount, Integer escapeCount, Integer rankScore) {
+        gameRecordMapper.update(account, gameType, winCount, loseCount, escapeCount, rankScore);
+    }
+
     @Autowired
     public void setGameRecordMapper(GameRecordMapper gameRecordMapper) {
         this.gameRecordMapper = gameRecordMapper;
