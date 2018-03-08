@@ -3,23 +3,25 @@ package com.zylear.netty.learn.domain;
 import java.util.Date;
 
 public class GameAccount {
-    private Long id;
+    private Integer id;
 
     private String account;
 
     private String password;
 
-    private Boolean isDeleted;
+    private String personalitySignature;
+
+    private Integer stars;
 
     private Date createTime;
 
     private Date lastUpdateTime;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -39,12 +41,20 @@ public class GameAccount {
         this.password = password;
     }
 
-    public Boolean getIsDeleted() {
-        return isDeleted;
+    public String getPersonalitySignature() {
+        return personalitySignature;
     }
 
-    public void setIsDeleted(Boolean deleted) {
-        isDeleted = deleted;
+    public void setPersonalitySignature(String personalitySignature) {
+        this.personalitySignature = personalitySignature;
+    }
+
+    public Integer getStars() {
+        return stars;
+    }
+
+    public void setStars(Integer stars) {
+        this.stars = stars;
     }
 
     public Date getCreateTime() {

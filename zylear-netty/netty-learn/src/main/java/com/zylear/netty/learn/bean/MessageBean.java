@@ -28,8 +28,13 @@ public class MessageBean {
 
 
     public static final MessageBean QUIT = new MessageBean(OperationCode.QUIT, StatusCode.SUCCESS);
-    public static final MessageBean START_BLOKUS  = new MessageBean(OperationCode.START_BLOKUS, StatusCode.SUCCESS);
-    public static final MessageBean START_BLOKUS_TWO_PEOPLE  = new MessageBean(OperationCode.START_BLOKUS_TWO_PEOPLE, StatusCode.SUCCESS);
+    public static final MessageBean START_BLOKUS = new MessageBean(OperationCode.START_BLOKUS, StatusCode.SUCCESS);
+    public static final MessageBean START_BLOKUS_TWO_PEOPLE = new MessageBean(OperationCode.START_BLOKUS_TWO_PEOPLE, StatusCode.SUCCESS);
+
+
+    public static final MessageBean REGISTER_SUCCESS = new MessageBean(OperationCode.REGISTER, StatusCode.SUCCESS);
+    public static final MessageBean REGISTER_FAIL = new MessageBean(OperationCode.REGISTER, StatusCode.FAIL);
+
 
     public MessageBean() {
 

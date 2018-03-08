@@ -59,10 +59,16 @@ message BLOKUSRoomInfo {
     optional string roomName = 1;
     optional int32 roomType = 2;
     optional int32 RoomStatus = 3;
-    optional int32 currentPlayers=4;
+    optional int32 currentPlayers = 4;
 }
 
 //1.0.0
 message BLOKUSRoomList {
     repeated BLOKUSRoomInfo roomItems = 1;
+}
+
+//1.0.0
+message BLOKUSGameAccount {
+    optional string account = 1;
+    optional string password = 2;
 }
