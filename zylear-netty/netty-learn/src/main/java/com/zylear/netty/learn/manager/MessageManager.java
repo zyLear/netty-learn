@@ -173,7 +173,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             }
         } catch (Exception e) {
             responses.add(new TransferBean(MessageBean.REGISTER_FAIL, transferBean.getChannel()));
-            logger.info("register lose. ", e);
+            logger.info("register fail. ", e);
         }
 
 
