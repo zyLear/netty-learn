@@ -30,7 +30,7 @@ public class OperationCode {
 
     public static final short WIN = 12;
 
-    public static final short FAIL = 13;
+    public static final short LOSE = 13;
 
     public static final short GIVE_UP = 14;
 
@@ -39,6 +39,10 @@ public class OperationCode {
     public static final short ROOM_LIST = 16;
 
     public static final short REGISTER = 17;
+
+    public static final short RANK_INFO = 18;
+
+    public static final short PROFILE =  19;
 
 
     public static final short QUIT = 10001;

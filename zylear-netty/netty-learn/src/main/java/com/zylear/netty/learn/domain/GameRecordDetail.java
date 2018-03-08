@@ -2,22 +2,18 @@ package com.zylear.netty.learn.domain;
 
 import java.util.Date;
 
-public class GameRecord {
+public class GameRecordDetail {
     private Integer id;
-
-    private Integer gameType;
 
     private String account;
 
-    private Integer winCount;
+    private String roomName;
 
-    private Integer loseCount;
+    private String roomMembers;
 
-    private Integer escapeCount;
+    private Integer gameType;
 
-    private Integer rankScore;
-
-    private Integer rank;
+    private Integer gameResult;
 
     private Date createTime;
 
@@ -31,8 +27,6 @@ public class GameRecord {
         this.id = id;
     }
 
-
-
     public String getAccount() {
         return account;
     }
@@ -41,36 +35,20 @@ public class GameRecord {
         this.account = account;
     }
 
-    public Integer getWinCount() {
-        return winCount;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setWinCount(Integer winCount) {
-        this.winCount = winCount;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
-    public Integer getLoseCount() {
-        return loseCount;
+    public String getRoomMembers() {
+        return roomMembers;
     }
 
-    public void setLoseCount(Integer loseCount) {
-        this.loseCount = loseCount;
-    }
-
-    public Integer getEscapeCount() {
-        return escapeCount;
-    }
-
-    public void setEscapeCount(Integer escapeCount) {
-        this.escapeCount = escapeCount;
-    }
-
-    public Integer getRankScore() {
-        return rankScore;
-    }
-
-    public void setRankScore(Integer rankScore) {
-        this.rankScore = rankScore;
+    public void setRoomMembers(String roomMembers) {
+        this.roomMembers = roomMembers;
     }
 
     public Integer getGameType() {
@@ -81,12 +59,12 @@ public class GameRecord {
         this.gameType = gameType;
     }
 
-    public Integer getRank() {
-        return rank;
+    public Integer getGameResult() {
+        return gameResult;
     }
 
-    public void setRank(Integer rank) {
-        this.rank = rank;
+    public void setGameResult(Integer gameResult) {
+        this.gameResult = gameResult;
     }
 
     public Date getCreateTime() {

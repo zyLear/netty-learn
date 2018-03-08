@@ -45,7 +45,7 @@ public class MessageBean {
 //    }
 //
 //    public static MessageBean loginFail(Channel channel) {
-//        return new MessageBean(OperationCode.LOGIN, StatusCode.FAIL, channel);
+//        return new MessageBean(OperationCode.LOGIN, StatusCode.LOSE, channel);
 //    }
 //
 //    public static MessageBean createRoomSucess(Channel channel) {
@@ -53,7 +53,7 @@ public class MessageBean {
 //    }
 //
 //    public static MessageBean createRoomFail(Channel channel) {
-//        return new MessageBean(OperationCode.CREATE_ROOM, StatusCode.FAIL);
+//        return new MessageBean(OperationCode.CREATE_ROOM, StatusCode.LOSE);
 //    }
 //
     public MessageBean(short operationCode, short statusCode) {
