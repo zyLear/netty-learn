@@ -163,5 +163,19 @@
               AND game_type = #{gameType,jdbcType=TINYINT}
     </update>
 
+    <select id="findRanks" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_game_record
+        WHERE game_type = #{gameType,jdbcType=TINYINT}
+        ORDER BY rank_score DESC
+    </select>
+
+    <select id="findRanksByAccount" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_game_record
+        WHERE account = #{account,jdbcType=VARCHAR}
+    </select>
 
 </mapper>
