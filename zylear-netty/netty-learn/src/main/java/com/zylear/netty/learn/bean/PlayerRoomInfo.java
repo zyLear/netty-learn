@@ -14,6 +14,8 @@ public class PlayerRoomInfo {
     private ChooseColor color;
     private Boolean isReady = false;
     private GameStatus gameStatus = GameStatus.unknown;
+    private Integer stepsCount = 0;
+ 
 
     public String getAccount() {
         return account;
@@ -53,6 +55,14 @@ public class PlayerRoomInfo {
 
     public void setGameStatus(GameStatus gameStatus) {
         this.gameStatus = gameStatus;
+    }
+
+    public Integer getStepsCount() {
+        return stepsCount;
+    }
+
+    public void setStepsCount(Integer stepsCount) {
+        this.stepsCount = stepsCount;
     }
 
     @Override
