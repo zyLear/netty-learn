@@ -239,17 +239,17 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             playerRoomInfo.setGameStatus(GameStatus.fail);
 
 
-            gameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getRoomType().getValue(), 0, 1, 0, -25);
-
-            GameRecordDetail gameRecordDetail = new GameRecordDetail();
-            gameRecordDetail.setAccount(playerRoomInfo.getAccount());
-            gameRecordDetail.setRoomName(roomInfo.getRoomName());
-            gameRecordDetail.setRoomMembers(roomInfo.getPlayers().values().toString());
-            gameRecordDetail.setGameType(roomInfo.getRoomType().getValue());
-            gameRecordDetail.setGameResult(GameResult.lose.getValue());
-            gameRecordDetail.setCreateTime(new Date());
-            gameRecordDetail.setLastUpdateTime(new Date());
-            gameRecordDetailService.insert(gameRecordDetail);
+//            gameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getRoomType().getValue(), 0, 1, 0, -25);
+//
+//            GameRecordDetail gameRecordDetail = new GameRecordDetail();
+//            gameRecordDetail.setAccount(playerRoomInfo.getAccount());
+//            gameRecordDetail.setRoomName(roomInfo.getRoomName());
+//            gameRecordDetail.setRoomMembers(roomInfo.getPlayers().values().toString());
+//            gameRecordDetail.setGameType(roomInfo.getRoomType().getValue());
+//            gameRecordDetail.setGameResult(GameResult.lose.getValue());
+//            gameRecordDetail.setCreateTime(new Date());
+//            gameRecordDetail.setLastUpdateTime(new Date());
+//            gameRecordDetailService.insert(gameRecordDetail);
 
 
         }
@@ -343,12 +343,20 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         }
     }
 
-    private void chessDone(TransferBean transferBean, List<TransferBean> responses) {
+    private synchronized void chessDone(TransferBean transferBean, List<TransferBean> responses) {
 
-        List<Channel> channels = ServerCache.getOtherPlayerChannelsInRoom(transferBean.getChannel());
-        for (Channel channel : channels) {
-            responses.add(new TransferBean(transferBean.getMessage(), channel));
+        PlayerRoomInfo playerRoomInfo = ServerCache.getPlayerRoomInfo(transferBean.getChannel());
+        if (playerRoomInfo != null) {
+
+            playerRoomInfo.setStepsCount(playerRoomInfo.getStepsCount() + 1);
+
+            List<Channel> channels = ServerCache.getOtherPlayerChannelsInRoom(transferBean.getChannel());
+            for (Channel channel : channels) {
+                responses.add(new TransferBean(transferBean.getMessage(), channel));
+            }
         }
+
+
 //        return null;
     }
 
