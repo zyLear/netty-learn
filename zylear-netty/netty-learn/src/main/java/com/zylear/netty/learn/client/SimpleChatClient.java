@@ -81,7 +81,7 @@ public class SimpleChatClient {
         messageBean.setStatusCode(StatusCode.SUCCESS);
 //        BLOKUSCreateRoom.Builder builder = BLOKUSCreateRoom.newBuilder();
 //        builder.setRoomName("123456");
-//        builder.setRoomType(2);
+//        builder.setGameType(2);
 //        messageBean.setData(builder.build().toByteArray());
         channel.writeAndFlush(messageBean);
         System.out.println("sendLeaveRoom success");
@@ -120,7 +120,7 @@ public class SimpleChatClient {
         messageBean.setStatusCode(StatusCode.SUCCESS);
         BLOKUSCreateRoom.Builder builder = BLOKUSCreateRoom.newBuilder();
         builder.setRoomName("roomName");
-        builder.setRoomType(2);
+        builder.setGameType(2);
         messageBean.setData(builder.build().toByteArray());
         channel.writeAndFlush(messageBean);
         System.out.println("sendCreateRoom success");

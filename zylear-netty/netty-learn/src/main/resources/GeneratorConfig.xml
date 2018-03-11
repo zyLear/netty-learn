@@ -7,7 +7,7 @@
     <!--C:\Develop\maven-repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar-->
     <!--E:\maven\repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar-->
     <!--D:\repo\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar-->
-    <classPathEntry location="D:\repo\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar" />
+    <classPathEntry location="C:\Develop\maven-repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar" />
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
@@ -35,18 +35,18 @@
         </javaClientGenerator>
 
 
-        <table  tableName="t_game_record_detail" domainObjectName="GameRecordDetail"
-                enableCountByExample="false" enableSelectByExample="false"
-                enableUpdateByExample="false" enableDeleteByExample="false">
-        </table>
-
-        <!--<table  tableName="t_game_record" domainObjectName="GameRecord"-->
+        <!--<table  tableName="t_game_log" domainObjectName="GameLog"-->
                 <!--enableCountByExample="false" enableSelectByExample="false"-->
                 <!--enableUpdateByExample="false" enableDeleteByExample="false">-->
         <!--</table>-->
 
+        <table  tableName="t_player_game_log" domainObjectName="PlayerGameLog"
+                enableCountByExample="false" enableSelectByExample="false"
+                enableUpdateByExample="false" enableDeleteByExample="false">
+        </table>
 
-        <!--<table  tableName="t_game_record" domainObjectName="GameRecord"-->
+
+        <!--<table  tableName="t_player_game_record" domainObjectName="PlayerGameRecord"-->
                 <!--enableCountByExample="false" enableSelectByExample="false"-->
                 <!--enableUpdateByExample="false" enableDeleteByExample="false">-->
         <!--</table>-->

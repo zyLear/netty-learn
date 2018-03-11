@@ -3,14 +3,14 @@ package com.zylear.netty.learn.cache;
 import com.zylear.netty.learn.bean.PlayerInfo;
 import com.zylear.netty.learn.bean.PlayerRoomInfo;
 import com.zylear.netty.learn.bean.RoomInfo;
-import com.zylear.netty.learn.enums.ChooseColor;
+import com.zylear.netty.learn.enums.BlokusColor;
 import com.zylear.netty.learn.enums.GameStatus;
+import com.zylear.netty.learn.enums.GameType;
 import com.zylear.netty.learn.enums.RoomStatus;
-import com.zylear.netty.learn.enums.RoomType;
+import com.zylear.netty.learn.manager.EmptyServerCacheCallback;
+import com.zylear.netty.learn.manager.ServerCacheCallback;
 import io.netty.channel.Channel;
-import io.netty.util.internal.ConcurrentSet;
 
-import java.nio.channels.Channels;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
@@ -39,7 +39,7 @@ public class ServerCache {
 //    }
 
     //preliminary lock  , improve later
-    public synchronized static boolean createRoom(Channel channel, String roomName, RoomType roomType) {
+    public synchronized static boolean createRoom(Channel channel, String roomName, GameType gameType) {
 
         if (!roomMap.containsKey(roomName)) {
             PlayerInfo playerInfo = playerMap.get(channel);
@@ -48,10 +48,10 @@ public class ServerCache {
                 roomInfo.setPlayerCount(1);
 
                 roomInfo.setRoomName(roomName);
-                roomInfo.setRoomType(roomType);
-                if (RoomType.blokus_two.equals(roomType)) {
+                roomInfo.setGameType(gameType);
+                if (GameType.blokus_two.equals(gameType)) {
                     roomInfo.setMaxPlayerCount(2);
-                } else if (RoomType.blokus_four.equals(roomType)) {
+                } else if (GameType.blokus_four.equals(gameType)) {
                     roomInfo.setMaxPlayerCount(4);
                 }
                 roomInfo.setRoomStatus(RoomStatus.waiting);
@@ -59,7 +59,7 @@ public class ServerCache {
                 PlayerRoomInfo playerRoomInfo = new PlayerRoomInfo();
                 playerRoomInfo.setAccount(playerInfo.getAccount());
                 playerRoomInfo.setReady(false);
-                playerRoomInfo.setColor(ChooseColor.blue);
+                playerRoomInfo.setColor(BlokusColor.blue);
                 playerRoomInfo.setChannel(channel);
                 roomInfo.getPlayers().put(playerInfo.getAccount(), playerRoomInfo);
 
@@ -108,7 +108,7 @@ public class ServerCache {
                 PlayerRoomInfo playerRoomInfo = new PlayerRoomInfo();
                 playerRoomInfo.setAccount(player.getAccount());
                 playerRoomInfo.setReady(false);
-                playerRoomInfo.setColor(ChooseColor.blue);
+                playerRoomInfo.setColor(BlokusColor.blue);
                 playerRoomInfo.setChannel(channel);
 
                 roomInfo.getPlayers().put(player.getAccount(), playerRoomInfo);
@@ -140,48 +140,38 @@ public class ServerCache {
         return null;
     }
 
-    public static void startGame(String account, String roomName) {
-        RoomInfo roomInfo = roomMap.get(roomName);
-        if (roomInfo != null) {
 
-        }
-    }
-
-    public static int ready(String account, String roomName) {
-        RoomInfo roomInfo = roomMap.get(roomName);
-        if (roomInfo != null) {
-            PlayerRoomInfo playerRoomInfo = roomInfo.getPlayers().get(account);
-            if (playerRoomInfo != null) {
-                boolean ready = playerRoomInfo.getReady();
-                if (!ready) {
-
-
-                    //**************just for test***************
-//                    roomInfo.setRoomStatus(RoomStatus.gaming);
-//                    for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
-//                        entry.getValue().setReady(false);
-//                        return 0;
-//                    }
-                    //********************************************
-
-                    if (roomInfo.canStartGame()) {
-                        roomInfo.setRoomStatus(RoomStatus.gaming);
-                        for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
-                            entry.getValue().setReady(false);
-                            entry.getValue().setGameStatus(GameStatus.gaming);
-                            return 0;
+    public static void ready(Channel channel, ServerCacheCallback serverCacheCallback) {
+        PlayerInfo playerInfo = playerMap.get(channel);
+        if (playerInfo != null) {
+            RoomInfo roomInfo = playerInfo.getRoomInfo();
+            if (roomInfo != null) {
+                PlayerRoomInfo playerRoomInfo = roomInfo.getPlayers().get(playerInfo.getAccount());
+                if (playerRoomInfo != null) {
+                    boolean ready = playerRoomInfo.getReady();
+                    if (!ready) {
+//                        serverCacheCallback.startGame(roomInfo);
+//                        return;
+                        if (roomInfo.canStartGame()) {
+                            roomInfo.setRoomStatus(RoomStatus.gaming);
+                            for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
+                                entry.getValue().setReady(false);
+                                entry.getValue().setStepsCount(0);
+                                entry.getValue().setGameStatus(GameStatus.gaming);
+                            }
+                            serverCacheCallback.startGame(roomInfo);
+                            roomInfo.setGameLogId(roomInfo.getGameLogId());
+                        } else if (roomInfo.canReady()) {
+                            roomInfo.getPlayers().get(playerInfo.getAccount()).setReady(true);
+                            serverCacheCallback.updateRoomPlayersInfo(roomInfo.getRoomName());
                         }
-                    } else if (roomInfo.canReady()) {
-                        roomInfo.getPlayers().get(account).setReady(true);
-                        return 1;
+                    } else {
+                        playerRoomInfo.setReady(false);
+                        serverCacheCallback.updateRoomPlayersInfo(roomInfo.getRoomName());
                     }
-                } else {
-                    playerRoomInfo.setReady(false);
-                    return 1;
                 }
             }
         }
-        return 2;
     }
 
 
@@ -208,16 +198,21 @@ public class ServerCache {
 
     }
 
-    public static void chooseColor(String account, String roomName, ChooseColor chooseColor) {
-        RoomInfo roomInfo = roomMap.get(roomName);
-        if (roomInfo != null) {
-            for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
-                if (entry.getKey().equals(account)) {
-                    entry.getValue().setColor(chooseColor);
+    public static void chooseColor(Channel channel, BlokusColor color, EmptyServerCacheCallback serverCacheCallback) {
+        PlayerInfo playerInfo = playerMap.get(channel);
+        if (playerInfo != null) {
+            RoomInfo roomInfo = playerInfo.getRoomInfo();
+            if (roomInfo != null) {
+                for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
+                    if (entry.getKey().equals(playerInfo.getAccount())) {
+                        entry.getValue().setColor(color);
+                    }
+                    entry.getValue().setReady(false);
                 }
-                entry.getValue().setReady(false);
+                serverCacheCallback.updateRoomPlayersInfo(roomInfo.getRoomName());
             }
         }
+
     }
 
 
@@ -308,6 +303,7 @@ public class ServerCache {
         return null;
     }
 
+
     public static RoomInfo getRoomInfo(Channel channel) {
         PlayerInfo player = playerMap.get(channel);
         if (player != null) {
@@ -315,6 +311,8 @@ public class ServerCache {
         }
         return null;
     }
+
+
 }
 
 

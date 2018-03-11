@@ -1,13 +1,14 @@
 package com.zylear.netty.learn.util;
 
 import com.zylear.netty.learn.bean.MessageBean;
+import com.zylear.netty.learn.bean.PlayerGameLogViewBean;
 import com.zylear.netty.learn.bean.PlayerRoomInfo;
 import com.zylear.netty.learn.bean.RoomInfo;
 import com.zylear.netty.learn.constant.OperationCode;
 import com.zylear.netty.learn.constant.StatusCode;
-import com.zylear.netty.learn.domain.GameRecord;
-import com.zylear.netty.learn.enums.ChooseColor;
-import com.zylear.netty.learn.enums.RoomType;
+import com.zylear.netty.learn.domain.PlayerGameRecord;
+import com.zylear.netty.learn.enums.BlokusColor;
+import com.zylear.netty.learn.enums.GameType;
 import com.zylear.proto.BlokusOuterClass.*;
 
 import java.util.Collection;
@@ -37,19 +38,35 @@ public class MessageFormater {
         return message;
     }
 
-    public static MessageBean formatGiveUpMessage(ChooseColor color) {
+    public static MessageBean formatPlayerInfoInGameMessage(Map<String, PlayerRoomInfo> playerRoomInfoMap) {
+        MessageBean message = new MessageBean();
+        message.setOperationCode(OperationCode.INIT_PLAYER_INFO_IN_GAME);
+        message.setStatusCode(StatusCode.SUCCESS);
+        BLOKUSRoomPlayerList.Builder builder = BLOKUSRoomPlayerList.newBuilder();
+        for (Entry<String, PlayerRoomInfo> entry : playerRoomInfoMap.entrySet()) {
+            PlayerRoomInfo playerRoomInfo = entry.getValue();
+            BLOKUSRoomPlayerInfo.Builder itemBuilder = BLOKUSRoomPlayerInfo.newBuilder();
+            itemBuilder.setAccount(playerRoomInfo.getAccount());
+            itemBuilder.setColor(playerRoomInfo.getColor().getValue());
+            builder.addItmes(itemBuilder);
+        }
+        message.setData(builder.build().toByteArray());
+        return message;
+    }
+
+    public static MessageBean formatGiveUpMessage(BlokusColor color) {
         MessageBean message = new MessageBean();
         message.setOperationCode(OperationCode.GIVE_UP);
         message.setStatusCode(StatusCode.SUCCESS);
 
-        BLOKUSChooseColor.Builder builder = BLOKUSChooseColor.newBuilder();
+        BLOKUSColor.Builder builder = BLOKUSColor.newBuilder();
         builder.setColor(color.getValue());
 
         message.setData(builder.build().toByteArray());
         return message;
     }
 
-    public static MessageBean formatJoinRoomMessage(String roomName, RoomType roomType) {
+    public static MessageBean formatJoinRoomMessage(String roomName, GameType gameType) {
 
         MessageBean message = new MessageBean();
         message.setOperationCode(OperationCode.JOIN_ROOM);
@@ -57,7 +74,7 @@ public class MessageFormater {
 
         BLOKUSCreateRoom.Builder builder = BLOKUSCreateRoom.newBuilder();
         builder.setRoomName(roomName);
-        builder.setRoomType(roomType.getValue());
+        builder.setGameType(gameType.getValue());
 
         message.setData(builder.build().toByteArray());
         return message;
@@ -73,7 +90,7 @@ public class MessageFormater {
         for (RoomInfo roomInfo : roomList) {
             BLOKUSRoomInfo.Builder roomInfoBuilder = BLOKUSRoomInfo.newBuilder();
             roomInfoBuilder.setRoomName(roomInfo.getRoomName());
-            roomInfoBuilder.setRoomType(roomInfo.getRoomType().getValue());
+            roomInfoBuilder.setGameType(roomInfo.getGameType().getValue());
             roomInfoBuilder.setRoomStatus(roomInfo.getRoomStatus().getValue());
             roomInfoBuilder.setCurrentPlayers(roomInfo.getPlayerCount());
             builder.addRoomItems(roomInfoBuilder.build());
@@ -83,13 +100,13 @@ public class MessageFormater {
         return message;
     }
 
-    public static MessageBean formatRankInfoMessage(List<GameRecord> twoPlayersRanks, List<GameRecord> fourPlayersRanks) {
+    public static MessageBean formatRankInfoMessage(List<PlayerGameRecord> twoPlayersRanks, List<PlayerGameRecord> fourPlayersRanks) {
         MessageBean message = new MessageBean();
         message.setOperationCode(OperationCode.RANK_INFO);
         message.setStatusCode(StatusCode.SUCCESS);
 
         BLOKUSRankInfo.Builder builder = BLOKUSRankInfo.newBuilder();
-        for (GameRecord record : twoPlayersRanks) {
+        for (PlayerGameRecord record : twoPlayersRanks) {
             BLOKUSRankItem.Builder rankItem = BLOKUSRankItem.newBuilder();
             rankItem.setAccount(record.getAccount());
             rankItem.setWinCount(record.getWinCount());
@@ -99,7 +116,7 @@ public class MessageFormater {
             rankItem.setRank("gold");
             builder.addTwoPlayersRankItems(rankItem.build());
         }
-        for (GameRecord record : fourPlayersRanks) {
+        for (PlayerGameRecord record : fourPlayersRanks) {
             BLOKUSRankItem.Builder rankItem = BLOKUSRankItem.newBuilder();
             rankItem.setAccount(record.getAccount());
             rankItem.setWinCount(record.getWinCount());
@@ -115,13 +132,13 @@ public class MessageFormater {
 
     }
 
-    public static MessageBean formatProfileMessage(List<GameRecord> records) {
+    public static MessageBean formatProfileMessage(List<PlayerGameRecord> playerGameRecords, List<PlayerGameLogViewBean> playerGameLogViewBeans) {
         MessageBean message = new MessageBean();
         message.setOperationCode(OperationCode.PROFILE);
         message.setStatusCode(StatusCode.SUCCESS);
 
-        BLOKUSRankInfo.Builder builder = BLOKUSRankInfo.newBuilder();
-        for (GameRecord record : records) {
+        BLOKUSProfile.Builder builder = BLOKUSProfile.newBuilder();
+        for (PlayerGameRecord record : playerGameRecords) {
             BLOKUSRankItem.Builder rankItem = BLOKUSRankItem.newBuilder();
             rankItem.setAccount(record.getAccount());
             rankItem.setWinCount(record.getWinCount());
@@ -129,15 +146,50 @@ public class MessageFormater {
             rankItem.setEscapeCount(record.getEscapeCount());
             rankItem.setRankScore(record.getRankScore());
             rankItem.setRank("gold");
-            if (RoomType.blokus_four.getValue().equals(record.getGameType())) {
-                builder.addFourPlayersRankItems(rankItem.build());
+            if (GameType.blokus_four.getValue().equals(record.getGameType())) {
+                builder.setFourPlayersRankItem(rankItem.build());
             } else {
-                builder.addTwoPlayersRankItems(rankItem.build());
+                builder.setTwoPlayersRankItem(rankItem.build());
             }
+        }
+
+        for (PlayerGameLogViewBean viewBean : playerGameLogViewBeans) {
+            BLOKUSPlayerGameLogItem.Builder logItem = BLOKUSPlayerGameLogItem.newBuilder();
+            logItem.setResult(viewBean.getGameResult().toString());
+            logItem.setGameType(viewBean.getGameType().getValue());
+            logItem.setStepsCount(viewBean.getStepsCount());
+            logItem.setDetail(viewBean.getDetail());
+            logItem.setTime(viewBean.getTime().toString());
+            builder.addPlayerGameLogs(logItem.build());
         }
 
         message.setData(builder.build().toByteArray());
         return message;
-
     }
+
+//    public static MessageBean formatProfileMessage(List<PlayerGameRecord> records) {
+//        MessageBean message = new MessageBean();
+//        message.setOperationCode(OperationCode.PROFILE);
+//        message.setStatusCode(StatusCode.SUCCESS);
+//
+//        BLOKUSRankInfo.Builder builder = BLOKUSRankInfo.newBuilder();
+//        for (GameRecord record : records) {
+//            BLOKUSRankItem.Builder rankItem = BLOKUSRankItem.newBuilder();
+//            rankItem.setAccount(record.getAccount());
+//            rankItem.setWinCount(record.getWinCount());
+//            rankItem.setLoseCount(record.getLoseCount());
+//            rankItem.setEscapeCount(record.getEscapeCount());
+//            rankItem.setRankScore(record.getRankScore());
+//            rankItem.setRank("gold");
+//            if (GameType.blokus_four.getValue().equals(record.getGameType())) {
+//                builder.addFourPlayersRankItems(rankItem.build());
+//            } else {
+//                builder.addTwoPlayersRankItems(rankItem.build());
+//            }
+//        }
+//
+//        message.setData(builder.build().toByteArray());
+//        return message;
+//
+//    }
 }

@@ -8,7 +8,7 @@ public enum GameStatus {
 
     unknown(-1),
     win(1),
-    fail(2),
+    lose(2),
     gaming(3);
 
     private Integer value;
