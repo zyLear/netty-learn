@@ -1,6 +1,6 @@
 package com.zylear.netty.learn.bean;
 
-import com.zylear.netty.learn.enums.ChooseColor;
+import com.zylear.netty.learn.enums.BlokusColor;
 import com.zylear.netty.learn.enums.GameStatus;
 import io.netty.channel.Channel;
 
@@ -11,7 +11,7 @@ public class PlayerRoomInfo {
 
     private Channel channel;
     private String account;
-    private ChooseColor color;
+    private BlokusColor color;
     private Boolean isReady = false;
     private GameStatus gameStatus = GameStatus.unknown;
     private Integer stepsCount = 0;
@@ -25,11 +25,11 @@ public class PlayerRoomInfo {
         this.account = account;
     }
 
-    public ChooseColor getColor() {
+    public BlokusColor getColor() {
         return color;
     }
 
-    public void setColor(ChooseColor color) {
+    public void setColor(BlokusColor color) {
         this.color = color;
     }
 

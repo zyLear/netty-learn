@@ -2,17 +2,18 @@ package com.zylear.netty.learn.manager;
 
 
 import com.alibaba.druid.util.StringUtils;
-import com.sun.imageio.spi.RAFImageInputStreamSpi;
 import com.zylear.netty.learn.bean.*;
 import com.zylear.netty.learn.cache.ServerCache;
 import com.zylear.netty.learn.constant.OperationCode;
 import com.zylear.netty.learn.domain.GameAccount;
-import com.zylear.netty.learn.domain.GameRecord;
-import com.zylear.netty.learn.domain.GameRecordDetail;
+import com.zylear.netty.learn.domain.GameLog;
+import com.zylear.netty.learn.domain.PlayerGameLog;
+import com.zylear.netty.learn.domain.PlayerGameRecord;
 import com.zylear.netty.learn.enums.*;
 import com.zylear.netty.learn.service.GameAccountService;
-import com.zylear.netty.learn.service.GameRecordDetailService;
-import com.zylear.netty.learn.service.GameRecordService;
+import com.zylear.netty.learn.service.GameLogService;
+import com.zylear.netty.learn.service.PlayerGameLogService;
+import com.zylear.netty.learn.service.PlayerGameRecordService;
 import com.zylear.netty.learn.util.MessageFormater;
 import com.zylear.proto.BlokusOuterClass.*;
 import io.netty.channel.Channel;
@@ -21,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import sun.misc.Version;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -34,9 +36,12 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
     private static final Logger logger = LoggerFactory.getLogger(MessageManager.class);
 
+    private static final String VERSION = "V1.1.0.RELEASE";
+
     private GameAccountService gameAccountService;
-    private GameRecordService gameRecordService;
-    private GameRecordDetailService gameRecordDetailService;
+    private GameLogService gameLogService;
+    private PlayerGameLogService playerGameLogService;
+    private PlayerGameRecordService playerGameRecordService;
 
     // division different function later. different kinds of handlers
 
@@ -92,7 +97,18 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             case OperationCode.PROFILE:
                 profile(transferBean, responses);
                 break;
-
+            case OperationCode.CHAT_IN_ROOM:
+                chatInRoom(transferBean, responses);
+                break;
+            case OperationCode.LEAVE_ROOM_FROM_GAME:
+                leaveRoomFromGame(transferBean, responses);
+                break;
+            case OperationCode.INIT_PLAYER_INFO_IN_GAME:
+                initPlayerInfoInGame(transferBean, responses);
+                break;
+            case OperationCode.LOGOUT:
+                logout(transferBean, responses);
+                break;
 
             case OperationCode.QUIT:
                 quit(transferBean, responses);
@@ -101,8 +117,34 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         }
     }
 
-    private void profile(TransferBean transferBean, List<TransferBean> responses) {
+    private void logout(TransferBean transferBean, List<TransferBean> responses) {
+        quit(transferBean, responses);
+    }
 
+    private void initPlayerInfoInGame(TransferBean transferBean, List<TransferBean> responses) {
+        RoomInfo roomInfo = ServerCache.getRoomInfo(transferBean.getChannel());
+        if (roomInfo != null) {
+            Map<String, PlayerRoomInfo> playerRoomInfoMap = roomInfo.getPlayers();
+            MessageBean needSendMessage = MessageFormater.formatPlayerInfoInGameMessage(playerRoomInfoMap);
+            transferBean.setMessage(needSendMessage);
+            responses.add(transferBean);
+        }
+    }
+
+    private void leaveRoomFromGame(TransferBean transferBean, List<TransferBean> responses) {
+
+
+    }
+
+    private void chatInRoom(TransferBean transferBean, List<TransferBean> responses) {
+        MessageBean message = transferBean.getMessage();
+        List<Channel> players = ServerCache.getPlayerChannelsInRoom(transferBean.getChannel());
+        for (Channel channel : players) {
+            responses.add(new TransferBean(message, channel));
+        }
+    }
+
+    private void profile(TransferBean transferBean, List<TransferBean> responses) {
         MessageBean message = transferBean.getMessage();
         BLOKUSAccount account;
         try {
@@ -112,15 +154,37 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             logger.warn("parse BLOKUSAccount exception. ", e);
             return;
         }
-        List<GameRecord> gameRecord = gameRecordService.findRanksByAccount(account.getAccount());
-        message = MessageFormater.formatProfileMessage(gameRecord);
+        List<PlayerGameRecord> playerGameRecords = playerGameRecordService.findRanksByAccount(account.getAccount());
+        List<PlayerGameLog> playerGameLogs = playerGameLogService.findByAccount(account.getAccount());
+        List<PlayerGameLogViewBean> playerGameLogViewBeans = new LinkedList<>();
+        for (PlayerGameLog playerGameLog : playerGameLogs) {
+            GameLog gameLog = gameLogService.findById(playerGameLog.getGameLogId());
+            List<PlayerGameLog> playerGameLogList = playerGameLogService.findByGameLogId(playerGameLog.getGameLogId());
+            PlayerGameLogViewBean playerGameLogViewBean = new PlayerGameLogViewBean();
+            playerGameLogViewBean.setGameResult(GameResult.valueOf(playerGameLog.getGameResult()));
+            playerGameLogViewBean.setGameType(GameType.valueOf(gameLog.getGameType()));
+            playerGameLogViewBean.setStepsCount(playerGameLog.getStepsCount());
+            playerGameLogViewBean.setTime(gameLog.getCreateTime());
+            StringBuilder detail = new StringBuilder();
+            int i = 0;
+            for (PlayerGameLog log : playerGameLogList) {
+                i++;
+                detail.append(log.getAccount()).append(":").append(playerGameLog.getStepsCount()).append("   ");
+                if (i == 2) {
+                    detail.append("\n");
+                }
+            }
+            playerGameLogViewBean.setDetail(detail.toString());
+            playerGameLogViewBeans.add(playerGameLogViewBean);
+        }
+        message = MessageFormater.formatProfileMessage(playerGameRecords, playerGameLogViewBeans);
         responses.add(new TransferBean(message, transferBean.getChannel()));
     }
 
     private void rankInfo(TransferBean transferBean, List<TransferBean> responses) {
 
-        List<GameRecord> twoPlayersRanks = gameRecordService.findRanks(RoomType.blokus_four.getValue());
-        List<GameRecord> fourPlayersRanks = gameRecordService.findRanks(RoomType.blokus_two.getValue());
+        List<PlayerGameRecord> twoPlayersRanks = playerGameRecordService.findRanks(GameType.blokus_four.getValue());
+        List<PlayerGameRecord> fourPlayersRanks = playerGameRecordService.findRanks(GameType.blokus_two.getValue());
         MessageBean message = MessageFormater.formatRankInfoMessage(twoPlayersRanks, fourPlayersRanks);
         responses.add(new TransferBean(message, transferBean.getChannel()));
 
@@ -155,25 +219,25 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                 gameAccount.setLastUpdateTime(date);
                 gameAccountService.insert(gameAccount);
 
-                GameRecord gameRecord = new GameRecord();
+                PlayerGameRecord gameRecord = new PlayerGameRecord();
                 gameRecord.setAccount(account);
-                gameRecord.setGameType(RoomType.blokus_four.getValue());
+                gameRecord.setGameType(GameType.blokus_four.getValue());
                 gameRecord.setWinCount(0);
                 gameRecord.setLoseCount(0);
                 gameRecord.setEscapeCount(0);
-                gameRecord.setRankScore(12000);
+                gameRecord.setRankScore(1200);
                 gameRecord.setRank(0);
                 gameRecord.setCreateTime(date);
                 gameRecord.setLastUpdateTime(date);
-                gameRecordService.insert(gameRecord);
-                gameRecord.setGameType(RoomType.blokus_two.getValue());
-                gameRecordService.insert(gameRecord);
+                playerGameRecordService.insert(gameRecord);
+                gameRecord.setGameType(GameType.blokus_two.getValue());
+                playerGameRecordService.insert(gameRecord);
 
                 responses.add(new TransferBean(MessageBean.REGISTER_SUCCESS, transferBean.getChannel()));
             }
         } catch (Exception e) {
             responses.add(new TransferBean(MessageBean.REGISTER_FAIL, transferBean.getChannel()));
-            logger.info("register fail. ", e);
+            logger.info("register lose. ", e);
         }
 
 
@@ -188,15 +252,6 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
     private void chatInGame(TransferBean transferBean, List<TransferBean> responses) {
         MessageBean message = transferBean.getMessage();
-//        BLOKUSChatMessage blokusChatMessage;
-//        try {
-//            blokusChatMessage = BLOKUSChatMessage.parseFrom(message.getData());
-//            logger.info("chatInGame. message:{}", blokusChatMessage.getChatMessage());
-//        } catch (Exception e) {
-//            logger.warn("parse BLOKUSChatMessage exception. ", e);
-//            return;
-//        }
-
         List<Channel> players = ServerCache.getPlayerChannelsInRoom(transferBean.getChannel());
         for (Channel channel : players) {
             responses.add(new TransferBean(message, channel));
@@ -211,21 +266,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                 RoomStatus.gaming.equals(roomInfo.getRoomStatus()) &&
                 !GameStatus.win.equals(playerRoomInfo.getGameStatus())) {
             logger.info("{} win", playerRoomInfo.getAccount());
-            playerRoomInfo.setGameStatus(GameStatus.win);
-            roomInfo.setRoomStatus(RoomStatus.waiting);
-
-            gameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getRoomType().getValue(), 1, 0, 0, 25);
-
-            GameRecordDetail gameRecordDetail = new GameRecordDetail();
-            gameRecordDetail.setAccount(playerRoomInfo.getAccount());
-            gameRecordDetail.setRoomName(roomInfo.getRoomName());
-            gameRecordDetail.setRoomMembers(roomInfo.getPlayers().values().toString());
-            gameRecordDetail.setGameType(roomInfo.getRoomType().getValue());
-            gameRecordDetail.setGameResult(GameResult.win.getValue());
-            gameRecordDetail.setCreateTime(new Date());
-            gameRecordDetail.setLastUpdateTime(new Date());
-            gameRecordDetailService.insert(gameRecordDetail);
-
+            gameStatusChange(playerRoomInfo, roomInfo, GameResult.win);
         }
     }
 
@@ -236,22 +277,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                 RoomStatus.gaming.equals(roomInfo.getRoomStatus()) &&
                 GameStatus.gaming.equals(playerRoomInfo.getGameStatus())) {
             logger.info("{} lose", playerRoomInfo.getAccount());
-            playerRoomInfo.setGameStatus(GameStatus.fail);
-
-
-//            gameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getRoomType().getValue(), 0, 1, 0, -25);
-//
-//            GameRecordDetail gameRecordDetail = new GameRecordDetail();
-//            gameRecordDetail.setAccount(playerRoomInfo.getAccount());
-//            gameRecordDetail.setRoomName(roomInfo.getRoomName());
-//            gameRecordDetail.setRoomMembers(roomInfo.getPlayers().values().toString());
-//            gameRecordDetail.setGameType(roomInfo.getRoomType().getValue());
-//            gameRecordDetail.setGameResult(GameResult.lose.getValue());
-//            gameRecordDetail.setCreateTime(new Date());
-//            gameRecordDetail.setLastUpdateTime(new Date());
-//            gameRecordDetailService.insert(gameRecordDetail);
-
-
+            gameStatusChange(playerRoomInfo, roomInfo, GameResult.lose);
         }
     }
 
@@ -266,6 +292,8 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 //            return;
 //        }
 
+        lose(transferBean, responses);
+
         List<Channel> players = ServerCache.getPlayerChannelsInRoom(transferBean.getChannel());
         for (Channel channel : players) {
             responses.add(new TransferBean(message, channel));
@@ -275,22 +303,22 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
     private synchronized void chooseColor(TransferBean transferBean, List<TransferBean> responses) {
 
         MessageBean message = transferBean.getMessage();
-        BLOKUSChooseColor blokusChooseColor;
+        BLOKUSColor blokusColor;
         try {
-            blokusChooseColor = BLOKUSChooseColor.parseFrom(message.getData());
-            logger.info("choose color. account:{}", blokusChooseColor.getAccount());
-            logger.info("choose color. roomName:{}", blokusChooseColor.getRoomName());
-            logger.info("choose color. color:{}", ChooseColor.valueOf(blokusChooseColor.getColor()));
+            blokusColor = BLOKUSColor.parseFrom(message.getData());
+            logger.info("choose color. color:{}", BlokusColor.valueOf(blokusColor.getColor()));
         } catch (Exception e) {
             logger.warn("parse BLOKUSRoomName exception. ", e);
-//            transferBean.setMessage(MessageBean.CREATE_ROOM_FAIL);
-//            responses.add(transferBean);
             return;
         }
 
-        ServerCache.chooseColor(blokusChooseColor.getAccount(), blokusChooseColor.getRoomName(),
-                ChooseColor.valueOf(blokusChooseColor.getColor()));
-        updateRoomPlayersInfo(blokusChooseColor.getRoomName(), responses);
+        ServerCache.chooseColor(transferBean.getChannel(), BlokusColor.valueOf(blokusColor.getColor()), new EmptyServerCacheCallback() {
+            @Override
+            public void updateRoomPlayersInfo(String roomName) {
+                updateRoomPlayersInfoNotify(roomName, responses);
+            }
+        });
+
     }
 
     private synchronized void quit(TransferBean transferBean, List<TransferBean> responses) {
@@ -307,28 +335,15 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                     PlayerRoomInfo playerRoomInfo = roomInfo.getPlayers().get(playerInfo.getAccount());
                     roomInfo.setPlayerCount(playerCount - 1);
                     roomInfo.getPlayers().remove(playerInfo.getAccount());
-                    if (RoomStatus.gaming.equals(roomInfo.getRoomStatus())) {
+                    if (RoomStatus.gaming.equals(roomInfo.getRoomStatus()) &&
+                            GameStatus.gaming.equals(playerRoomInfo.getGameStatus())) {
                         MessageBean messageBean = MessageFormater.formatGiveUpMessage(playerRoomInfo.getColor());
                         for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
                             if (!playerInfo.getAccount().equals(entry.getKey())) {
                                 responses.add(new TransferBean(messageBean, entry.getValue().getChannel()));
                             }
                         }
-
-                        //change db
-
-                        gameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getRoomType().getValue(), 0, 0, 1, -25);
-
-                        GameRecordDetail gameRecordDetail = new GameRecordDetail();
-                        gameRecordDetail.setAccount(playerRoomInfo.getAccount());
-                        gameRecordDetail.setRoomName(roomInfo.getRoomName());
-                        gameRecordDetail.setRoomMembers(roomInfo.getPlayers().values().toString());
-                        gameRecordDetail.setGameType(roomInfo.getRoomType().getValue());
-                        gameRecordDetail.setGameResult(GameResult.escape.getValue());
-                        gameRecordDetail.setCreateTime(new Date());
-                        gameRecordDetail.setLastUpdateTime(new Date());
-                        gameRecordDetailService.insert(gameRecordDetail);
-
+                        gameStatusChange(playerRoomInfo, roomInfo, GameResult.escape);
 
                     } else if (RoomStatus.waiting.equals(roomInfo.getRoomStatus())) {
                         MessageBean needSendMessage = MessageFormater.formatPlayerRoomInfoMessage(roomInfo.getPlayers());
@@ -343,13 +358,46 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         }
     }
 
+    public void gameStatusChange(PlayerRoomInfo playerRoomInfo, RoomInfo roomInfo, GameResult gameResult) {
+
+        Integer changeScore;
+        switch (gameResult) {
+            case win:
+                changeScore = 25;
+                playerRoomInfo.setGameStatus(GameStatus.win);
+                playerGameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getGameType().getValue(), 1, 0, 0, changeScore);
+                break;
+            case lose:
+                changeScore = -25;
+                playerRoomInfo.setGameStatus(GameStatus.lose);
+                playerGameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getGameType().getValue(), 0, 1, 0, changeScore);
+                break;
+            case escape:
+                changeScore = -25;
+                playerGameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getGameType().getValue(), 0, 0, 1, changeScore);
+                break;
+            default:
+                return;
+        }
+        roomInfo.checkRoomStatus();
+
+        PlayerGameLog playerGameLog = new PlayerGameLog();
+        playerGameLog.setAccount(playerRoomInfo.getAccount());
+        playerGameLog.setGameLogId(roomInfo.getGameLogId());
+        playerGameLog.setGameResult(gameResult.getValue());
+        playerGameLog.setStepsCount(playerRoomInfo.getStepsCount());
+        playerGameLog.setChangeScore(changeScore);
+        playerGameLog.setCreateTime(new Date());
+        playerGameLog.setLastUpdateTime(new Date());
+        playerGameLogService.insert(playerGameLog);
+    }
+
+
     private synchronized void chessDone(TransferBean transferBean, List<TransferBean> responses) {
 
         PlayerRoomInfo playerRoomInfo = ServerCache.getPlayerRoomInfo(transferBean.getChannel());
         if (playerRoomInfo != null) {
-
             playerRoomInfo.setStepsCount(playerRoomInfo.getStepsCount() + 1);
-
             List<Channel> channels = ServerCache.getOtherPlayerChannelsInRoom(transferBean.getChannel());
             for (Channel channel : channels) {
                 responses.add(new TransferBean(transferBean.getMessage(), channel));
@@ -362,56 +410,36 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
 
     private synchronized void ready(TransferBean transferBean, List<TransferBean> responses) {
+        ServerCache.ready(transferBean.getChannel(), new EmptyServerCacheCallback() {
+            @Override
+            public void startGame(RoomInfo roomInfo) {
+                if (roomInfo != null) {
+                    Date date = new Date();
+                    GameLog gameLog = new GameLog();
+                    gameLog.setRoomName(roomInfo.getRoomName());
+                    gameLog.setGameType(roomInfo.getGameType().getValue());
+                    gameLog.setCreateTime(date);
+                    gameLog.setLastUpdateTime(date);
 
-//        MessageBean message = transferBean.getMessage();
-//        BLOKUSChooseColor blokusChooseColor;
-//        try {
-//            blokusChooseColor = BLOKUSChooseColor.parseFrom(message.getData());
-//            logger.info("choose color. account:{}", blokusChooseColor.getAccount());
-//            logger.info("choose color. roomName:{}", blokusChooseColor.getRoomName());
-//        } catch (Exception e) {
-//            logger.warn("parse BLOKUSRoomName exception. ", e);
-//            return;
-//        }
+                    gameLogService.insert(gameLog);
+                    roomInfo.setGameLogId(gameLog.getId());
+                    startGameNotify(roomInfo.getRoomName(), responses);
+                }
+            }
 
-        PlayerInfo player = ServerCache.getPlayerInfo(transferBean.getChannel());
-        if (player == null) {
-            return;
-        }
+            @Override
+            public void updateRoomPlayersInfo(String roomName) {
+                updateRoomPlayersInfoNotify(roomName, responses);
+            }
+        });
 
-
-        int result = ServerCache.ready(player.getAccount(), player.getRoomName());
-        switch (result) {
-            case 0:
-
-                startGame(player.getRoomName(), responses);
-                break;
-            case 1:
-
-                updateRoomPlayersInfo(player.getRoomName(), responses);
-                break;
-            default:
-        }
-
-
-//        updateRoomPlayersInfo(blokusChooseColor.getRoomName(), responses);
     }
 
-    private void startGame(String roomName, List<TransferBean> responses) {
+    private void startGameNotify(String roomName, List<TransferBean> responses) {
         Map<String, PlayerRoomInfo> playerRoomInfoMap = ServerCache.getPlayerRoomInfos(roomName);
-//        MessageBean needSendMessage = MessageFormater.formatPlayerRoomInfoMessage(playerRoomInfoMap);
 
-//        RoomInfo roomInfo = ServerCache.getRoomInfo(roomName);
-//        if (roomInfo != null) {
         MessageBean message;
-//            if (RoomType.blokus_four.equals(roomInfo.getRoomType())) {
-        message = MessageBean.START_BLOKUS;
-//            } else if (RoomType.blokus_two.equals(roomInfo.getRoomType())) {
-//                message = MessageBean.START_BLOKUS_TWO_PEOPLE;
-//            } else {
-//                return;
-//            }
-
+        message = MessageBean.START_BLOKUS_SUCCESS;
 
         for (Entry<String, PlayerRoomInfo> entry : playerRoomInfoMap.entrySet()) {
             responses.add(new TransferBean(message, entry.getValue().getChannel()));
@@ -437,9 +465,9 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
             RoomInfo roomInfo = ServerCache.getRoomInfo(blokusRoomName.getRoomName());
             if (roomInfo != null) {
-                MessageBean messageBean = MessageFormater.formatJoinRoomMessage(roomInfo.getRoomName(), roomInfo.getRoomType());
+                MessageBean messageBean = MessageFormater.formatJoinRoomMessage(roomInfo.getRoomName(), roomInfo.getGameType());
                 responses.add(new TransferBean(messageBean, transferBean.getChannel()));
-                updateRoomPlayersInfo(blokusRoomName.getRoomName(), responses);
+                updateRoomPlayersInfoNotify(blokusRoomName.getRoomName(), responses);
             }
 
 //            List<RoomInfo> rooms = ServerCache.getAllRooms();
@@ -452,9 +480,26 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
 
     private void checkVersion(TransferBean transferBean, List<TransferBean> responses) {
+        MessageBean message = transferBean.getMessage();
+        BLOKUSVersion blokusVersion;
+        try {
+            blokusVersion = BLOKUSVersion.parseFrom(message.getData());
+            logger.info("checkVersion. version:{}", blokusVersion.getVersion());
+        } catch (Exception e) {
+            logger.warn("parse BLOKUSRoomName exception. ", e);
+            transferBean.setMessage(MessageBean.CHECK_VERSION_FAIL);
+            responses.add(transferBean);
+            return;
+        }
 
+        if (VERSION.equals(blokusVersion.getVersion())) {
+            transferBean.setMessage(MessageBean.CHECK_VERSION_SUCCESS);
+            responses.add(transferBean);
+        } else {
+            transferBean.setMessage(MessageBean.CHECK_VERSION_FAIL);
+            responses.add(transferBean);
+        }
 
-//        return null;
     }
 
     private synchronized void createRoom(TransferBean transferBean, List<TransferBean> responses) {
@@ -463,7 +508,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         try {
             blokusCreateRoom = BLOKUSCreateRoom.parseFrom(message.getData());
             logger.info("create room. roomName:{}", blokusCreateRoom.getRoomName());
-            logger.info("create room. roomType:{}", RoomType.valueOf(blokusCreateRoom.getRoomType()));
+            logger.info("create room. gameType:{}", GameType.valueOf(blokusCreateRoom.getGameType()));
         } catch (Exception e) {
             logger.warn("parse BLOKUSCreateRoom exception. ", e);
             transferBean.setMessage(MessageBean.CREATE_ROOM_FAIL);
@@ -472,11 +517,11 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         }
 
         if (ServerCache.createRoom(transferBean.getChannel(), blokusCreateRoom.getRoomName(),
-                RoomType.valueOf(blokusCreateRoom.getRoomType()))) {
+                GameType.valueOf(blokusCreateRoom.getGameType()))) {
 
             transferBean.setMessage(transferBean.getMessage());
             responses.add(transferBean);
-            updateRoomPlayersInfo(blokusCreateRoom.getRoomName(), responses);
+            updateRoomPlayersInfoNotify(blokusCreateRoom.getRoomName(), responses);
         } else {
             transferBean.setMessage(MessageBean.CREATE_ROOM_FAIL);
             responses.add(transferBean);
@@ -491,7 +536,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         if (roomName != null) {
             transferBean.setMessage(MessageBean.LEAVE_ROOM_SUCCESS);
             responses.add(transferBean);
-            updateRoomPlayersInfo(roomName, responses);
+            updateRoomPlayersInfoNotify(roomName, responses);
         } else {
             transferBean.setMessage(MessageBean.LEAVE_ROOM_FAIL);
             responses.add(transferBean);
@@ -536,7 +581,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
     }
 
 
-    private void updateRoomPlayersInfo(String roomName, List<TransferBean> responses) {
+    private void updateRoomPlayersInfoNotify(String roomName, List<TransferBean> responses) {
         Map<String, PlayerRoomInfo> playerRoomInfoMap = ServerCache.getPlayerRoomInfos(roomName);
         MessageBean needSendMessage = MessageFormater.formatPlayerRoomInfoMessage(playerRoomInfoMap);
         for (Entry<String, PlayerRoomInfo> entry : playerRoomInfoMap.entrySet()) {
@@ -559,12 +604,17 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
     }
 
     @Autowired
-    public void setGameRecordService(GameRecordService gameRecordService) {
-        this.gameRecordService = gameRecordService;
+    public void setGameLogService(GameLogService gameLogService) {
+        this.gameLogService = gameLogService;
     }
 
     @Autowired
-    public void setGameRecordDetailService(GameRecordDetailService gameRecordDetailService) {
-        this.gameRecordDetailService = gameRecordDetailService;
+    public void setPlayerGameLogService(PlayerGameLogService playerGameLogService) {
+        this.playerGameLogService = playerGameLogService;
+    }
+
+    @Autowired
+    public void setPlayerGameRecordService(PlayerGameRecordService playerGameRecordService) {
+        this.playerGameRecordService = playerGameRecordService;
     }
 }

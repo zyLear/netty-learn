@@ -44,6 +44,14 @@ public class OperationCode {
 
     public static final short PROFILE =  19;
 
+    public static final short CHAT_IN_ROOM =  20;
+
+    public static final short LEAVE_ROOM_FROM_GAME =  21;
+
+    public static final short INIT_PLAYER_INFO_IN_GAME =  22;
+
+    public static final short LOGOUT =  23;
+
 
     public static final short QUIT = 10001;
 

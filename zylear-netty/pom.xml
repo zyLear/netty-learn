@@ -5,7 +5,7 @@
 
     <groupId>com.zylear</groupId>
     <artifactId>netty</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>V1.0.0.RELEASE</version>
     <packaging>pom</packaging>
 
     <name>netty</name>

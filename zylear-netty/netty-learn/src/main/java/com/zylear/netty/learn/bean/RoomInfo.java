@@ -1,8 +1,9 @@
 package com.zylear.netty.learn.bean;
 
-import com.zylear.netty.learn.enums.ChooseColor;
+import com.zylear.netty.learn.enums.BlokusColor;
+import com.zylear.netty.learn.enums.GameStatus;
+import com.zylear.netty.learn.enums.GameType;
 import com.zylear.netty.learn.enums.RoomStatus;
-import com.zylear.netty.learn.enums.RoomType;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,9 +17,10 @@ import java.util.Set;
  */
 public class RoomInfo {
 
+    private Integer gameLogId;
     private String roomName;
     private RoomStatus roomStatus;
-    private RoomType roomType;
+    private GameType gameType;
     private Integer playerCount;
     private Integer maxPlayerCount;
     private Map<String, PlayerRoomInfo> players = new HashMap<>(4);
@@ -47,12 +49,12 @@ public class RoomInfo {
         this.playerCount = playerCount;
     }
 
-    public RoomType getRoomType() {
-        return roomType;
+    public GameType getGameType() {
+        return gameType;
     }
 
-    public void setRoomType(RoomType roomType) {
-        this.roomType = roomType;
+    public void setGameType(GameType gameType) {
+        this.gameType = gameType;
     }
 
     public Integer getMaxPlayerCount() {
@@ -71,6 +73,13 @@ public class RoomInfo {
         this.players = players;
     }
 
+    public Integer getGameLogId() {
+        return gameLogId;
+    }
+
+    public void setGameLogId(Integer gameLogId) {
+        this.gameLogId = gameLogId;
+    }
 
     public Boolean canStartGame() {
         int count = 0;
@@ -92,7 +101,7 @@ public class RoomInfo {
         return "RoomInfo{" +
                 "roomName='" + roomName + '\'' +
                 ", roomStatus=" + roomStatus +
-                ", roomType=" + roomType +
+                ", gameType=" + gameType +
                 ", playerCount=" + playerCount +
                 ", maxPlayerCount=" + maxPlayerCount +
                 ", playerRoomInfo=" + showPlayerRoomInfo() +
@@ -109,7 +118,7 @@ public class RoomInfo {
 
     public boolean canReady() {
         if (players.size() == maxPlayerCount) {
-            Set<ChooseColor> colorSet = new HashSet<>();
+            Set<BlokusColor> colorSet = new HashSet<>();
             for (Entry<String, PlayerRoomInfo> entry : players.entrySet()) {
                 colorSet.add(entry.getValue().getColor());
             }
@@ -118,5 +127,14 @@ public class RoomInfo {
             }
         }
         return false;
+    }
+
+    public void checkRoomStatus() {
+        for (Entry<String, PlayerRoomInfo> entry : players.entrySet()) {
+            if (GameStatus.gaming.equals(entry.getValue().getGameStatus())) {
+                return;
+            }
+        }
+        roomStatus = RoomStatus.waiting;
     }
 }

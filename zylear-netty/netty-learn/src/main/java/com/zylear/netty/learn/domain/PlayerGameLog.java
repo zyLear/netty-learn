@@ -2,18 +2,18 @@ package com.zylear.netty.learn.domain;
 
 import java.util.Date;
 
-public class GameRecordDetail {
+public class PlayerGameLog {
     private Integer id;
 
     private String account;
 
-    private String roomName;
-
-    private String roomMembers;
-
-    private Integer gameType;
+    private Integer gameLogId;
 
     private Integer gameResult;
+
+    private Integer stepsCount;
+
+    private Integer changeScore;
 
     private Date createTime;
 
@@ -35,28 +35,12 @@ public class GameRecordDetail {
         this.account = account;
     }
 
-    public String getRoomName() {
-        return roomName;
+    public Integer getGameLogId() {
+        return gameLogId;
     }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
-    }
-
-    public String getRoomMembers() {
-        return roomMembers;
-    }
-
-    public void setRoomMembers(String roomMembers) {
-        this.roomMembers = roomMembers;
-    }
-
-    public Integer getGameType() {
-        return gameType;
-    }
-
-    public void setGameType(Integer gameType) {
-        this.gameType = gameType;
+    public void setGameLogId(Integer gameLogId) {
+        this.gameLogId = gameLogId;
     }
 
     public Integer getGameResult() {
@@ -65,6 +49,22 @@ public class GameRecordDetail {
 
     public void setGameResult(Integer gameResult) {
         this.gameResult = gameResult;
+    }
+
+    public Integer getStepsCount() {
+        return stepsCount;
+    }
+
+    public void setStepsCount(Integer stepsCount) {
+        this.stepsCount = stepsCount;
+    }
+
+    public Integer getChangeScore() {
+        return changeScore;
+    }
+
+    public void setChangeScore(Integer changeScore) {
+        this.changeScore = changeScore;
     }
 
     public Date getCreateTime() {

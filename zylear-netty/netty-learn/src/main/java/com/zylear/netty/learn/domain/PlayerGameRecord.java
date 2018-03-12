@@ -2,12 +2,12 @@ package com.zylear.netty.learn.domain;
 
 import java.util.Date;
 
-public class GameRecord {
+public class PlayerGameRecord {
     private Integer id;
 
-    private Integer gameType;
-
     private String account;
+
+    private Integer gameType;
 
     private Integer winCount;
 
@@ -31,14 +31,20 @@ public class GameRecord {
         this.id = id;
     }
 
-
-
     public String getAccount() {
         return account;
     }
 
     public void setAccount(String account) {
         this.account = account;
+    }
+
+    public Integer getGameType() {
+        return gameType;
+    }
+
+    public void setGameType(Integer gameType) {
+        this.gameType = gameType;
     }
 
     public Integer getWinCount() {
@@ -71,14 +77,6 @@ public class GameRecord {
 
     public void setRankScore(Integer rankScore) {
         this.rankScore = rankScore;
-    }
-
-    public Integer getGameType() {
-        return gameType;
-    }
-
-    public void setGameType(Integer gameType) {
-        this.gameType = gameType;
     }
 
     public Integer getRank() {

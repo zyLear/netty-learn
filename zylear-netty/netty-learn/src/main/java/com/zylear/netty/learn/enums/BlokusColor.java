@@ -3,7 +3,7 @@ package com.zylear.netty.learn.enums;
 /**
  * Created by xiezongyu on 2018/2/5.
  */
-public enum ChooseColor {
+public enum BlokusColor {
 
     unknown(-1),
     blue(1),
@@ -14,7 +14,7 @@ public enum ChooseColor {
 
     private Integer value;
 
-    ChooseColor(Integer value) {
+    BlokusColor(Integer value) {
         this.value = value;
     }
 
@@ -22,11 +22,11 @@ public enum ChooseColor {
         return value;
     }
 
-    public static ChooseColor valueOf(Integer value) {
+    public static BlokusColor valueOf(Integer value) {
         try {
-            for (ChooseColor chooseColor : ChooseColor.values()) {
-                if (chooseColor.getValue().equals(value)) {
-                    return chooseColor;
+            for (BlokusColor blokusColor : BlokusColor.values()) {
+                if (blokusColor.getValue().equals(value)) {
+                    return blokusColor;
                 }
             }
         } catch (Exception e) {

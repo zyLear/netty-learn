@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zylear.netty.learn.dao.mybatis.blokusgame.GameLogMapper">
+    <resultMap id="BaseResultMap" type="com.zylear.netty.learn.domain.GameLog">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="room_name" property="roomName" jdbcType="VARCHAR"/>
+        <result column="game_type" property="gameType" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, room_name, game_type, create_time, last_update_time
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_game_log
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_game_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.zylear.netty.learn.domain.GameLog">
+    insert into t_game_log (id, room_name, game_type, 
+      create_time, last_update_time)
+    values (#{id,jdbcType=INTEGER}, #{roomName,jdbcType=VARCHAR}, #{gameType,jdbcType=TINYINT},
+      #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+    <insert id="insertSelective" parameterType="com.zylear.netty.learn.domain.GameLog">
+        insert into t_game_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="roomName != null">
+                room_name,
+            </if>
+            <if test="gameType != null">
+                game_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="roomName != null">
+                #{roomName,jdbcType=VARCHAR},
+            </if>
+            <if test="gameType != null">
+                #{gameType,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateTime != null">
+                #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zylear.netty.learn.domain.GameLog">
+        update t_game_log
+        <set>
+            <if test="roomName != null">
+                room_name = #{roomName,jdbcType=VARCHAR},
+            </if>
+            <if test="gameType != null">
+                game_type = #{gameType,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zylear.netty.learn.domain.GameLog">
+    update t_game_log
+    set room_name = #{roomName,jdbcType=VARCHAR},
+      game_type = #{gameType,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

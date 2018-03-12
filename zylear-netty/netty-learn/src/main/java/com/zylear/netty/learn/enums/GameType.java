@@ -4,7 +4,7 @@ package com.zylear.netty.learn.enums;
  * @author 28444
  * @date 2018/2/4.
  */
-public enum RoomType {
+public enum GameType {
     unknown(-1),
     blokus_four(1),
     blokus_two(2);
@@ -12,7 +12,7 @@ public enum RoomType {
 
     private Integer value;
 
-    RoomType(Integer value) {
+    GameType(Integer value) {
         this.value = value;
     }
 
@@ -20,11 +20,11 @@ public enum RoomType {
         return value;
     }
 
-    public static RoomType valueOf(Integer value) {
+    public static GameType valueOf(Integer value) {
         try {
-            for (RoomType roomType : RoomType.values()) {
-                if (roomType.getValue().equals(value)) {
-                    return roomType;
+            for (GameType gameType : GameType.values()) {
+                if (gameType.getValue().equals(value)) {
+                    return gameType;
                 }
             }
         } catch (Exception e) {
