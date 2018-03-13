@@ -300,7 +300,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         }
     }
 
-    private synchronized void chooseColor(TransferBean transferBean, List<TransferBean> responses) {
+    private synchronized void chooseColor(TransferBean transferBean, final List<TransferBean> responses) {
 
         MessageBean message = transferBean.getMessage();
         BLOKUSColor blokusColor;
@@ -325,14 +325,20 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 //        ServerCache.quit(transferBean.getChannel());
         // need modify
         PlayerInfo playerInfo = ServerCache.getPlayerInfo(transferBean.getChannel());
+
         if (playerInfo != null) {
             RoomInfo roomInfo = playerInfo.getRoomInfo();
             if (roomInfo != null) {
+                PlayerRoomInfo playerRoomInfo = roomInfo.getPlayers().get(playerInfo.getAccount());
                 int playerCount = roomInfo.getPlayerCount();
                 if (playerCount <= 1) {
+                    if (RoomStatus.gaming.equals(roomInfo.getRoomStatus()) &&
+                            GameStatus.gaming.equals(playerRoomInfo.getGameStatus())) {
+                        gameStatusChange(playerRoomInfo, roomInfo, GameResult.win);
+                    }
                     ServerCache.removeRoom(roomInfo.getRoomName());
                 } else {
-                    PlayerRoomInfo playerRoomInfo = roomInfo.getPlayers().get(playerInfo.getAccount());
+
                     roomInfo.setPlayerCount(playerCount - 1);
                     roomInfo.getPlayers().remove(playerInfo.getAccount());
                     if (RoomStatus.gaming.equals(roomInfo.getRoomStatus()) &&
@@ -409,7 +415,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
     }
 
 
-    private synchronized void ready(TransferBean transferBean, List<TransferBean> responses) {
+    private synchronized void ready(TransferBean transferBean, final List<TransferBean> responses) {
         ServerCache.ready(transferBean.getChannel(), new EmptyServerCacheCallback() {
             @Override
             public void startGame(RoomInfo roomInfo) {
