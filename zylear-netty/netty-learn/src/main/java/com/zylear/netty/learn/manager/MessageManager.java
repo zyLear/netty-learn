@@ -339,9 +339,9 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                             GameStatus.gaming.equals(playerRoomInfo.getGameStatus())) {
                         MessageBean messageBean = MessageFormater.formatGiveUpMessage(playerRoomInfo.getColor());
                         for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
-                            if (!playerInfo.getAccount().equals(entry.getKey())) {
-                                responses.add(new TransferBean(messageBean, entry.getValue().getChannel()));
-                            }
+                            // if (!playerInfo.getAccount().equals(entry.getKey())) {
+                            responses.add(new TransferBean(messageBean, entry.getValue().getChannel()));
+                            //   }
                         }
                         gameStatusChange(playerRoomInfo, roomInfo, GameResult.escape);
 
