@@ -15,7 +15,7 @@ public class PlayerRoomInfo {
     private Boolean isReady = false;
     private GameStatus gameStatus = GameStatus.unknown;
     private Integer stepsCount = 0;
- 
+
 
     public String getAccount() {
         return account;

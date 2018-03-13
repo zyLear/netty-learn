@@ -15,6 +15,7 @@ public class PlayerGameLogViewBean {
     private Integer stepsCount;
     private String detail;
     private Date time;
+    private Integer changeScore;
 
     public GameResult getGameResult() {
         return gameResult;
@@ -54,5 +55,13 @@ public class PlayerGameLogViewBean {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public Integer getChangeScore() {
+        return changeScore;
+    }
+
+    public void setChangeScore(Integer changeScore) {
+        this.changeScore = changeScore;
     }
 }

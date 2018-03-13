@@ -9345,6 +9345,15 @@ public final class BlokusOuterClass {
      */
     com.google.protobuf.ByteString
         getTimeBytes();
+
+    /**
+     * <code>optional int32 changeScore = 6;</code>
+     */
+    boolean hasChangeScore();
+    /**
+     * <code>optional int32 changeScore = 6;</code>
+     */
+    int getChangeScore();
   }
   /**
    * Protobuf type {@code BLOKUSPlayerGameLogItem}
@@ -9367,6 +9376,7 @@ public final class BlokusOuterClass {
       stepsCount_ = 0;
       detail_ = "";
       time_ = "";
+      changeScore_ = 0;
     }
 
     @java.lang.Override
@@ -9422,6 +9432,11 @@ public final class BlokusOuterClass {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000010;
               time_ = bs;
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              changeScore_ = input.readInt32();
               break;
             }
           }
@@ -9606,6 +9621,21 @@ public final class BlokusOuterClass {
       }
     }
 
+    public static final int CHANGESCORE_FIELD_NUMBER = 6;
+    private int changeScore_;
+    /**
+     * <code>optional int32 changeScore = 6;</code>
+     */
+    public boolean hasChangeScore() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional int32 changeScore = 6;</code>
+     */
+    public int getChangeScore() {
+      return changeScore_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -9633,6 +9663,9 @@ public final class BlokusOuterClass {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 5, time_);
       }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeInt32(6, changeScore_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -9657,6 +9690,10 @@ public final class BlokusOuterClass {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(5, time_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, changeScore_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -9784,6 +9821,8 @@ public final class BlokusOuterClass {
         bitField0_ = (bitField0_ & ~0x00000008);
         time_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
+        changeScore_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -9828,6 +9867,10 @@ public final class BlokusOuterClass {
           to_bitField0_ |= 0x00000010;
         }
         result.time_ = time_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.changeScore_ = changeScore_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -9864,6 +9907,9 @@ public final class BlokusOuterClass {
           bitField0_ |= 0x00000010;
           time_ = other.time_;
           onChanged();
+        }
+        if (other.hasChangeScore()) {
+          setChangeScore(other.getChangeScore());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -10181,6 +10227,38 @@ public final class BlokusOuterClass {
   }
   bitField0_ |= 0x00000010;
         time_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int changeScore_ ;
+      /**
+       * <code>optional int32 changeScore = 6;</code>
+       */
+      public boolean hasChangeScore() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional int32 changeScore = 6;</code>
+       */
+      public int getChangeScore() {
+        return changeScore_;
+      }
+      /**
+       * <code>optional int32 changeScore = 6;</code>
+       */
+      public Builder setChangeScore(int value) {
+        bitField0_ |= 0x00000020;
+        changeScore_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 changeScore = 6;</code>
+       */
+      public Builder clearChangeScore() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        changeScore_ = 0;
         onChanged();
         return this;
       }
@@ -11411,15 +11489,15 @@ public final class BlokusOuterClass {
       "\013escapeCount\030\005 \001(\005\022\014\n\004rank\030\006 \001(\t\"m\n\016BLOK" +
       "USRankInfo\022,\n\023twoPlayersRankItems\030\001 \003(\0132" +
       "\017.BLOKUSRankItem\022-\n\024fourPlayersRankItems" +
-      "\030\002 \003(\0132\017.BLOKUSRankItem\"m\n\027BLOKUSPlayerG" +
-      "ameLogItem\022\016\n\006result\030\001 \001(\t\022\020\n\010gameType\030\002" +
-      " \001(\005\022\022\n\nstepsCount\030\003 \001(\005\022\016\n\006detail\030\004 \001(\t" +
-      "\022\014\n\004time\030\005 \001(\t\"\234\001\n\rBLOKUSProfile\022+\n\022twoP" +
-      "layersRankItem\030\001 \001(\0132\017.BLOKUSRankItem\022,\n" +
-      "\023fourPlayersRankItem\030\002 \001(\0132\017.BLOKUSRankI",
-      "tem\0220\n\016playerGameLogs\030\003 \003(\0132\030.BLOKUSPlay" +
-      "erGameLogItemB$\n\020com.zylear.protoB\020Bloku" +
-      "sOuterClass"
+      "\030\002 \003(\0132\017.BLOKUSRankItem\"\202\001\n\027BLOKUSPlayer" +
+      "GameLogItem\022\016\n\006result\030\001 \001(\t\022\020\n\010gameType\030" +
+      "\002 \001(\005\022\022\n\nstepsCount\030\003 \001(\005\022\016\n\006detail\030\004 \001(" +
+      "\t\022\014\n\004time\030\005 \001(\t\022\023\n\013changeScore\030\006 \001(\005\"\234\001\n" +
+      "\rBLOKUSProfile\022+\n\022twoPlayersRankItem\030\001 \001" +
+      "(\0132\017.BLOKUSRankItem\022,\n\023fourPlayersRankIt",
+      "em\030\002 \001(\0132\017.BLOKUSRankItem\0220\n\016playerGameL" +
+      "ogs\030\003 \003(\0132\030.BLOKUSPlayerGameLogItemB$\n\020c" +
+      "om.zylear.protoB\020BlokusOuterClass"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -11522,7 +11600,7 @@ public final class BlokusOuterClass {
     internal_static_BLOKUSPlayerGameLogItem_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_BLOKUSPlayerGameLogItem_descriptor,
-        new java.lang.String[] { "Result", "GameType", "StepsCount", "Detail", "Time", });
+        new java.lang.String[] { "Result", "GameType", "StepsCount", "Detail", "Time", "ChangeScore", });
     internal_static_BLOKUSProfile_descriptor =
       getDescriptor().getMessageTypes().get(15);
     internal_static_BLOKUSProfile_fieldAccessorTable = new
