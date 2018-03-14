@@ -160,6 +160,7 @@ public class MessageFormater {
             logItem.setStepsCount(viewBean.getStepsCount());
             logItem.setDetail(viewBean.getDetail());
             logItem.setTime(viewBean.getTime().toString());
+            logItem.setChangeScore(viewBean.getChangeScore());
             builder.addPlayerGameLogs(logItem.build());
         }
 

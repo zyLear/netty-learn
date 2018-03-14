@@ -24,6 +24,7 @@ public class RoomInfo {
     private Integer playerCount;
     private Integer maxPlayerCount;
     private Map<String, PlayerRoomInfo> players = new HashMap<>(4);
+    private Integer currentLoseCount = 0;
 
     public String getRoomName() {
         return roomName;
@@ -79,6 +80,15 @@ public class RoomInfo {
 
     public void setGameLogId(Integer gameLogId) {
         this.gameLogId = gameLogId;
+    }
+
+
+    public Integer getCurrentLoseCount() {
+        return currentLoseCount;
+    }
+
+    public void setCurrentLoseCount(Integer currentLoseCount) {
+        this.currentLoseCount = currentLoseCount;
     }
 
     public Boolean canStartGame() {
