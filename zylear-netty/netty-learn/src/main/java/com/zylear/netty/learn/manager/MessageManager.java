@@ -37,7 +37,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
     private static final Logger logger = LoggerFactory.getLogger(MessageManager.class);
 
-    private static final String VERSION = "V1.1.0.RELEASE";
+    private static final String VERSION = "V1.0.1.RELEASE";
 
     private GameAccountService gameAccountService;
     private GameLogService gameLogService;
@@ -175,7 +175,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             int i = 0;
             for (PlayerGameLog log : playerGameLogList) {
                 i++;
-                detail.append(log.getAccount()).append(":").append(playerGameLog.getStepsCount()).append("   ");
+                detail.append(log.getAccount()).append(":").append(log.getStepsCount()).append("   ");
                 if (i == 2) {
                     detail.append("\n");
                 }
