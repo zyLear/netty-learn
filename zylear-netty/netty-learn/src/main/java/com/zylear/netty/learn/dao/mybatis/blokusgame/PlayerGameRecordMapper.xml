@@ -173,6 +173,7 @@
     FROM t_player_game_record
     WHERE game_type = #{gameType,jdbcType=TINYINT}
     ORDER BY rank_score DESC
+    LIMIT 
   </select>
 
   <select id="findRanksByAccount" resultMap="BaseResultMap">
