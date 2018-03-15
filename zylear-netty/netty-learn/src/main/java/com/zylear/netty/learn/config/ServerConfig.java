@@ -17,8 +17,11 @@ import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.handler.timeout.IdleStateHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author 28444
@@ -44,6 +47,8 @@ public class ServerConfig {
                         ChannelPipeline pipeline = socketChannel.pipeline();
                         pipeline.addLast("decoder", new MessageDecoder());
                         pipeline.addLast("encoder", new MessageEncoder());
+                        pipeline.addLast(new IdleStateHandler(10, 60 * 60 * 24, 0, TimeUnit.SECONDS));
+                        //  pipeline.addLast(new HeartbeatHandler());
                         pipeline.addLast("handler", new SimpleBlokusServerHandler());
                     }
                 });
