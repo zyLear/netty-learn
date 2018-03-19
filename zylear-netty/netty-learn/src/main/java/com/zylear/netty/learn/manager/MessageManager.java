@@ -37,7 +37,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
 
     private static final Logger logger = LoggerFactory.getLogger(MessageManager.class);
 
-    private static final String VERSION = "V1.0.1.RELEASE";
+    private static final String VERSION = "V1.0.2.RELEASE";
 
     private GameAccountService gameAccountService;
     private GameLogService gameLogService;
