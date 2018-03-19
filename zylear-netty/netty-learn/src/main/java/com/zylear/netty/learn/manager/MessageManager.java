@@ -18,7 +18,7 @@ import com.zylear.netty.learn.service.PlayerGameRecordService;
 import com.zylear.netty.learn.util.MessageFormater;
 import com.zylear.proto.BlokusOuterClass.*;
 import io.netty.channel.Channel;
-import org.apache.commons.math3.random.RandomDataGenerator;
+import org.apache.commons.lang3.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
     private static final Integer WIN_CHANGE_SCORE_TEMPLATE = 23;
     private static final Integer LOSE_CHANGE_SCORE_TEMPLATE = -21;
     private static final Integer ESCAPE_CHANGE_SCORE_TEMPLATE = -25;
-    private static final Integer SCORE_RANDOM_RANGE = 6;
+    private static final Integer SCORE_RANDOM_RANGE = 7; //excluded
 
     // division different function later. different kinds of handlers
 
@@ -378,9 +378,9 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
         switch (gameResult) {
             case win:
                 if (GameType.blokus_four.equals(roomInfo.getGameType())) {
-                    changeScore = WIN_CHANGE_SCORE_TEMPLATE * 2 + new RandomDataGenerator().nextInt(0, SCORE_RANDOM_RANGE);
+                    changeScore = WIN_CHANGE_SCORE_TEMPLATE * 2 + RandomUtils.nextInt(0, SCORE_RANDOM_RANGE);
                 } else {
-                    changeScore = WIN_CHANGE_SCORE_TEMPLATE + new RandomDataGenerator().nextInt(0, SCORE_RANDOM_RANGE);
+                    changeScore = WIN_CHANGE_SCORE_TEMPLATE + RandomUtils.nextInt(0, SCORE_RANDOM_RANGE);
                 }
                 playerRoomInfo.setGameStatus(GameStatus.win);
                 playerGameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getGameType().getValue(), 1, 0, 0, changeScore);
@@ -388,11 +388,11 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
             case lose:
                 int currentLoseCount = roomInfo.getCurrentLoseCount();
                 if (currentLoseCount == 0) {
-                    changeScore = LOSE_CHANGE_SCORE_TEMPLATE - new RandomDataGenerator().nextInt(0, SCORE_RANDOM_RANGE);
+                    changeScore = LOSE_CHANGE_SCORE_TEMPLATE - RandomUtils.nextInt(0, SCORE_RANDOM_RANGE);
                 } else if (currentLoseCount == 1) {
-                    changeScore = -new RandomDataGenerator().nextInt(0, SCORE_RANDOM_RANGE);
+                    changeScore = -RandomUtils.nextInt(0, SCORE_RANDOM_RANGE);
                 } else {
-                    changeScore = WIN_CHANGE_SCORE_TEMPLATE + new RandomDataGenerator().nextInt(0, SCORE_RANDOM_RANGE);
+                    changeScore = WIN_CHANGE_SCORE_TEMPLATE + RandomUtils.nextInt(0, SCORE_RANDOM_RANGE);
                 }
 
                 playerRoomInfo.setGameStatus(GameStatus.lose);
@@ -400,7 +400,7 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                 playerGameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getGameType().getValue(), 0, 1, 0, changeScore);
                 break;
             case escape:
-                changeScore = ESCAPE_CHANGE_SCORE_TEMPLATE - new RandomDataGenerator().nextInt(0, SCORE_RANDOM_RANGE);
+                changeScore = ESCAPE_CHANGE_SCORE_TEMPLATE - RandomUtils.nextInt(0, SCORE_RANDOM_RANGE);
                 roomInfo.setCurrentLoseCount(roomInfo.getCurrentLoseCount() + 1);
                 playerGameRecordService.update(playerRoomInfo.getAccount(), roomInfo.getGameType().getValue(), 0, 0, 1, changeScore);
                 break;
