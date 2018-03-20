@@ -2,10 +2,9 @@ package com.zylear.netty.learn.client;
 
 import com.zylear.netty.learn.bean.MessageBean;
 import com.zylear.netty.learn.constant.OperationCode;
-import com.zylear.netty.learn.enums.ChooseColor;
+import com.zylear.netty.learn.enums.BlokusColor;
 import com.zylear.proto.BlokusOuterClass.BLOKUSRoomPlayerInfo;
 import com.zylear.proto.BlokusOuterClass.BLOKUSRoomPlayerList;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
@@ -25,7 +24,7 @@ public class SimpleChatClientHandler extends SimpleChannelInboundHandler<Message
             BLOKUSRoomPlayerList list=BLOKUSRoomPlayerList.parseFrom(message.getData());
             for (BLOKUSRoomPlayerInfo info : list.getItmesList()) {
                 System.out.println(info.getAccount());
-                System.out.println(ChooseColor.valueOf(info.getColor()));
+                System.out.println(BlokusColor.valueOf(info.getColor()));
                 System.out.println(info.getIsReady());
             }
         }

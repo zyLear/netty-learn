@@ -4,6 +4,11 @@ option java_package = "com.zylear.proto";
 option java_outer_classname = "BlokusOuterClass";
 
 //1.0.0
+message BLOKUSVersion {
+    optional string version = 1;
+}
+
+//1.0.0
 message BLOKUSAccount {
     optional string account = 1;
     optional string password = 2;
@@ -12,7 +17,7 @@ message BLOKUSAccount {
 //1.0.0
 message BLOKUSCreateRoom {
     optional string roomName = 1;
-    optional int32 roomType = 2;
+    optional int32 gameType = 2;
 }
 
 //1.0.0
@@ -32,19 +37,83 @@ message BLOKUSRoomPlayerList {
     repeated BLOKUSRoomPlayerInfo itmes = 1;
 }
 
+////1.0.0
+//message BLOKUSChooseColor {
+//    optional string account = 1;
+//    optional string roomName = 2;
+//    optional int32 color = 3;
+//}
+
 //1.0.0
-message BLOKUSChooseColor {
-    optional string account = 1;
-    optional string roomName = 2;
-    optional int32 color = 3;
+message BLOKUSColor {
+    optional int32 color = 1;
 }
 
 //1.0.0
 message BLOKUSChessDoneInfo {
     optional int32 x = 1;
     optional int32 y = 2;
-    optional string squareName=3;
+    optional string squareName = 3;
     optional int32 rotationFlag = 4;
     optional int32 symmetryFlag = 5;
     optional bytes model = 6;
 }
+
+//1.0.0
+message BLOKUSChatMessage {
+    optional string chatMessage = 1;
+}
+
+//1.0.0
+message BLOKUSRoomInfo {
+    optional string roomName = 1;
+    optional int32 gameType = 2;
+    optional int32 RoomStatus = 3;
+    optional int32 currentPlayers = 4;
+}
+
+//1.0.0
+message BLOKUSRoomList {
+    repeated BLOKUSRoomInfo roomItems = 1;
+}
+
+//1.0.0
+message BLOKUSGameAccount {
+    optional string account = 1;
+    optional string password = 2;
+}
+
+//1.0.0
+message BLOKUSRankItem {
+    optional string account = 1;
+    optional int32 rankScore = 2;
+    optional int32 winCount = 3;
+    optional int32 loseCount = 4;
+    optional int32 escapeCount = 5;
+    optional string rank = 6;
+}
+
+//1.0.0
+message BLOKUSRankInfo {
+    repeated BLOKUSRankItem twoPlayersRankItems = 1;
+    repeated BLOKUSRankItem fourPlayersRankItems = 2;
+}
+
+
+//1.0.0
+message BLOKUSPlayerGameLogItem {
+    optional string result = 1;
+    optional int32 gameType = 2;
+    optional int32 stepsCount = 3;
+    optional string detail = 4;
+    optional string time = 5;
+    optional int32 changeScore = 6;
+}
+
+//1.0.0
+message BLOKUSProfile {
+    optional BLOKUSRankItem twoPlayersRankItem = 1;
+    optional BLOKUSRankItem fourPlayersRankItem = 2;
+    repeated BLOKUSPlayerGameLogItem playerGameLogs = 3;
+}
+

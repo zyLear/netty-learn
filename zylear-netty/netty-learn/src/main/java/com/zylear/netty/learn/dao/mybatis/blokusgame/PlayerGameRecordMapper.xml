@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zylear.netty.learn.dao.mybatis.blokusgame.PlayerGameRecordMapper">
+    <resultMap id="BaseResultMap" type="com.zylear.netty.learn.domain.PlayerGameRecord">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
+        <result column="game_type" property="gameType" jdbcType="TINYINT"/>
+        <result column="win_count" property="winCount" jdbcType="INTEGER"/>
+        <result column="lose_count" property="loseCount" jdbcType="INTEGER"/>
+        <result column="escape_count" property="escapeCount" jdbcType="INTEGER"/>
+        <result column="rank_score" property="rankScore" jdbcType="INTEGER"/>
+        <result column="rank" property="rank" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, account, game_type, win_count, lose_count, escape_count, rank_score, rank, create_time,
+        last_update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_player_game_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        DELETE FROM t_player_game_record
+        WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.zylear.netty.learn.domain.PlayerGameRecord">
+        INSERT INTO t_player_game_record (id, account, game_type,
+                                          win_count, lose_count, escape_count,
+                                          rank_score, rank, create_time,
+                                          last_update_time)
+        VALUES (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{gameType,jdbcType=TINYINT},
+                #{winCount,jdbcType=INTEGER}, #{loseCount,jdbcType=INTEGER}, #{escapeCount,jdbcType=INTEGER},
+                #{rankScore,jdbcType=INTEGER}, #{rank,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
+                #{lastUpdateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.zylear.netty.learn.domain.PlayerGameRecord">
+        insert into t_player_game_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="account != null">
+                account,
+            </if>
+            <if test="gameType != null">
+                game_type,
+            </if>
+            <if test="winCount != null">
+                win_count,
+            </if>
+            <if test="loseCount != null">
+                lose_count,
+            </if>
+            <if test="escapeCount != null">
+                escape_count,
+            </if>
+            <if test="rankScore != null">
+                rank_score,
+            </if>
+            <if test="rank != null">
+                rank,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="account != null">
+                #{account,jdbcType=VARCHAR},
+            </if>
+            <if test="gameType != null">
+                #{gameType,jdbcType=TINYINT},
+            </if>
+            <if test="winCount != null">
+                #{winCount,jdbcType=INTEGER},
+            </if>
+            <if test="loseCount != null">
+                #{loseCount,jdbcType=INTEGER},
+            </if>
+            <if test="escapeCount != null">
+                #{escapeCount,jdbcType=INTEGER},
+            </if>
+            <if test="rankScore != null">
+                #{rankScore,jdbcType=INTEGER},
+            </if>
+            <if test="rank != null">
+                #{rank,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateTime != null">
+                #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zylear.netty.learn.domain.PlayerGameRecord">
+        update t_player_game_record
+        <set>
+            <if test="account != null">
+                account = #{account,jdbcType=VARCHAR},
+            </if>
+            <if test="gameType != null">
+                game_type = #{gameType,jdbcType=TINYINT},
+            </if>
+            <if test="winCount != null">
+                win_count = #{winCount,jdbcType=INTEGER},
+            </if>
+            <if test="loseCount != null">
+                lose_count = #{loseCount,jdbcType=INTEGER},
+            </if>
+            <if test="escapeCount != null">
+                escape_count = #{escapeCount,jdbcType=INTEGER},
+            </if>
+            <if test="rankScore != null">
+                rank_score = #{rankScore,jdbcType=INTEGER},
+            </if>
+            <if test="rank != null">
+                rank = #{rank,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zylear.netty.learn.domain.PlayerGameRecord">
+        UPDATE t_player_game_record
+        SET account          = #{account,jdbcType=VARCHAR},
+            game_type        = #{gameType,jdbcType=TINYINT},
+            win_count        = #{winCount,jdbcType=INTEGER},
+            lose_count       = #{loseCount,jdbcType=INTEGER},
+            escape_count     = #{escapeCount,jdbcType=INTEGER},
+            rank_score       = #{rankScore,jdbcType=INTEGER},
+            rank             = #{rank,jdbcType=TINYINT},
+            create_time      = #{createTime,jdbcType=TIMESTAMP},
+            last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <update id="update">
+        UPDATE t_player_game_record
+        SET
+            win_count    = win_count + #{winCount,jdbcType=INTEGER},
+            lose_count   = lose_count + #{loseCount,jdbcType=INTEGER},
+            escape_count = escape_count + #{escapeCount,jdbcType=INTEGER},
+            rank_score   = rank_score + #{rankScore,jdbcType=INTEGER}
+        WHERE account = #{account,jdbcType=VARCHAR}
+              AND game_type = #{gameType,jdbcType=TINYINT}
+    </update>
+
+    <select id="findRanks" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_player_game_record
+        WHERE game_type = #{gameType,jdbcType=TINYINT}
+        ORDER BY rank_score DESC
+        LIMIT 50
+    </select>
+
+    <select id="findRanksByAccount" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_player_game_record
+        WHERE account = #{account,jdbcType=VARCHAR}
+    </select>
+
+
+</mapper>

@@ -2,16 +2,18 @@ package com.zylear.netty.learn.domain;
 
 import java.util.Date;
 
-public class GameAccount {
+public class PlayerGameLog {
     private Integer id;
 
     private String account;
 
-    private String password;
+    private Integer gameLogId;
 
-    private String personalitySignature;
+    private Integer gameResult;
 
-    private Integer stars;
+    private Integer stepsCount;
+
+    private Integer changeScore;
 
     private Date createTime;
 
@@ -33,28 +35,36 @@ public class GameAccount {
         this.account = account;
     }
 
-    public String getPassword() {
-        return password;
+    public Integer getGameLogId() {
+        return gameLogId;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setGameLogId(Integer gameLogId) {
+        this.gameLogId = gameLogId;
     }
 
-    public String getPersonalitySignature() {
-        return personalitySignature;
+    public Integer getGameResult() {
+        return gameResult;
     }
 
-    public void setPersonalitySignature(String personalitySignature) {
-        this.personalitySignature = personalitySignature;
+    public void setGameResult(Integer gameResult) {
+        this.gameResult = gameResult;
     }
 
-    public Integer getStars() {
-        return stars;
+    public Integer getStepsCount() {
+        return stepsCount;
     }
 
-    public void setStars(Integer stars) {
-        this.stars = stars;
+    public void setStepsCount(Integer stepsCount) {
+        this.stepsCount = stepsCount;
+    }
+
+    public Integer getChangeScore() {
+        return changeScore;
+    }
+
+    public void setChangeScore(Integer changeScore) {
+        this.changeScore = changeScore;
     }
 
     public Date getCreateTime() {

@@ -32,7 +32,7 @@ public class MessageWorker implements Runnable {
                 messageHandler.send(responses);
             }
         } catch (Exception e) {
-            logger.info("handle msg exception");
+            logger.info("handle msg exception", e);
         } finally {
             int count = AtomicVar.currentRunningCount.decrementAndGet();
             logger.info("handle msg end. current:{}", count);

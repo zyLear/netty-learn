@@ -38,7 +38,7 @@ public class SimpleBlokusServer {
             public void run() {
                 try {
                     ChannelFuture channelFuture = blokusServer.bind(port).sync();
-                    System.out.println("server 启动了");
+                    logger.info("game server startup success.");
                     channelFuture.channel().closeFuture().sync();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

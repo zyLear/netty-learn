@@ -8,6 +8,488 @@ public final class BlokusOuterClass {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
+  public interface BLOKUSVersionOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:BLOKUSVersion)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string version = 1;</code>
+     */
+    boolean hasVersion();
+    /**
+     * <code>optional string version = 1;</code>
+     */
+    java.lang.String getVersion();
+    /**
+     * <code>optional string version = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getVersionBytes();
+  }
+  /**
+   * Protobuf type {@code BLOKUSVersion}
+   *
+   * <pre>
+   *1.0.0
+   * </pre>
+   */
+  public  static final class BLOKUSVersion extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:BLOKUSVersion)
+      BLOKUSVersionOrBuilder {
+    // Use BLOKUSVersion.newBuilder() to construct.
+    private BLOKUSVersion(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private BLOKUSVersion() {
+      version_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BLOKUSVersion(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+      this();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000001;
+              version_ = bs;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw new RuntimeException(e.setUnfinishedMessage(this));
+      } catch (java.io.IOException e) {
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSVersion_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSVersion_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.zylear.proto.BlokusOuterClass.BLOKUSVersion.class, com.zylear.proto.BlokusOuterClass.BLOKUSVersion.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int VERSION_FIELD_NUMBER = 1;
+    private volatile java.lang.Object version_;
+    /**
+     * <code>optional string version = 1;</code>
+     */
+    public boolean hasVersion() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string version = 1;</code>
+     */
+    public java.lang.String getVersion() {
+      java.lang.Object ref = version_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          version_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string version = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getVersionBytes() {
+      java.lang.Object ref = version_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        version_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, version_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, version_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSVersion parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSVersion parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSVersion parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSVersion parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSVersion parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSVersion parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSVersion parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSVersion parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSVersion parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSVersion parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.zylear.proto.BlokusOuterClass.BLOKUSVersion prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code BLOKUSVersion}
+     *
+     * <pre>
+     *1.0.0
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:BLOKUSVersion)
+        com.zylear.proto.BlokusOuterClass.BLOKUSVersionOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSVersion_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSVersion_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.zylear.proto.BlokusOuterClass.BLOKUSVersion.class, com.zylear.proto.BlokusOuterClass.BLOKUSVersion.Builder.class);
+      }
+
+      // Construct using com.zylear.proto.BlokusOuterClass.BLOKUSVersion.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        version_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSVersion_descriptor;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSVersion getDefaultInstanceForType() {
+        return com.zylear.proto.BlokusOuterClass.BLOKUSVersion.getDefaultInstance();
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSVersion build() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSVersion result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSVersion buildPartial() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSVersion result = new com.zylear.proto.BlokusOuterClass.BLOKUSVersion(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.version_ = version_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.zylear.proto.BlokusOuterClass.BLOKUSVersion) {
+          return mergeFrom((com.zylear.proto.BlokusOuterClass.BLOKUSVersion)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.zylear.proto.BlokusOuterClass.BLOKUSVersion other) {
+        if (other == com.zylear.proto.BlokusOuterClass.BLOKUSVersion.getDefaultInstance()) return this;
+        if (other.hasVersion()) {
+          bitField0_ |= 0x00000001;
+          version_ = other.version_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.zylear.proto.BlokusOuterClass.BLOKUSVersion parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.zylear.proto.BlokusOuterClass.BLOKUSVersion) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object version_ = "";
+      /**
+       * <code>optional string version = 1;</code>
+       */
+      public boolean hasVersion() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string version = 1;</code>
+       */
+      public java.lang.String getVersion() {
+        java.lang.Object ref = version_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            version_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string version = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getVersionBytes() {
+        java.lang.Object ref = version_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          version_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string version = 1;</code>
+       */
+      public Builder setVersion(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        version_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string version = 1;</code>
+       */
+      public Builder clearVersion() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        version_ = getDefaultInstance().getVersion();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string version = 1;</code>
+       */
+      public Builder setVersionBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        version_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:BLOKUSVersion)
+    }
+
+    // @@protoc_insertion_point(class_scope:BLOKUSVersion)
+    private static final com.zylear.proto.BlokusOuterClass.BLOKUSVersion DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.zylear.proto.BlokusOuterClass.BLOKUSVersion();
+    }
+
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSVersion getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<BLOKUSVersion>
+        PARSER = new com.google.protobuf.AbstractParser<BLOKUSVersion>() {
+      public BLOKUSVersion parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
+          return new BLOKUSVersion(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
+      }
+    };
+
+    public static com.google.protobuf.Parser<BLOKUSVersion> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BLOKUSVersion> getParserForType() {
+      return PARSER;
+    }
+
+    public com.zylear.proto.BlokusOuterClass.BLOKUSVersion getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface BLOKUSAccountOrBuilder extends
       // @@protoc_insertion_point(interface_extends:BLOKUSAccount)
       com.google.protobuf.MessageOrBuilder {
@@ -665,13 +1147,13 @@ public final class BlokusOuterClass {
         getRoomNameBytes();
 
     /**
-     * <code>optional int32 roomType = 2;</code>
+     * <code>optional int32 gameType = 2;</code>
      */
-    boolean hasRoomType();
+    boolean hasGameType();
     /**
-     * <code>optional int32 roomType = 2;</code>
+     * <code>optional int32 gameType = 2;</code>
      */
-    int getRoomType();
+    int getGameType();
   }
   /**
    * Protobuf type {@code BLOKUSCreateRoom}
@@ -690,7 +1172,7 @@ public final class BlokusOuterClass {
     }
     private BLOKUSCreateRoom() {
       roomName_ = "";
-      roomType_ = 0;
+      gameType_ = 0;
     }
 
     @java.lang.Override
@@ -728,7 +1210,7 @@ public final class BlokusOuterClass {
             }
             case 16: {
               bitField0_ |= 0x00000002;
-              roomType_ = input.readInt32();
+              gameType_ = input.readInt32();
               break;
             }
           }
@@ -799,19 +1281,19 @@ public final class BlokusOuterClass {
       }
     }
 
-    public static final int ROOMTYPE_FIELD_NUMBER = 2;
-    private int roomType_;
+    public static final int GAMETYPE_FIELD_NUMBER = 2;
+    private int gameType_;
     /**
-     * <code>optional int32 roomType = 2;</code>
+     * <code>optional int32 gameType = 2;</code>
      */
-    public boolean hasRoomType() {
+    public boolean hasGameType() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional int32 roomType = 2;</code>
+     * <code>optional int32 gameType = 2;</code>
      */
-    public int getRoomType() {
-      return roomType_;
+    public int getGameType() {
+      return gameType_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -830,7 +1312,7 @@ public final class BlokusOuterClass {
         com.google.protobuf.GeneratedMessage.writeString(output, 1, roomName_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, roomType_);
+        output.writeInt32(2, gameType_);
       }
       unknownFields.writeTo(output);
     }
@@ -845,7 +1327,7 @@ public final class BlokusOuterClass {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, roomType_);
+          .computeInt32Size(2, gameType_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -965,7 +1447,7 @@ public final class BlokusOuterClass {
         super.clear();
         roomName_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        roomType_ = 0;
+        gameType_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
@@ -998,7 +1480,7 @@ public final class BlokusOuterClass {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.roomType_ = roomType_;
+        result.gameType_ = gameType_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1020,8 +1502,8 @@ public final class BlokusOuterClass {
           roomName_ = other.roomName_;
           onChanged();
         }
-        if (other.hasRoomType()) {
-          setRoomType(other.getRoomType());
+        if (other.hasGameType()) {
+          setGameType(other.getGameType());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1127,34 +1609,34 @@ public final class BlokusOuterClass {
         return this;
       }
 
-      private int roomType_ ;
+      private int gameType_ ;
       /**
-       * <code>optional int32 roomType = 2;</code>
+       * <code>optional int32 gameType = 2;</code>
        */
-      public boolean hasRoomType() {
+      public boolean hasGameType() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional int32 roomType = 2;</code>
+       * <code>optional int32 gameType = 2;</code>
        */
-      public int getRoomType() {
-        return roomType_;
+      public int getGameType() {
+        return gameType_;
       }
       /**
-       * <code>optional int32 roomType = 2;</code>
+       * <code>optional int32 gameType = 2;</code>
        */
-      public Builder setRoomType(int value) {
+      public Builder setGameType(int value) {
         bitField0_ |= 0x00000002;
-        roomType_ = value;
+        gameType_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 roomType = 2;</code>
+       * <code>optional int32 gameType = 2;</code>
        */
-      public Builder clearRoomType() {
+      public Builder clearGameType() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        roomType_ = 0;
+        gameType_ = 0;
         onChanged();
         return this;
       }
@@ -3009,65 +3491,35 @@ public final class BlokusOuterClass {
 
   }
 
-  public interface BLOKUSChooseColorOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:BLOKUSChooseColor)
+  public interface BLOKUSColorOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:BLOKUSColor)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string account = 1;</code>
-     */
-    boolean hasAccount();
-    /**
-     * <code>optional string account = 1;</code>
-     */
-    java.lang.String getAccount();
-    /**
-     * <code>optional string account = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getAccountBytes();
-
-    /**
-     * <code>optional string roomName = 2;</code>
-     */
-    boolean hasRoomName();
-    /**
-     * <code>optional string roomName = 2;</code>
-     */
-    java.lang.String getRoomName();
-    /**
-     * <code>optional string roomName = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getRoomNameBytes();
-
-    /**
-     * <code>optional int32 color = 3;</code>
+     * <code>optional int32 color = 1;</code>
      */
     boolean hasColor();
     /**
-     * <code>optional int32 color = 3;</code>
+     * <code>optional int32 color = 1;</code>
      */
     int getColor();
   }
   /**
-   * Protobuf type {@code BLOKUSChooseColor}
+   * Protobuf type {@code BLOKUSColor}
    *
    * <pre>
    *1.0.0
    * </pre>
    */
-  public  static final class BLOKUSChooseColor extends
+  public  static final class BLOKUSColor extends
       com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:BLOKUSChooseColor)
-      BLOKUSChooseColorOrBuilder {
-    // Use BLOKUSChooseColor.newBuilder() to construct.
-    private BLOKUSChooseColor(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:BLOKUSColor)
+      BLOKUSColorOrBuilder {
+    // Use BLOKUSColor.newBuilder() to construct.
+    private BLOKUSColor(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
-    private BLOKUSChooseColor() {
-      account_ = "";
-      roomName_ = "";
+    private BLOKUSColor() {
       color_ = 0;
     }
 
@@ -3076,7 +3528,7 @@ public final class BlokusOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private BLOKUSChooseColor(
+    private BLOKUSColor(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
@@ -3098,20 +3550,8 @@ public final class BlokusOuterClass {
               }
               break;
             }
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+            case 8: {
               bitField0_ |= 0x00000001;
-              account_ = bs;
-              break;
-            }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              roomName_ = bs;
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
               color_ = input.readInt32();
               break;
             }
@@ -3130,111 +3570,27 @@ public final class BlokusOuterClass {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSChooseColor_descriptor;
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSColor_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSChooseColor_fieldAccessorTable
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSColor_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor.class, com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor.Builder.class);
+              com.zylear.proto.BlokusOuterClass.BLOKUSColor.class, com.zylear.proto.BlokusOuterClass.BLOKUSColor.Builder.class);
     }
 
     private int bitField0_;
-    public static final int ACCOUNT_FIELD_NUMBER = 1;
-    private volatile java.lang.Object account_;
+    public static final int COLOR_FIELD_NUMBER = 1;
+    private int color_;
     /**
-     * <code>optional string account = 1;</code>
+     * <code>optional int32 color = 1;</code>
      */
-    public boolean hasAccount() {
+    public boolean hasColor() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional string account = 1;</code>
-     */
-    public java.lang.String getAccount() {
-      java.lang.Object ref = account_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          account_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string account = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAccountBytes() {
-      java.lang.Object ref = account_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        account_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int ROOMNAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object roomName_;
-    /**
-     * <code>optional string roomName = 2;</code>
-     */
-    public boolean hasRoomName() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional string roomName = 2;</code>
-     */
-    public java.lang.String getRoomName() {
-      java.lang.Object ref = roomName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          roomName_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string roomName = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getRoomNameBytes() {
-      java.lang.Object ref = roomName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        roomName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int COLOR_FIELD_NUMBER = 3;
-    private int color_;
-    /**
-     * <code>optional int32 color = 3;</code>
-     */
-    public boolean hasColor() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional int32 color = 3;</code>
+     * <code>optional int32 color = 1;</code>
      */
     public int getColor() {
       return color_;
@@ -3253,13 +3609,7 @@ public final class BlokusOuterClass {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 1, account_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 2, roomName_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, color_);
+        output.writeInt32(1, color_);
       }
       unknownFields.writeTo(output);
     }
@@ -3270,14 +3620,8 @@ public final class BlokusOuterClass {
 
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, account_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, roomName_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, color_);
+          .computeInt32Size(1, color_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3285,53 +3629,53 @@ public final class BlokusOuterClass {
     }
 
     private static final long serialVersionUID = 0L;
-    public static com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor parseFrom(
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSColor parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor parseFrom(
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSColor parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor parseFrom(byte[] data)
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSColor parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor parseFrom(
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSColor parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor parseFrom(java.io.InputStream input)
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSColor parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor parseFrom(
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSColor parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor parseDelimitedFrom(java.io.InputStream input)
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSColor parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor parseDelimitedFrom(
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSColor parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor parseFrom(
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSColor parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor parseFrom(
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSColor parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3342,7 +3686,7 @@ public final class BlokusOuterClass {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor prototype) {
+    public static Builder newBuilder(com.zylear.proto.BlokusOuterClass.BLOKUSColor prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -3357,7 +3701,7 @@ public final class BlokusOuterClass {
       return builder;
     }
     /**
-     * Protobuf type {@code BLOKUSChooseColor}
+     * Protobuf type {@code BLOKUSColor}
      *
      * <pre>
      *1.0.0
@@ -3365,21 +3709,21 @@ public final class BlokusOuterClass {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:BLOKUSChooseColor)
-        com.zylear.proto.BlokusOuterClass.BLOKUSChooseColorOrBuilder {
+        // @@protoc_insertion_point(builder_implements:BLOKUSColor)
+        com.zylear.proto.BlokusOuterClass.BLOKUSColorOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSChooseColor_descriptor;
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSColor_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSChooseColor_fieldAccessorTable
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSColor_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor.class, com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor.Builder.class);
+                com.zylear.proto.BlokusOuterClass.BLOKUSColor.class, com.zylear.proto.BlokusOuterClass.BLOKUSColor.Builder.class);
       }
 
-      // Construct using com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor.newBuilder()
+      // Construct using com.zylear.proto.BlokusOuterClass.BLOKUSColor.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -3395,46 +3739,34 @@ public final class BlokusOuterClass {
       }
       public Builder clear() {
         super.clear();
-        account_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        roomName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         color_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSChooseColor_descriptor;
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSColor_descriptor;
       }
 
-      public com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor getDefaultInstanceForType() {
-        return com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor.getDefaultInstance();
+      public com.zylear.proto.BlokusOuterClass.BLOKUSColor getDefaultInstanceForType() {
+        return com.zylear.proto.BlokusOuterClass.BLOKUSColor.getDefaultInstance();
       }
 
-      public com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor build() {
-        com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor result = buildPartial();
+      public com.zylear.proto.BlokusOuterClass.BLOKUSColor build() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSColor result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor buildPartial() {
-        com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor result = new com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor(this);
+      public com.zylear.proto.BlokusOuterClass.BLOKUSColor buildPartial() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSColor result = new com.zylear.proto.BlokusOuterClass.BLOKUSColor(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
-        }
-        result.account_ = account_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.roomName_ = roomName_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
         }
         result.color_ = color_;
         result.bitField0_ = to_bitField0_;
@@ -3443,26 +3775,16 @@ public final class BlokusOuterClass {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor) {
-          return mergeFrom((com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor)other);
+        if (other instanceof com.zylear.proto.BlokusOuterClass.BLOKUSColor) {
+          return mergeFrom((com.zylear.proto.BlokusOuterClass.BLOKUSColor)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor other) {
-        if (other == com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor.getDefaultInstance()) return this;
-        if (other.hasAccount()) {
-          bitField0_ |= 0x00000001;
-          account_ = other.account_;
-          onChanged();
-        }
-        if (other.hasRoomName()) {
-          bitField0_ |= 0x00000002;
-          roomName_ = other.roomName_;
-          onChanged();
-        }
+      public Builder mergeFrom(com.zylear.proto.BlokusOuterClass.BLOKUSColor other) {
+        if (other == com.zylear.proto.BlokusOuterClass.BLOKUSColor.getDefaultInstance()) return this;
         if (other.hasColor()) {
           setColor(other.getColor());
         }
@@ -3479,11 +3801,11 @@ public final class BlokusOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor parsedMessage = null;
+        com.zylear.proto.BlokusOuterClass.BLOKUSColor parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor) e.getUnfinishedMessage();
+          parsedMessage = (com.zylear.proto.BlokusOuterClass.BLOKUSColor) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -3494,211 +3816,59 @@ public final class BlokusOuterClass {
       }
       private int bitField0_;
 
-      private java.lang.Object account_ = "";
+      private int color_ ;
       /**
-       * <code>optional string account = 1;</code>
+       * <code>optional int32 color = 1;</code>
        */
-      public boolean hasAccount() {
+      public boolean hasColor() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional string account = 1;</code>
-       */
-      public java.lang.String getAccount() {
-        java.lang.Object ref = account_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            account_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string account = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAccountBytes() {
-        java.lang.Object ref = account_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          account_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string account = 1;</code>
-       */
-      public Builder setAccount(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        account_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string account = 1;</code>
-       */
-      public Builder clearAccount() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        account_ = getDefaultInstance().getAccount();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string account = 1;</code>
-       */
-      public Builder setAccountBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        account_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object roomName_ = "";
-      /**
-       * <code>optional string roomName = 2;</code>
-       */
-      public boolean hasRoomName() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional string roomName = 2;</code>
-       */
-      public java.lang.String getRoomName() {
-        java.lang.Object ref = roomName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            roomName_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string roomName = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getRoomNameBytes() {
-        java.lang.Object ref = roomName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          roomName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string roomName = 2;</code>
-       */
-      public Builder setRoomName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        roomName_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string roomName = 2;</code>
-       */
-      public Builder clearRoomName() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        roomName_ = getDefaultInstance().getRoomName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string roomName = 2;</code>
-       */
-      public Builder setRoomNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        roomName_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int color_ ;
-      /**
-       * <code>optional int32 color = 3;</code>
-       */
-      public boolean hasColor() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional int32 color = 3;</code>
+       * <code>optional int32 color = 1;</code>
        */
       public int getColor() {
         return color_;
       }
       /**
-       * <code>optional int32 color = 3;</code>
+       * <code>optional int32 color = 1;</code>
        */
       public Builder setColor(int value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000001;
         color_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 color = 3;</code>
+       * <code>optional int32 color = 1;</code>
        */
       public Builder clearColor() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000001);
         color_ = 0;
         onChanged();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:BLOKUSChooseColor)
+      // @@protoc_insertion_point(builder_scope:BLOKUSColor)
     }
 
-    // @@protoc_insertion_point(class_scope:BLOKUSChooseColor)
-    private static final com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:BLOKUSColor)
+    private static final com.zylear.proto.BlokusOuterClass.BLOKUSColor DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor();
+      DEFAULT_INSTANCE = new com.zylear.proto.BlokusOuterClass.BLOKUSColor();
     }
 
-    public static com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor getDefaultInstance() {
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSColor getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<BLOKUSChooseColor>
-        PARSER = new com.google.protobuf.AbstractParser<BLOKUSChooseColor>() {
-      public BLOKUSChooseColor parsePartialFrom(
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<BLOKUSColor>
+        PARSER = new com.google.protobuf.AbstractParser<BLOKUSColor>() {
+      public BLOKUSColor parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         try {
-          return new BLOKUSChooseColor(input, extensionRegistry);
+          return new BLOKUSColor(input, extensionRegistry);
         } catch (RuntimeException e) {
           if (e.getCause() instanceof
               com.google.protobuf.InvalidProtocolBufferException) {
@@ -3710,16 +3880,16 @@ public final class BlokusOuterClass {
       }
     };
 
-    public static com.google.protobuf.Parser<BLOKUSChooseColor> parser() {
+    public static com.google.protobuf.Parser<BLOKUSColor> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<BLOKUSChooseColor> getParserForType() {
+    public com.google.protobuf.Parser<BLOKUSColor> getParserForType() {
       return PARSER;
     }
 
-    public com.zylear.proto.BlokusOuterClass.BLOKUSChooseColor getDefaultInstanceForType() {
+    public com.zylear.proto.BlokusOuterClass.BLOKUSColor getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4600,6 +4770,6617 @@ public final class BlokusOuterClass {
 
   }
 
+  public interface BLOKUSChatMessageOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:BLOKUSChatMessage)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string chatMessage = 1;</code>
+     */
+    boolean hasChatMessage();
+    /**
+     * <code>optional string chatMessage = 1;</code>
+     */
+    java.lang.String getChatMessage();
+    /**
+     * <code>optional string chatMessage = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getChatMessageBytes();
+  }
+  /**
+   * Protobuf type {@code BLOKUSChatMessage}
+   *
+   * <pre>
+   *1.0.0
+   * </pre>
+   */
+  public  static final class BLOKUSChatMessage extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:BLOKUSChatMessage)
+      BLOKUSChatMessageOrBuilder {
+    // Use BLOKUSChatMessage.newBuilder() to construct.
+    private BLOKUSChatMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private BLOKUSChatMessage() {
+      chatMessage_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BLOKUSChatMessage(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+      this();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000001;
+              chatMessage_ = bs;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw new RuntimeException(e.setUnfinishedMessage(this));
+      } catch (java.io.IOException e) {
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSChatMessage_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSChatMessage_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage.class, com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int CHATMESSAGE_FIELD_NUMBER = 1;
+    private volatile java.lang.Object chatMessage_;
+    /**
+     * <code>optional string chatMessage = 1;</code>
+     */
+    public boolean hasChatMessage() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string chatMessage = 1;</code>
+     */
+    public java.lang.String getChatMessage() {
+      java.lang.Object ref = chatMessage_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          chatMessage_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string chatMessage = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getChatMessageBytes() {
+      java.lang.Object ref = chatMessage_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        chatMessage_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, chatMessage_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, chatMessage_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code BLOKUSChatMessage}
+     *
+     * <pre>
+     *1.0.0
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:BLOKUSChatMessage)
+        com.zylear.proto.BlokusOuterClass.BLOKUSChatMessageOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSChatMessage_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSChatMessage_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage.class, com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage.Builder.class);
+      }
+
+      // Construct using com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        chatMessage_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSChatMessage_descriptor;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage getDefaultInstanceForType() {
+        return com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage.getDefaultInstance();
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage build() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage buildPartial() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage result = new com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.chatMessage_ = chatMessage_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage) {
+          return mergeFrom((com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage other) {
+        if (other == com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage.getDefaultInstance()) return this;
+        if (other.hasChatMessage()) {
+          bitField0_ |= 0x00000001;
+          chatMessage_ = other.chatMessage_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object chatMessage_ = "";
+      /**
+       * <code>optional string chatMessage = 1;</code>
+       */
+      public boolean hasChatMessage() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string chatMessage = 1;</code>
+       */
+      public java.lang.String getChatMessage() {
+        java.lang.Object ref = chatMessage_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            chatMessage_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string chatMessage = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getChatMessageBytes() {
+        java.lang.Object ref = chatMessage_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          chatMessage_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string chatMessage = 1;</code>
+       */
+      public Builder setChatMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        chatMessage_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string chatMessage = 1;</code>
+       */
+      public Builder clearChatMessage() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        chatMessage_ = getDefaultInstance().getChatMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string chatMessage = 1;</code>
+       */
+      public Builder setChatMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        chatMessage_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:BLOKUSChatMessage)
+    }
+
+    // @@protoc_insertion_point(class_scope:BLOKUSChatMessage)
+    private static final com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage();
+    }
+
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<BLOKUSChatMessage>
+        PARSER = new com.google.protobuf.AbstractParser<BLOKUSChatMessage>() {
+      public BLOKUSChatMessage parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
+          return new BLOKUSChatMessage(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
+      }
+    };
+
+    public static com.google.protobuf.Parser<BLOKUSChatMessage> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BLOKUSChatMessage> getParserForType() {
+      return PARSER;
+    }
+
+    public com.zylear.proto.BlokusOuterClass.BLOKUSChatMessage getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BLOKUSRoomInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:BLOKUSRoomInfo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string roomName = 1;</code>
+     */
+    boolean hasRoomName();
+    /**
+     * <code>optional string roomName = 1;</code>
+     */
+    java.lang.String getRoomName();
+    /**
+     * <code>optional string roomName = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getRoomNameBytes();
+
+    /**
+     * <code>optional int32 gameType = 2;</code>
+     */
+    boolean hasGameType();
+    /**
+     * <code>optional int32 gameType = 2;</code>
+     */
+    int getGameType();
+
+    /**
+     * <code>optional int32 RoomStatus = 3;</code>
+     */
+    boolean hasRoomStatus();
+    /**
+     * <code>optional int32 RoomStatus = 3;</code>
+     */
+    int getRoomStatus();
+
+    /**
+     * <code>optional int32 currentPlayers = 4;</code>
+     */
+    boolean hasCurrentPlayers();
+    /**
+     * <code>optional int32 currentPlayers = 4;</code>
+     */
+    int getCurrentPlayers();
+  }
+  /**
+   * Protobuf type {@code BLOKUSRoomInfo}
+   *
+   * <pre>
+   *1.0.0
+   * </pre>
+   */
+  public  static final class BLOKUSRoomInfo extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:BLOKUSRoomInfo)
+      BLOKUSRoomInfoOrBuilder {
+    // Use BLOKUSRoomInfo.newBuilder() to construct.
+    private BLOKUSRoomInfo(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private BLOKUSRoomInfo() {
+      roomName_ = "";
+      gameType_ = 0;
+      roomStatus_ = 0;
+      currentPlayers_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BLOKUSRoomInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+      this();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000001;
+              roomName_ = bs;
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              gameType_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              roomStatus_ = input.readInt32();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              currentPlayers_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw new RuntimeException(e.setUnfinishedMessage(this));
+      } catch (java.io.IOException e) {
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRoomInfo_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRoomInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.class, com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int ROOMNAME_FIELD_NUMBER = 1;
+    private volatile java.lang.Object roomName_;
+    /**
+     * <code>optional string roomName = 1;</code>
+     */
+    public boolean hasRoomName() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string roomName = 1;</code>
+     */
+    public java.lang.String getRoomName() {
+      java.lang.Object ref = roomName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          roomName_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string roomName = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRoomNameBytes() {
+      java.lang.Object ref = roomName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        roomName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int GAMETYPE_FIELD_NUMBER = 2;
+    private int gameType_;
+    /**
+     * <code>optional int32 gameType = 2;</code>
+     */
+    public boolean hasGameType() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional int32 gameType = 2;</code>
+     */
+    public int getGameType() {
+      return gameType_;
+    }
+
+    public static final int ROOMSTATUS_FIELD_NUMBER = 3;
+    private int roomStatus_;
+    /**
+     * <code>optional int32 RoomStatus = 3;</code>
+     */
+    public boolean hasRoomStatus() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional int32 RoomStatus = 3;</code>
+     */
+    public int getRoomStatus() {
+      return roomStatus_;
+    }
+
+    public static final int CURRENTPLAYERS_FIELD_NUMBER = 4;
+    private int currentPlayers_;
+    /**
+     * <code>optional int32 currentPlayers = 4;</code>
+     */
+    public boolean hasCurrentPlayers() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional int32 currentPlayers = 4;</code>
+     */
+    public int getCurrentPlayers() {
+      return currentPlayers_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, roomName_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, gameType_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(3, roomStatus_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeInt32(4, currentPlayers_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, roomName_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, gameType_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, roomStatus_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, currentPlayers_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code BLOKUSRoomInfo}
+     *
+     * <pre>
+     *1.0.0
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:BLOKUSRoomInfo)
+        com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRoomInfo_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRoomInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.class, com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.Builder.class);
+      }
+
+      // Construct using com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        roomName_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        gameType_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        roomStatus_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        currentPlayers_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRoomInfo_descriptor;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo getDefaultInstanceForType() {
+        return com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.getDefaultInstance();
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo build() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo buildPartial() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo result = new com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.roomName_ = roomName_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.gameType_ = gameType_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.roomStatus_ = roomStatus_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.currentPlayers_ = currentPlayers_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo) {
+          return mergeFrom((com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo other) {
+        if (other == com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.getDefaultInstance()) return this;
+        if (other.hasRoomName()) {
+          bitField0_ |= 0x00000001;
+          roomName_ = other.roomName_;
+          onChanged();
+        }
+        if (other.hasGameType()) {
+          setGameType(other.getGameType());
+        }
+        if (other.hasRoomStatus()) {
+          setRoomStatus(other.getRoomStatus());
+        }
+        if (other.hasCurrentPlayers()) {
+          setCurrentPlayers(other.getCurrentPlayers());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object roomName_ = "";
+      /**
+       * <code>optional string roomName = 1;</code>
+       */
+      public boolean hasRoomName() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string roomName = 1;</code>
+       */
+      public java.lang.String getRoomName() {
+        java.lang.Object ref = roomName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            roomName_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string roomName = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRoomNameBytes() {
+        java.lang.Object ref = roomName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          roomName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string roomName = 1;</code>
+       */
+      public Builder setRoomName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        roomName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string roomName = 1;</code>
+       */
+      public Builder clearRoomName() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        roomName_ = getDefaultInstance().getRoomName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string roomName = 1;</code>
+       */
+      public Builder setRoomNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        roomName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int gameType_ ;
+      /**
+       * <code>optional int32 gameType = 2;</code>
+       */
+      public boolean hasGameType() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int32 gameType = 2;</code>
+       */
+      public int getGameType() {
+        return gameType_;
+      }
+      /**
+       * <code>optional int32 gameType = 2;</code>
+       */
+      public Builder setGameType(int value) {
+        bitField0_ |= 0x00000002;
+        gameType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 gameType = 2;</code>
+       */
+      public Builder clearGameType() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        gameType_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int roomStatus_ ;
+      /**
+       * <code>optional int32 RoomStatus = 3;</code>
+       */
+      public boolean hasRoomStatus() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional int32 RoomStatus = 3;</code>
+       */
+      public int getRoomStatus() {
+        return roomStatus_;
+      }
+      /**
+       * <code>optional int32 RoomStatus = 3;</code>
+       */
+      public Builder setRoomStatus(int value) {
+        bitField0_ |= 0x00000004;
+        roomStatus_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 RoomStatus = 3;</code>
+       */
+      public Builder clearRoomStatus() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        roomStatus_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int currentPlayers_ ;
+      /**
+       * <code>optional int32 currentPlayers = 4;</code>
+       */
+      public boolean hasCurrentPlayers() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional int32 currentPlayers = 4;</code>
+       */
+      public int getCurrentPlayers() {
+        return currentPlayers_;
+      }
+      /**
+       * <code>optional int32 currentPlayers = 4;</code>
+       */
+      public Builder setCurrentPlayers(int value) {
+        bitField0_ |= 0x00000008;
+        currentPlayers_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 currentPlayers = 4;</code>
+       */
+      public Builder clearCurrentPlayers() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        currentPlayers_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:BLOKUSRoomInfo)
+    }
+
+    // @@protoc_insertion_point(class_scope:BLOKUSRoomInfo)
+    private static final com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo();
+    }
+
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<BLOKUSRoomInfo>
+        PARSER = new com.google.protobuf.AbstractParser<BLOKUSRoomInfo>() {
+      public BLOKUSRoomInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
+          return new BLOKUSRoomInfo(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
+      }
+    };
+
+    public static com.google.protobuf.Parser<BLOKUSRoomInfo> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BLOKUSRoomInfo> getParserForType() {
+      return PARSER;
+    }
+
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BLOKUSRoomListOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:BLOKUSRoomList)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+     */
+    java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo> 
+        getRoomItemsList();
+    /**
+     * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+     */
+    com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo getRoomItems(int index);
+    /**
+     * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+     */
+    int getRoomItemsCount();
+    /**
+     * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+     */
+    java.util.List<? extends com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfoOrBuilder> 
+        getRoomItemsOrBuilderList();
+    /**
+     * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+     */
+    com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfoOrBuilder getRoomItemsOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code BLOKUSRoomList}
+   *
+   * <pre>
+   *1.0.0
+   * </pre>
+   */
+  public  static final class BLOKUSRoomList extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:BLOKUSRoomList)
+      BLOKUSRoomListOrBuilder {
+    // Use BLOKUSRoomList.newBuilder() to construct.
+    private BLOKUSRoomList(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private BLOKUSRoomList() {
+      roomItems_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BLOKUSRoomList(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+      this();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                roomItems_ = new java.util.ArrayList<com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              roomItems_.add(input.readMessage(com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw new RuntimeException(e.setUnfinishedMessage(this));
+      } catch (java.io.IOException e) {
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          roomItems_ = java.util.Collections.unmodifiableList(roomItems_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRoomList_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRoomList_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.zylear.proto.BlokusOuterClass.BLOKUSRoomList.class, com.zylear.proto.BlokusOuterClass.BLOKUSRoomList.Builder.class);
+    }
+
+    public static final int ROOMITEMS_FIELD_NUMBER = 1;
+    private java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo> roomItems_;
+    /**
+     * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+     */
+    public java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo> getRoomItemsList() {
+      return roomItems_;
+    }
+    /**
+     * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+     */
+    public java.util.List<? extends com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfoOrBuilder> 
+        getRoomItemsOrBuilderList() {
+      return roomItems_;
+    }
+    /**
+     * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+     */
+    public int getRoomItemsCount() {
+      return roomItems_.size();
+    }
+    /**
+     * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+     */
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo getRoomItems(int index) {
+      return roomItems_.get(index);
+    }
+    /**
+     * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+     */
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfoOrBuilder getRoomItemsOrBuilder(
+        int index) {
+      return roomItems_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < roomItems_.size(); i++) {
+        output.writeMessage(1, roomItems_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < roomItems_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, roomItems_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomList parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomList parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomList parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomList parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomList parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomList parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomList parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomList parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomList parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomList parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.zylear.proto.BlokusOuterClass.BLOKUSRoomList prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code BLOKUSRoomList}
+     *
+     * <pre>
+     *1.0.0
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:BLOKUSRoomList)
+        com.zylear.proto.BlokusOuterClass.BLOKUSRoomListOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRoomList_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRoomList_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.zylear.proto.BlokusOuterClass.BLOKUSRoomList.class, com.zylear.proto.BlokusOuterClass.BLOKUSRoomList.Builder.class);
+      }
+
+      // Construct using com.zylear.proto.BlokusOuterClass.BLOKUSRoomList.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getRoomItemsFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        if (roomItemsBuilder_ == null) {
+          roomItems_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          roomItemsBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRoomList_descriptor;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRoomList getDefaultInstanceForType() {
+        return com.zylear.proto.BlokusOuterClass.BLOKUSRoomList.getDefaultInstance();
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRoomList build() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSRoomList result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRoomList buildPartial() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSRoomList result = new com.zylear.proto.BlokusOuterClass.BLOKUSRoomList(this);
+        int from_bitField0_ = bitField0_;
+        if (roomItemsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            roomItems_ = java.util.Collections.unmodifiableList(roomItems_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.roomItems_ = roomItems_;
+        } else {
+          result.roomItems_ = roomItemsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.zylear.proto.BlokusOuterClass.BLOKUSRoomList) {
+          return mergeFrom((com.zylear.proto.BlokusOuterClass.BLOKUSRoomList)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.zylear.proto.BlokusOuterClass.BLOKUSRoomList other) {
+        if (other == com.zylear.proto.BlokusOuterClass.BLOKUSRoomList.getDefaultInstance()) return this;
+        if (roomItemsBuilder_ == null) {
+          if (!other.roomItems_.isEmpty()) {
+            if (roomItems_.isEmpty()) {
+              roomItems_ = other.roomItems_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureRoomItemsIsMutable();
+              roomItems_.addAll(other.roomItems_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.roomItems_.isEmpty()) {
+            if (roomItemsBuilder_.isEmpty()) {
+              roomItemsBuilder_.dispose();
+              roomItemsBuilder_ = null;
+              roomItems_ = other.roomItems_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              roomItemsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getRoomItemsFieldBuilder() : null;
+            } else {
+              roomItemsBuilder_.addAllMessages(other.roomItems_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.zylear.proto.BlokusOuterClass.BLOKUSRoomList parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.zylear.proto.BlokusOuterClass.BLOKUSRoomList) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo> roomItems_ =
+        java.util.Collections.emptyList();
+      private void ensureRoomItemsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          roomItems_ = new java.util.ArrayList<com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo>(roomItems_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo, com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfoOrBuilder> roomItemsBuilder_;
+
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo> getRoomItemsList() {
+        if (roomItemsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(roomItems_);
+        } else {
+          return roomItemsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public int getRoomItemsCount() {
+        if (roomItemsBuilder_ == null) {
+          return roomItems_.size();
+        } else {
+          return roomItemsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo getRoomItems(int index) {
+        if (roomItemsBuilder_ == null) {
+          return roomItems_.get(index);
+        } else {
+          return roomItemsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public Builder setRoomItems(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo value) {
+        if (roomItemsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRoomItemsIsMutable();
+          roomItems_.set(index, value);
+          onChanged();
+        } else {
+          roomItemsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public Builder setRoomItems(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.Builder builderForValue) {
+        if (roomItemsBuilder_ == null) {
+          ensureRoomItemsIsMutable();
+          roomItems_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          roomItemsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public Builder addRoomItems(com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo value) {
+        if (roomItemsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRoomItemsIsMutable();
+          roomItems_.add(value);
+          onChanged();
+        } else {
+          roomItemsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public Builder addRoomItems(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo value) {
+        if (roomItemsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRoomItemsIsMutable();
+          roomItems_.add(index, value);
+          onChanged();
+        } else {
+          roomItemsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public Builder addRoomItems(
+          com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.Builder builderForValue) {
+        if (roomItemsBuilder_ == null) {
+          ensureRoomItemsIsMutable();
+          roomItems_.add(builderForValue.build());
+          onChanged();
+        } else {
+          roomItemsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public Builder addRoomItems(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.Builder builderForValue) {
+        if (roomItemsBuilder_ == null) {
+          ensureRoomItemsIsMutable();
+          roomItems_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          roomItemsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public Builder addAllRoomItems(
+          java.lang.Iterable<? extends com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo> values) {
+        if (roomItemsBuilder_ == null) {
+          ensureRoomItemsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, roomItems_);
+          onChanged();
+        } else {
+          roomItemsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public Builder clearRoomItems() {
+        if (roomItemsBuilder_ == null) {
+          roomItems_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          roomItemsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public Builder removeRoomItems(int index) {
+        if (roomItemsBuilder_ == null) {
+          ensureRoomItemsIsMutable();
+          roomItems_.remove(index);
+          onChanged();
+        } else {
+          roomItemsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.Builder getRoomItemsBuilder(
+          int index) {
+        return getRoomItemsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfoOrBuilder getRoomItemsOrBuilder(
+          int index) {
+        if (roomItemsBuilder_ == null) {
+          return roomItems_.get(index);  } else {
+          return roomItemsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public java.util.List<? extends com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfoOrBuilder> 
+           getRoomItemsOrBuilderList() {
+        if (roomItemsBuilder_ != null) {
+          return roomItemsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(roomItems_);
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.Builder addRoomItemsBuilder() {
+        return getRoomItemsFieldBuilder().addBuilder(
+            com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.Builder addRoomItemsBuilder(
+          int index) {
+        return getRoomItemsFieldBuilder().addBuilder(
+            index, com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .BLOKUSRoomInfo roomItems = 1;</code>
+       */
+      public java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.Builder> 
+           getRoomItemsBuilderList() {
+        return getRoomItemsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo, com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfoOrBuilder> 
+          getRoomItemsFieldBuilder() {
+        if (roomItemsBuilder_ == null) {
+          roomItemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo, com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfo.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRoomInfoOrBuilder>(
+                  roomItems_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          roomItems_ = null;
+        }
+        return roomItemsBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:BLOKUSRoomList)
+    }
+
+    // @@protoc_insertion_point(class_scope:BLOKUSRoomList)
+    private static final com.zylear.proto.BlokusOuterClass.BLOKUSRoomList DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.zylear.proto.BlokusOuterClass.BLOKUSRoomList();
+    }
+
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRoomList getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<BLOKUSRoomList>
+        PARSER = new com.google.protobuf.AbstractParser<BLOKUSRoomList>() {
+      public BLOKUSRoomList parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
+          return new BLOKUSRoomList(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
+      }
+    };
+
+    public static com.google.protobuf.Parser<BLOKUSRoomList> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BLOKUSRoomList> getParserForType() {
+      return PARSER;
+    }
+
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRoomList getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BLOKUSGameAccountOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:BLOKUSGameAccount)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string account = 1;</code>
+     */
+    boolean hasAccount();
+    /**
+     * <code>optional string account = 1;</code>
+     */
+    java.lang.String getAccount();
+    /**
+     * <code>optional string account = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getAccountBytes();
+
+    /**
+     * <code>optional string password = 2;</code>
+     */
+    boolean hasPassword();
+    /**
+     * <code>optional string password = 2;</code>
+     */
+    java.lang.String getPassword();
+    /**
+     * <code>optional string password = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getPasswordBytes();
+  }
+  /**
+   * Protobuf type {@code BLOKUSGameAccount}
+   *
+   * <pre>
+   *1.0.0
+   * </pre>
+   */
+  public  static final class BLOKUSGameAccount extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:BLOKUSGameAccount)
+      BLOKUSGameAccountOrBuilder {
+    // Use BLOKUSGameAccount.newBuilder() to construct.
+    private BLOKUSGameAccount(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private BLOKUSGameAccount() {
+      account_ = "";
+      password_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BLOKUSGameAccount(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+      this();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000001;
+              account_ = bs;
+              break;
+            }
+            case 18: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000002;
+              password_ = bs;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw new RuntimeException(e.setUnfinishedMessage(this));
+      } catch (java.io.IOException e) {
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSGameAccount_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSGameAccount_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount.class, com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int ACCOUNT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object account_;
+    /**
+     * <code>optional string account = 1;</code>
+     */
+    public boolean hasAccount() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string account = 1;</code>
+     */
+    public java.lang.String getAccount() {
+      java.lang.Object ref = account_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          account_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string account = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAccountBytes() {
+      java.lang.Object ref = account_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        account_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PASSWORD_FIELD_NUMBER = 2;
+    private volatile java.lang.Object password_;
+    /**
+     * <code>optional string password = 2;</code>
+     */
+    public boolean hasPassword() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional string password = 2;</code>
+     */
+    public java.lang.String getPassword() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          password_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string password = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPasswordBytes() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        password_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, account_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, password_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, account_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, password_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code BLOKUSGameAccount}
+     *
+     * <pre>
+     *1.0.0
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:BLOKUSGameAccount)
+        com.zylear.proto.BlokusOuterClass.BLOKUSGameAccountOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSGameAccount_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSGameAccount_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount.class, com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount.Builder.class);
+      }
+
+      // Construct using com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        account_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        password_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSGameAccount_descriptor;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount getDefaultInstanceForType() {
+        return com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount.getDefaultInstance();
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount build() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount buildPartial() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount result = new com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.account_ = account_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.password_ = password_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount) {
+          return mergeFrom((com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount other) {
+        if (other == com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount.getDefaultInstance()) return this;
+        if (other.hasAccount()) {
+          bitField0_ |= 0x00000001;
+          account_ = other.account_;
+          onChanged();
+        }
+        if (other.hasPassword()) {
+          bitField0_ |= 0x00000002;
+          password_ = other.password_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object account_ = "";
+      /**
+       * <code>optional string account = 1;</code>
+       */
+      public boolean hasAccount() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string account = 1;</code>
+       */
+      public java.lang.String getAccount() {
+        java.lang.Object ref = account_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            account_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string account = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAccountBytes() {
+        java.lang.Object ref = account_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          account_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string account = 1;</code>
+       */
+      public Builder setAccount(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        account_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string account = 1;</code>
+       */
+      public Builder clearAccount() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        account_ = getDefaultInstance().getAccount();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string account = 1;</code>
+       */
+      public Builder setAccountBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        account_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object password_ = "";
+      /**
+       * <code>optional string password = 2;</code>
+       */
+      public boolean hasPassword() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional string password = 2;</code>
+       */
+      public java.lang.String getPassword() {
+        java.lang.Object ref = password_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            password_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string password = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPasswordBytes() {
+        java.lang.Object ref = password_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          password_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string password = 2;</code>
+       */
+      public Builder setPassword(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        password_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string password = 2;</code>
+       */
+      public Builder clearPassword() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        password_ = getDefaultInstance().getPassword();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string password = 2;</code>
+       */
+      public Builder setPasswordBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        password_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:BLOKUSGameAccount)
+    }
+
+    // @@protoc_insertion_point(class_scope:BLOKUSGameAccount)
+    private static final com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount();
+    }
+
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<BLOKUSGameAccount>
+        PARSER = new com.google.protobuf.AbstractParser<BLOKUSGameAccount>() {
+      public BLOKUSGameAccount parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
+          return new BLOKUSGameAccount(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
+      }
+    };
+
+    public static com.google.protobuf.Parser<BLOKUSGameAccount> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BLOKUSGameAccount> getParserForType() {
+      return PARSER;
+    }
+
+    public com.zylear.proto.BlokusOuterClass.BLOKUSGameAccount getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BLOKUSRankItemOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:BLOKUSRankItem)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string account = 1;</code>
+     */
+    boolean hasAccount();
+    /**
+     * <code>optional string account = 1;</code>
+     */
+    java.lang.String getAccount();
+    /**
+     * <code>optional string account = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getAccountBytes();
+
+    /**
+     * <code>optional int32 rankScore = 2;</code>
+     */
+    boolean hasRankScore();
+    /**
+     * <code>optional int32 rankScore = 2;</code>
+     */
+    int getRankScore();
+
+    /**
+     * <code>optional int32 winCount = 3;</code>
+     */
+    boolean hasWinCount();
+    /**
+     * <code>optional int32 winCount = 3;</code>
+     */
+    int getWinCount();
+
+    /**
+     * <code>optional int32 loseCount = 4;</code>
+     */
+    boolean hasLoseCount();
+    /**
+     * <code>optional int32 loseCount = 4;</code>
+     */
+    int getLoseCount();
+
+    /**
+     * <code>optional int32 escapeCount = 5;</code>
+     */
+    boolean hasEscapeCount();
+    /**
+     * <code>optional int32 escapeCount = 5;</code>
+     */
+    int getEscapeCount();
+
+    /**
+     * <code>optional string rank = 6;</code>
+     */
+    boolean hasRank();
+    /**
+     * <code>optional string rank = 6;</code>
+     */
+    java.lang.String getRank();
+    /**
+     * <code>optional string rank = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getRankBytes();
+  }
+  /**
+   * Protobuf type {@code BLOKUSRankItem}
+   *
+   * <pre>
+   *1.0.0
+   * </pre>
+   */
+  public  static final class BLOKUSRankItem extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:BLOKUSRankItem)
+      BLOKUSRankItemOrBuilder {
+    // Use BLOKUSRankItem.newBuilder() to construct.
+    private BLOKUSRankItem(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private BLOKUSRankItem() {
+      account_ = "";
+      rankScore_ = 0;
+      winCount_ = 0;
+      loseCount_ = 0;
+      escapeCount_ = 0;
+      rank_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BLOKUSRankItem(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+      this();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000001;
+              account_ = bs;
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              rankScore_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              winCount_ = input.readInt32();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              loseCount_ = input.readInt32();
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              escapeCount_ = input.readInt32();
+              break;
+            }
+            case 50: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000020;
+              rank_ = bs;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw new RuntimeException(e.setUnfinishedMessage(this));
+      } catch (java.io.IOException e) {
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRankItem_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRankItem_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.class, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int ACCOUNT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object account_;
+    /**
+     * <code>optional string account = 1;</code>
+     */
+    public boolean hasAccount() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string account = 1;</code>
+     */
+    public java.lang.String getAccount() {
+      java.lang.Object ref = account_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          account_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string account = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAccountBytes() {
+      java.lang.Object ref = account_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        account_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int RANKSCORE_FIELD_NUMBER = 2;
+    private int rankScore_;
+    /**
+     * <code>optional int32 rankScore = 2;</code>
+     */
+    public boolean hasRankScore() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional int32 rankScore = 2;</code>
+     */
+    public int getRankScore() {
+      return rankScore_;
+    }
+
+    public static final int WINCOUNT_FIELD_NUMBER = 3;
+    private int winCount_;
+    /**
+     * <code>optional int32 winCount = 3;</code>
+     */
+    public boolean hasWinCount() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional int32 winCount = 3;</code>
+     */
+    public int getWinCount() {
+      return winCount_;
+    }
+
+    public static final int LOSECOUNT_FIELD_NUMBER = 4;
+    private int loseCount_;
+    /**
+     * <code>optional int32 loseCount = 4;</code>
+     */
+    public boolean hasLoseCount() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional int32 loseCount = 4;</code>
+     */
+    public int getLoseCount() {
+      return loseCount_;
+    }
+
+    public static final int ESCAPECOUNT_FIELD_NUMBER = 5;
+    private int escapeCount_;
+    /**
+     * <code>optional int32 escapeCount = 5;</code>
+     */
+    public boolean hasEscapeCount() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional int32 escapeCount = 5;</code>
+     */
+    public int getEscapeCount() {
+      return escapeCount_;
+    }
+
+    public static final int RANK_FIELD_NUMBER = 6;
+    private volatile java.lang.Object rank_;
+    /**
+     * <code>optional string rank = 6;</code>
+     */
+    public boolean hasRank() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional string rank = 6;</code>
+     */
+    public java.lang.String getRank() {
+      java.lang.Object ref = rank_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          rank_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string rank = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRankBytes() {
+      java.lang.Object ref = rank_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        rank_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, account_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, rankScore_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(3, winCount_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeInt32(4, loseCount_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeInt32(5, escapeCount_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 6, rank_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, account_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, rankScore_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, winCount_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, loseCount_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, escapeCount_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(6, rank_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankItem parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankItem parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankItem parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankItem parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankItem parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankItem parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankItem parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankItem parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankItem parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankItem parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.zylear.proto.BlokusOuterClass.BLOKUSRankItem prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code BLOKUSRankItem}
+     *
+     * <pre>
+     *1.0.0
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:BLOKUSRankItem)
+        com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRankItem_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRankItem_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.class, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder.class);
+      }
+
+      // Construct using com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        account_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        rankScore_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        winCount_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        loseCount_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        escapeCount_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        rank_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRankItem_descriptor;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getDefaultInstanceForType() {
+        return com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance();
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem build() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSRankItem result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem buildPartial() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSRankItem result = new com.zylear.proto.BlokusOuterClass.BLOKUSRankItem(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.account_ = account_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.rankScore_ = rankScore_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.winCount_ = winCount_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.loseCount_ = loseCount_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.escapeCount_ = escapeCount_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.rank_ = rank_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.zylear.proto.BlokusOuterClass.BLOKUSRankItem) {
+          return mergeFrom((com.zylear.proto.BlokusOuterClass.BLOKUSRankItem)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.zylear.proto.BlokusOuterClass.BLOKUSRankItem other) {
+        if (other == com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance()) return this;
+        if (other.hasAccount()) {
+          bitField0_ |= 0x00000001;
+          account_ = other.account_;
+          onChanged();
+        }
+        if (other.hasRankScore()) {
+          setRankScore(other.getRankScore());
+        }
+        if (other.hasWinCount()) {
+          setWinCount(other.getWinCount());
+        }
+        if (other.hasLoseCount()) {
+          setLoseCount(other.getLoseCount());
+        }
+        if (other.hasEscapeCount()) {
+          setEscapeCount(other.getEscapeCount());
+        }
+        if (other.hasRank()) {
+          bitField0_ |= 0x00000020;
+          rank_ = other.rank_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.zylear.proto.BlokusOuterClass.BLOKUSRankItem parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.zylear.proto.BlokusOuterClass.BLOKUSRankItem) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object account_ = "";
+      /**
+       * <code>optional string account = 1;</code>
+       */
+      public boolean hasAccount() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string account = 1;</code>
+       */
+      public java.lang.String getAccount() {
+        java.lang.Object ref = account_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            account_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string account = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAccountBytes() {
+        java.lang.Object ref = account_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          account_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string account = 1;</code>
+       */
+      public Builder setAccount(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        account_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string account = 1;</code>
+       */
+      public Builder clearAccount() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        account_ = getDefaultInstance().getAccount();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string account = 1;</code>
+       */
+      public Builder setAccountBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        account_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int rankScore_ ;
+      /**
+       * <code>optional int32 rankScore = 2;</code>
+       */
+      public boolean hasRankScore() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int32 rankScore = 2;</code>
+       */
+      public int getRankScore() {
+        return rankScore_;
+      }
+      /**
+       * <code>optional int32 rankScore = 2;</code>
+       */
+      public Builder setRankScore(int value) {
+        bitField0_ |= 0x00000002;
+        rankScore_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 rankScore = 2;</code>
+       */
+      public Builder clearRankScore() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        rankScore_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int winCount_ ;
+      /**
+       * <code>optional int32 winCount = 3;</code>
+       */
+      public boolean hasWinCount() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional int32 winCount = 3;</code>
+       */
+      public int getWinCount() {
+        return winCount_;
+      }
+      /**
+       * <code>optional int32 winCount = 3;</code>
+       */
+      public Builder setWinCount(int value) {
+        bitField0_ |= 0x00000004;
+        winCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 winCount = 3;</code>
+       */
+      public Builder clearWinCount() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        winCount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int loseCount_ ;
+      /**
+       * <code>optional int32 loseCount = 4;</code>
+       */
+      public boolean hasLoseCount() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional int32 loseCount = 4;</code>
+       */
+      public int getLoseCount() {
+        return loseCount_;
+      }
+      /**
+       * <code>optional int32 loseCount = 4;</code>
+       */
+      public Builder setLoseCount(int value) {
+        bitField0_ |= 0x00000008;
+        loseCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 loseCount = 4;</code>
+       */
+      public Builder clearLoseCount() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        loseCount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int escapeCount_ ;
+      /**
+       * <code>optional int32 escapeCount = 5;</code>
+       */
+      public boolean hasEscapeCount() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional int32 escapeCount = 5;</code>
+       */
+      public int getEscapeCount() {
+        return escapeCount_;
+      }
+      /**
+       * <code>optional int32 escapeCount = 5;</code>
+       */
+      public Builder setEscapeCount(int value) {
+        bitField0_ |= 0x00000010;
+        escapeCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 escapeCount = 5;</code>
+       */
+      public Builder clearEscapeCount() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        escapeCount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object rank_ = "";
+      /**
+       * <code>optional string rank = 6;</code>
+       */
+      public boolean hasRank() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional string rank = 6;</code>
+       */
+      public java.lang.String getRank() {
+        java.lang.Object ref = rank_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            rank_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string rank = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRankBytes() {
+        java.lang.Object ref = rank_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          rank_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string rank = 6;</code>
+       */
+      public Builder setRank(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        rank_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string rank = 6;</code>
+       */
+      public Builder clearRank() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        rank_ = getDefaultInstance().getRank();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string rank = 6;</code>
+       */
+      public Builder setRankBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        rank_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:BLOKUSRankItem)
+    }
+
+    // @@protoc_insertion_point(class_scope:BLOKUSRankItem)
+    private static final com.zylear.proto.BlokusOuterClass.BLOKUSRankItem DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.zylear.proto.BlokusOuterClass.BLOKUSRankItem();
+    }
+
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<BLOKUSRankItem>
+        PARSER = new com.google.protobuf.AbstractParser<BLOKUSRankItem>() {
+      public BLOKUSRankItem parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
+          return new BLOKUSRankItem(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
+      }
+    };
+
+    public static com.google.protobuf.Parser<BLOKUSRankItem> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BLOKUSRankItem> getParserForType() {
+      return PARSER;
+    }
+
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BLOKUSRankInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:BLOKUSRankInfo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+     */
+    java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem> 
+        getTwoPlayersRankItemsList();
+    /**
+     * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+     */
+    com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getTwoPlayersRankItems(int index);
+    /**
+     * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+     */
+    int getTwoPlayersRankItemsCount();
+    /**
+     * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+     */
+    java.util.List<? extends com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> 
+        getTwoPlayersRankItemsOrBuilderList();
+    /**
+     * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+     */
+    com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder getTwoPlayersRankItemsOrBuilder(
+        int index);
+
+    /**
+     * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+     */
+    java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem> 
+        getFourPlayersRankItemsList();
+    /**
+     * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+     */
+    com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getFourPlayersRankItems(int index);
+    /**
+     * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+     */
+    int getFourPlayersRankItemsCount();
+    /**
+     * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+     */
+    java.util.List<? extends com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> 
+        getFourPlayersRankItemsOrBuilderList();
+    /**
+     * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+     */
+    com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder getFourPlayersRankItemsOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code BLOKUSRankInfo}
+   *
+   * <pre>
+   *1.0.0
+   * </pre>
+   */
+  public  static final class BLOKUSRankInfo extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:BLOKUSRankInfo)
+      BLOKUSRankInfoOrBuilder {
+    // Use BLOKUSRankInfo.newBuilder() to construct.
+    private BLOKUSRankInfo(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private BLOKUSRankInfo() {
+      twoPlayersRankItems_ = java.util.Collections.emptyList();
+      fourPlayersRankItems_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BLOKUSRankInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+      this();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                twoPlayersRankItems_ = new java.util.ArrayList<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              twoPlayersRankItems_.add(input.readMessage(com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.parser(), extensionRegistry));
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                fourPlayersRankItems_ = new java.util.ArrayList<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              fourPlayersRankItems_.add(input.readMessage(com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw new RuntimeException(e.setUnfinishedMessage(this));
+      } catch (java.io.IOException e) {
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          twoPlayersRankItems_ = java.util.Collections.unmodifiableList(twoPlayersRankItems_);
+        }
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          fourPlayersRankItems_ = java.util.Collections.unmodifiableList(fourPlayersRankItems_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRankInfo_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRankInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo.class, com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo.Builder.class);
+    }
+
+    public static final int TWOPLAYERSRANKITEMS_FIELD_NUMBER = 1;
+    private java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem> twoPlayersRankItems_;
+    /**
+     * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+     */
+    public java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem> getTwoPlayersRankItemsList() {
+      return twoPlayersRankItems_;
+    }
+    /**
+     * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+     */
+    public java.util.List<? extends com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> 
+        getTwoPlayersRankItemsOrBuilderList() {
+      return twoPlayersRankItems_;
+    }
+    /**
+     * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+     */
+    public int getTwoPlayersRankItemsCount() {
+      return twoPlayersRankItems_.size();
+    }
+    /**
+     * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+     */
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getTwoPlayersRankItems(int index) {
+      return twoPlayersRankItems_.get(index);
+    }
+    /**
+     * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+     */
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder getTwoPlayersRankItemsOrBuilder(
+        int index) {
+      return twoPlayersRankItems_.get(index);
+    }
+
+    public static final int FOURPLAYERSRANKITEMS_FIELD_NUMBER = 2;
+    private java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem> fourPlayersRankItems_;
+    /**
+     * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+     */
+    public java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem> getFourPlayersRankItemsList() {
+      return fourPlayersRankItems_;
+    }
+    /**
+     * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+     */
+    public java.util.List<? extends com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> 
+        getFourPlayersRankItemsOrBuilderList() {
+      return fourPlayersRankItems_;
+    }
+    /**
+     * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+     */
+    public int getFourPlayersRankItemsCount() {
+      return fourPlayersRankItems_.size();
+    }
+    /**
+     * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+     */
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getFourPlayersRankItems(int index) {
+      return fourPlayersRankItems_.get(index);
+    }
+    /**
+     * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+     */
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder getFourPlayersRankItemsOrBuilder(
+        int index) {
+      return fourPlayersRankItems_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < twoPlayersRankItems_.size(); i++) {
+        output.writeMessage(1, twoPlayersRankItems_.get(i));
+      }
+      for (int i = 0; i < fourPlayersRankItems_.size(); i++) {
+        output.writeMessage(2, fourPlayersRankItems_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < twoPlayersRankItems_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, twoPlayersRankItems_.get(i));
+      }
+      for (int i = 0; i < fourPlayersRankItems_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, fourPlayersRankItems_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code BLOKUSRankInfo}
+     *
+     * <pre>
+     *1.0.0
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:BLOKUSRankInfo)
+        com.zylear.proto.BlokusOuterClass.BLOKUSRankInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRankInfo_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRankInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo.class, com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo.Builder.class);
+      }
+
+      // Construct using com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getTwoPlayersRankItemsFieldBuilder();
+          getFourPlayersRankItemsFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        if (twoPlayersRankItemsBuilder_ == null) {
+          twoPlayersRankItems_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          twoPlayersRankItemsBuilder_.clear();
+        }
+        if (fourPlayersRankItemsBuilder_ == null) {
+          fourPlayersRankItems_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          fourPlayersRankItemsBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSRankInfo_descriptor;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo getDefaultInstanceForType() {
+        return com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo.getDefaultInstance();
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo build() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo buildPartial() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo result = new com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo(this);
+        int from_bitField0_ = bitField0_;
+        if (twoPlayersRankItemsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            twoPlayersRankItems_ = java.util.Collections.unmodifiableList(twoPlayersRankItems_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.twoPlayersRankItems_ = twoPlayersRankItems_;
+        } else {
+          result.twoPlayersRankItems_ = twoPlayersRankItemsBuilder_.build();
+        }
+        if (fourPlayersRankItemsBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            fourPlayersRankItems_ = java.util.Collections.unmodifiableList(fourPlayersRankItems_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.fourPlayersRankItems_ = fourPlayersRankItems_;
+        } else {
+          result.fourPlayersRankItems_ = fourPlayersRankItemsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo) {
+          return mergeFrom((com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo other) {
+        if (other == com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo.getDefaultInstance()) return this;
+        if (twoPlayersRankItemsBuilder_ == null) {
+          if (!other.twoPlayersRankItems_.isEmpty()) {
+            if (twoPlayersRankItems_.isEmpty()) {
+              twoPlayersRankItems_ = other.twoPlayersRankItems_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureTwoPlayersRankItemsIsMutable();
+              twoPlayersRankItems_.addAll(other.twoPlayersRankItems_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.twoPlayersRankItems_.isEmpty()) {
+            if (twoPlayersRankItemsBuilder_.isEmpty()) {
+              twoPlayersRankItemsBuilder_.dispose();
+              twoPlayersRankItemsBuilder_ = null;
+              twoPlayersRankItems_ = other.twoPlayersRankItems_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              twoPlayersRankItemsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getTwoPlayersRankItemsFieldBuilder() : null;
+            } else {
+              twoPlayersRankItemsBuilder_.addAllMessages(other.twoPlayersRankItems_);
+            }
+          }
+        }
+        if (fourPlayersRankItemsBuilder_ == null) {
+          if (!other.fourPlayersRankItems_.isEmpty()) {
+            if (fourPlayersRankItems_.isEmpty()) {
+              fourPlayersRankItems_ = other.fourPlayersRankItems_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureFourPlayersRankItemsIsMutable();
+              fourPlayersRankItems_.addAll(other.fourPlayersRankItems_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.fourPlayersRankItems_.isEmpty()) {
+            if (fourPlayersRankItemsBuilder_.isEmpty()) {
+              fourPlayersRankItemsBuilder_.dispose();
+              fourPlayersRankItemsBuilder_ = null;
+              fourPlayersRankItems_ = other.fourPlayersRankItems_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              fourPlayersRankItemsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getFourPlayersRankItemsFieldBuilder() : null;
+            } else {
+              fourPlayersRankItemsBuilder_.addAllMessages(other.fourPlayersRankItems_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem> twoPlayersRankItems_ =
+        java.util.Collections.emptyList();
+      private void ensureTwoPlayersRankItemsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          twoPlayersRankItems_ = new java.util.ArrayList<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem>(twoPlayersRankItems_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.zylear.proto.BlokusOuterClass.BLOKUSRankItem, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> twoPlayersRankItemsBuilder_;
+
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem> getTwoPlayersRankItemsList() {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(twoPlayersRankItems_);
+        } else {
+          return twoPlayersRankItemsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public int getTwoPlayersRankItemsCount() {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          return twoPlayersRankItems_.size();
+        } else {
+          return twoPlayersRankItemsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getTwoPlayersRankItems(int index) {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          return twoPlayersRankItems_.get(index);
+        } else {
+          return twoPlayersRankItemsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public Builder setTwoPlayersRankItems(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem value) {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTwoPlayersRankItemsIsMutable();
+          twoPlayersRankItems_.set(index, value);
+          onChanged();
+        } else {
+          twoPlayersRankItemsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public Builder setTwoPlayersRankItems(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder builderForValue) {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          ensureTwoPlayersRankItemsIsMutable();
+          twoPlayersRankItems_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          twoPlayersRankItemsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public Builder addTwoPlayersRankItems(com.zylear.proto.BlokusOuterClass.BLOKUSRankItem value) {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTwoPlayersRankItemsIsMutable();
+          twoPlayersRankItems_.add(value);
+          onChanged();
+        } else {
+          twoPlayersRankItemsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public Builder addTwoPlayersRankItems(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem value) {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTwoPlayersRankItemsIsMutable();
+          twoPlayersRankItems_.add(index, value);
+          onChanged();
+        } else {
+          twoPlayersRankItemsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public Builder addTwoPlayersRankItems(
+          com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder builderForValue) {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          ensureTwoPlayersRankItemsIsMutable();
+          twoPlayersRankItems_.add(builderForValue.build());
+          onChanged();
+        } else {
+          twoPlayersRankItemsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public Builder addTwoPlayersRankItems(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder builderForValue) {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          ensureTwoPlayersRankItemsIsMutable();
+          twoPlayersRankItems_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          twoPlayersRankItemsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public Builder addAllTwoPlayersRankItems(
+          java.lang.Iterable<? extends com.zylear.proto.BlokusOuterClass.BLOKUSRankItem> values) {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          ensureTwoPlayersRankItemsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, twoPlayersRankItems_);
+          onChanged();
+        } else {
+          twoPlayersRankItemsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public Builder clearTwoPlayersRankItems() {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          twoPlayersRankItems_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          twoPlayersRankItemsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public Builder removeTwoPlayersRankItems(int index) {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          ensureTwoPlayersRankItemsIsMutable();
+          twoPlayersRankItems_.remove(index);
+          onChanged();
+        } else {
+          twoPlayersRankItemsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder getTwoPlayersRankItemsBuilder(
+          int index) {
+        return getTwoPlayersRankItemsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder getTwoPlayersRankItemsOrBuilder(
+          int index) {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          return twoPlayersRankItems_.get(index);  } else {
+          return twoPlayersRankItemsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public java.util.List<? extends com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> 
+           getTwoPlayersRankItemsOrBuilderList() {
+        if (twoPlayersRankItemsBuilder_ != null) {
+          return twoPlayersRankItemsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(twoPlayersRankItems_);
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder addTwoPlayersRankItemsBuilder() {
+        return getTwoPlayersRankItemsFieldBuilder().addBuilder(
+            com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder addTwoPlayersRankItemsBuilder(
+          int index) {
+        return getTwoPlayersRankItemsFieldBuilder().addBuilder(
+            index, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem twoPlayersRankItems = 1;</code>
+       */
+      public java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder> 
+           getTwoPlayersRankItemsBuilderList() {
+        return getTwoPlayersRankItemsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.zylear.proto.BlokusOuterClass.BLOKUSRankItem, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> 
+          getTwoPlayersRankItemsFieldBuilder() {
+        if (twoPlayersRankItemsBuilder_ == null) {
+          twoPlayersRankItemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.zylear.proto.BlokusOuterClass.BLOKUSRankItem, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder>(
+                  twoPlayersRankItems_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          twoPlayersRankItems_ = null;
+        }
+        return twoPlayersRankItemsBuilder_;
+      }
+
+      private java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem> fourPlayersRankItems_ =
+        java.util.Collections.emptyList();
+      private void ensureFourPlayersRankItemsIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          fourPlayersRankItems_ = new java.util.ArrayList<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem>(fourPlayersRankItems_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.zylear.proto.BlokusOuterClass.BLOKUSRankItem, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> fourPlayersRankItemsBuilder_;
+
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem> getFourPlayersRankItemsList() {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(fourPlayersRankItems_);
+        } else {
+          return fourPlayersRankItemsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public int getFourPlayersRankItemsCount() {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          return fourPlayersRankItems_.size();
+        } else {
+          return fourPlayersRankItemsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getFourPlayersRankItems(int index) {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          return fourPlayersRankItems_.get(index);
+        } else {
+          return fourPlayersRankItemsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public Builder setFourPlayersRankItems(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem value) {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFourPlayersRankItemsIsMutable();
+          fourPlayersRankItems_.set(index, value);
+          onChanged();
+        } else {
+          fourPlayersRankItemsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public Builder setFourPlayersRankItems(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder builderForValue) {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          ensureFourPlayersRankItemsIsMutable();
+          fourPlayersRankItems_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          fourPlayersRankItemsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public Builder addFourPlayersRankItems(com.zylear.proto.BlokusOuterClass.BLOKUSRankItem value) {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFourPlayersRankItemsIsMutable();
+          fourPlayersRankItems_.add(value);
+          onChanged();
+        } else {
+          fourPlayersRankItemsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public Builder addFourPlayersRankItems(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem value) {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFourPlayersRankItemsIsMutable();
+          fourPlayersRankItems_.add(index, value);
+          onChanged();
+        } else {
+          fourPlayersRankItemsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public Builder addFourPlayersRankItems(
+          com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder builderForValue) {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          ensureFourPlayersRankItemsIsMutable();
+          fourPlayersRankItems_.add(builderForValue.build());
+          onChanged();
+        } else {
+          fourPlayersRankItemsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public Builder addFourPlayersRankItems(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder builderForValue) {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          ensureFourPlayersRankItemsIsMutable();
+          fourPlayersRankItems_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          fourPlayersRankItemsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public Builder addAllFourPlayersRankItems(
+          java.lang.Iterable<? extends com.zylear.proto.BlokusOuterClass.BLOKUSRankItem> values) {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          ensureFourPlayersRankItemsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, fourPlayersRankItems_);
+          onChanged();
+        } else {
+          fourPlayersRankItemsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public Builder clearFourPlayersRankItems() {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          fourPlayersRankItems_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          fourPlayersRankItemsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public Builder removeFourPlayersRankItems(int index) {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          ensureFourPlayersRankItemsIsMutable();
+          fourPlayersRankItems_.remove(index);
+          onChanged();
+        } else {
+          fourPlayersRankItemsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder getFourPlayersRankItemsBuilder(
+          int index) {
+        return getFourPlayersRankItemsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder getFourPlayersRankItemsOrBuilder(
+          int index) {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          return fourPlayersRankItems_.get(index);  } else {
+          return fourPlayersRankItemsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public java.util.List<? extends com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> 
+           getFourPlayersRankItemsOrBuilderList() {
+        if (fourPlayersRankItemsBuilder_ != null) {
+          return fourPlayersRankItemsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(fourPlayersRankItems_);
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder addFourPlayersRankItemsBuilder() {
+        return getFourPlayersRankItemsFieldBuilder().addBuilder(
+            com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder addFourPlayersRankItemsBuilder(
+          int index) {
+        return getFourPlayersRankItemsFieldBuilder().addBuilder(
+            index, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .BLOKUSRankItem fourPlayersRankItems = 2;</code>
+       */
+      public java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder> 
+           getFourPlayersRankItemsBuilderList() {
+        return getFourPlayersRankItemsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.zylear.proto.BlokusOuterClass.BLOKUSRankItem, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> 
+          getFourPlayersRankItemsFieldBuilder() {
+        if (fourPlayersRankItemsBuilder_ == null) {
+          fourPlayersRankItemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.zylear.proto.BlokusOuterClass.BLOKUSRankItem, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder>(
+                  fourPlayersRankItems_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          fourPlayersRankItems_ = null;
+        }
+        return fourPlayersRankItemsBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:BLOKUSRankInfo)
+    }
+
+    // @@protoc_insertion_point(class_scope:BLOKUSRankInfo)
+    private static final com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo();
+    }
+
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<BLOKUSRankInfo>
+        PARSER = new com.google.protobuf.AbstractParser<BLOKUSRankInfo>() {
+      public BLOKUSRankInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
+          return new BLOKUSRankInfo(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
+      }
+    };
+
+    public static com.google.protobuf.Parser<BLOKUSRankInfo> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BLOKUSRankInfo> getParserForType() {
+      return PARSER;
+    }
+
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRankInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BLOKUSPlayerGameLogItemOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:BLOKUSPlayerGameLogItem)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string result = 1;</code>
+     */
+    boolean hasResult();
+    /**
+     * <code>optional string result = 1;</code>
+     */
+    java.lang.String getResult();
+    /**
+     * <code>optional string result = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getResultBytes();
+
+    /**
+     * <code>optional int32 gameType = 2;</code>
+     */
+    boolean hasGameType();
+    /**
+     * <code>optional int32 gameType = 2;</code>
+     */
+    int getGameType();
+
+    /**
+     * <code>optional int32 stepsCount = 3;</code>
+     */
+    boolean hasStepsCount();
+    /**
+     * <code>optional int32 stepsCount = 3;</code>
+     */
+    int getStepsCount();
+
+    /**
+     * <code>optional string detail = 4;</code>
+     */
+    boolean hasDetail();
+    /**
+     * <code>optional string detail = 4;</code>
+     */
+    java.lang.String getDetail();
+    /**
+     * <code>optional string detail = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getDetailBytes();
+
+    /**
+     * <code>optional string time = 5;</code>
+     */
+    boolean hasTime();
+    /**
+     * <code>optional string time = 5;</code>
+     */
+    java.lang.String getTime();
+    /**
+     * <code>optional string time = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getTimeBytes();
+
+    /**
+     * <code>optional int32 changeScore = 6;</code>
+     */
+    boolean hasChangeScore();
+    /**
+     * <code>optional int32 changeScore = 6;</code>
+     */
+    int getChangeScore();
+  }
+  /**
+   * Protobuf type {@code BLOKUSPlayerGameLogItem}
+   *
+   * <pre>
+   *1.0.0
+   * </pre>
+   */
+  public  static final class BLOKUSPlayerGameLogItem extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:BLOKUSPlayerGameLogItem)
+      BLOKUSPlayerGameLogItemOrBuilder {
+    // Use BLOKUSPlayerGameLogItem.newBuilder() to construct.
+    private BLOKUSPlayerGameLogItem(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private BLOKUSPlayerGameLogItem() {
+      result_ = "";
+      gameType_ = 0;
+      stepsCount_ = 0;
+      detail_ = "";
+      time_ = "";
+      changeScore_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BLOKUSPlayerGameLogItem(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+      this();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000001;
+              result_ = bs;
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              gameType_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              stepsCount_ = input.readInt32();
+              break;
+            }
+            case 34: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000008;
+              detail_ = bs;
+              break;
+            }
+            case 42: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000010;
+              time_ = bs;
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              changeScore_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw new RuntimeException(e.setUnfinishedMessage(this));
+      } catch (java.io.IOException e) {
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSPlayerGameLogItem_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSPlayerGameLogItem_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.class, com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object result_;
+    /**
+     * <code>optional string result = 1;</code>
+     */
+    public boolean hasResult() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string result = 1;</code>
+     */
+    public java.lang.String getResult() {
+      java.lang.Object ref = result_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          result_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string result = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getResultBytes() {
+      java.lang.Object ref = result_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        result_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int GAMETYPE_FIELD_NUMBER = 2;
+    private int gameType_;
+    /**
+     * <code>optional int32 gameType = 2;</code>
+     */
+    public boolean hasGameType() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional int32 gameType = 2;</code>
+     */
+    public int getGameType() {
+      return gameType_;
+    }
+
+    public static final int STEPSCOUNT_FIELD_NUMBER = 3;
+    private int stepsCount_;
+    /**
+     * <code>optional int32 stepsCount = 3;</code>
+     */
+    public boolean hasStepsCount() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional int32 stepsCount = 3;</code>
+     */
+    public int getStepsCount() {
+      return stepsCount_;
+    }
+
+    public static final int DETAIL_FIELD_NUMBER = 4;
+    private volatile java.lang.Object detail_;
+    /**
+     * <code>optional string detail = 4;</code>
+     */
+    public boolean hasDetail() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional string detail = 4;</code>
+     */
+    public java.lang.String getDetail() {
+      java.lang.Object ref = detail_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          detail_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string detail = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDetailBytes() {
+      java.lang.Object ref = detail_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        detail_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TIME_FIELD_NUMBER = 5;
+    private volatile java.lang.Object time_;
+    /**
+     * <code>optional string time = 5;</code>
+     */
+    public boolean hasTime() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional string time = 5;</code>
+     */
+    public java.lang.String getTime() {
+      java.lang.Object ref = time_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          time_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string time = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTimeBytes() {
+      java.lang.Object ref = time_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        time_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CHANGESCORE_FIELD_NUMBER = 6;
+    private int changeScore_;
+    /**
+     * <code>optional int32 changeScore = 6;</code>
+     */
+    public boolean hasChangeScore() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional int32 changeScore = 6;</code>
+     */
+    public int getChangeScore() {
+      return changeScore_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, result_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, gameType_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(3, stepsCount_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, detail_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 5, time_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeInt32(6, changeScore_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, result_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, gameType_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, stepsCount_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, detail_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(5, time_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, changeScore_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code BLOKUSPlayerGameLogItem}
+     *
+     * <pre>
+     *1.0.0
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:BLOKUSPlayerGameLogItem)
+        com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItemOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSPlayerGameLogItem_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSPlayerGameLogItem_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.class, com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.Builder.class);
+      }
+
+      // Construct using com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        result_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        gameType_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        stepsCount_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        detail_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
+        time_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
+        changeScore_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSPlayerGameLogItem_descriptor;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem getDefaultInstanceForType() {
+        return com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.getDefaultInstance();
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem build() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem buildPartial() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem result = new com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.result_ = result_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.gameType_ = gameType_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.stepsCount_ = stepsCount_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.detail_ = detail_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.time_ = time_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.changeScore_ = changeScore_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem) {
+          return mergeFrom((com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem other) {
+        if (other == com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.getDefaultInstance()) return this;
+        if (other.hasResult()) {
+          bitField0_ |= 0x00000001;
+          result_ = other.result_;
+          onChanged();
+        }
+        if (other.hasGameType()) {
+          setGameType(other.getGameType());
+        }
+        if (other.hasStepsCount()) {
+          setStepsCount(other.getStepsCount());
+        }
+        if (other.hasDetail()) {
+          bitField0_ |= 0x00000008;
+          detail_ = other.detail_;
+          onChanged();
+        }
+        if (other.hasTime()) {
+          bitField0_ |= 0x00000010;
+          time_ = other.time_;
+          onChanged();
+        }
+        if (other.hasChangeScore()) {
+          setChangeScore(other.getChangeScore());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object result_ = "";
+      /**
+       * <code>optional string result = 1;</code>
+       */
+      public boolean hasResult() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string result = 1;</code>
+       */
+      public java.lang.String getResult() {
+        java.lang.Object ref = result_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            result_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string result = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getResultBytes() {
+        java.lang.Object ref = result_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          result_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string result = 1;</code>
+       */
+      public Builder setResult(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        result_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string result = 1;</code>
+       */
+      public Builder clearResult() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        result_ = getDefaultInstance().getResult();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string result = 1;</code>
+       */
+      public Builder setResultBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        result_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int gameType_ ;
+      /**
+       * <code>optional int32 gameType = 2;</code>
+       */
+      public boolean hasGameType() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int32 gameType = 2;</code>
+       */
+      public int getGameType() {
+        return gameType_;
+      }
+      /**
+       * <code>optional int32 gameType = 2;</code>
+       */
+      public Builder setGameType(int value) {
+        bitField0_ |= 0x00000002;
+        gameType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 gameType = 2;</code>
+       */
+      public Builder clearGameType() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        gameType_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int stepsCount_ ;
+      /**
+       * <code>optional int32 stepsCount = 3;</code>
+       */
+      public boolean hasStepsCount() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional int32 stepsCount = 3;</code>
+       */
+      public int getStepsCount() {
+        return stepsCount_;
+      }
+      /**
+       * <code>optional int32 stepsCount = 3;</code>
+       */
+      public Builder setStepsCount(int value) {
+        bitField0_ |= 0x00000004;
+        stepsCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 stepsCount = 3;</code>
+       */
+      public Builder clearStepsCount() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        stepsCount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object detail_ = "";
+      /**
+       * <code>optional string detail = 4;</code>
+       */
+      public boolean hasDetail() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional string detail = 4;</code>
+       */
+      public java.lang.String getDetail() {
+        java.lang.Object ref = detail_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            detail_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string detail = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDetailBytes() {
+        java.lang.Object ref = detail_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          detail_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string detail = 4;</code>
+       */
+      public Builder setDetail(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        detail_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string detail = 4;</code>
+       */
+      public Builder clearDetail() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        detail_ = getDefaultInstance().getDetail();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string detail = 4;</code>
+       */
+      public Builder setDetailBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        detail_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object time_ = "";
+      /**
+       * <code>optional string time = 5;</code>
+       */
+      public boolean hasTime() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional string time = 5;</code>
+       */
+      public java.lang.String getTime() {
+        java.lang.Object ref = time_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            time_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string time = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTimeBytes() {
+        java.lang.Object ref = time_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          time_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string time = 5;</code>
+       */
+      public Builder setTime(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        time_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string time = 5;</code>
+       */
+      public Builder clearTime() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        time_ = getDefaultInstance().getTime();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string time = 5;</code>
+       */
+      public Builder setTimeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        time_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int changeScore_ ;
+      /**
+       * <code>optional int32 changeScore = 6;</code>
+       */
+      public boolean hasChangeScore() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional int32 changeScore = 6;</code>
+       */
+      public int getChangeScore() {
+        return changeScore_;
+      }
+      /**
+       * <code>optional int32 changeScore = 6;</code>
+       */
+      public Builder setChangeScore(int value) {
+        bitField0_ |= 0x00000020;
+        changeScore_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 changeScore = 6;</code>
+       */
+      public Builder clearChangeScore() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        changeScore_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:BLOKUSPlayerGameLogItem)
+    }
+
+    // @@protoc_insertion_point(class_scope:BLOKUSPlayerGameLogItem)
+    private static final com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem();
+    }
+
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<BLOKUSPlayerGameLogItem>
+        PARSER = new com.google.protobuf.AbstractParser<BLOKUSPlayerGameLogItem>() {
+      public BLOKUSPlayerGameLogItem parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
+          return new BLOKUSPlayerGameLogItem(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
+      }
+    };
+
+    public static com.google.protobuf.Parser<BLOKUSPlayerGameLogItem> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BLOKUSPlayerGameLogItem> getParserForType() {
+      return PARSER;
+    }
+
+    public com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BLOKUSProfileOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:BLOKUSProfile)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+     */
+    boolean hasTwoPlayersRankItem();
+    /**
+     * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+     */
+    com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getTwoPlayersRankItem();
+    /**
+     * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+     */
+    com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder getTwoPlayersRankItemOrBuilder();
+
+    /**
+     * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+     */
+    boolean hasFourPlayersRankItem();
+    /**
+     * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+     */
+    com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getFourPlayersRankItem();
+    /**
+     * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+     */
+    com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder getFourPlayersRankItemOrBuilder();
+
+    /**
+     * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+     */
+    java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem> 
+        getPlayerGameLogsList();
+    /**
+     * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+     */
+    com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem getPlayerGameLogs(int index);
+    /**
+     * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+     */
+    int getPlayerGameLogsCount();
+    /**
+     * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+     */
+    java.util.List<? extends com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItemOrBuilder> 
+        getPlayerGameLogsOrBuilderList();
+    /**
+     * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+     */
+    com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItemOrBuilder getPlayerGameLogsOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code BLOKUSProfile}
+   *
+   * <pre>
+   *1.0.0
+   * </pre>
+   */
+  public  static final class BLOKUSProfile extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:BLOKUSProfile)
+      BLOKUSProfileOrBuilder {
+    // Use BLOKUSProfile.newBuilder() to construct.
+    private BLOKUSProfile(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private BLOKUSProfile() {
+      playerGameLogs_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BLOKUSProfile(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+      this();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000001) == 0x00000001)) {
+                subBuilder = twoPlayersRankItem_.toBuilder();
+              }
+              twoPlayersRankItem_ = input.readMessage(com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(twoPlayersRankItem_);
+                twoPlayersRankItem_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000001;
+              break;
+            }
+            case 18: {
+              com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = fourPlayersRankItem_.toBuilder();
+              }
+              fourPlayersRankItem_ = input.readMessage(com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(fourPlayersRankItem_);
+                fourPlayersRankItem_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
+            case 26: {
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                playerGameLogs_ = new java.util.ArrayList<com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              playerGameLogs_.add(input.readMessage(com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw new RuntimeException(e.setUnfinishedMessage(this));
+      } catch (java.io.IOException e) {
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
+      } finally {
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          playerGameLogs_ = java.util.Collections.unmodifiableList(playerGameLogs_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSProfile_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSProfile_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.zylear.proto.BlokusOuterClass.BLOKUSProfile.class, com.zylear.proto.BlokusOuterClass.BLOKUSProfile.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int TWOPLAYERSRANKITEM_FIELD_NUMBER = 1;
+    private com.zylear.proto.BlokusOuterClass.BLOKUSRankItem twoPlayersRankItem_;
+    /**
+     * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+     */
+    public boolean hasTwoPlayersRankItem() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+     */
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getTwoPlayersRankItem() {
+      return twoPlayersRankItem_ == null ? com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance() : twoPlayersRankItem_;
+    }
+    /**
+     * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+     */
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder getTwoPlayersRankItemOrBuilder() {
+      return twoPlayersRankItem_ == null ? com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance() : twoPlayersRankItem_;
+    }
+
+    public static final int FOURPLAYERSRANKITEM_FIELD_NUMBER = 2;
+    private com.zylear.proto.BlokusOuterClass.BLOKUSRankItem fourPlayersRankItem_;
+    /**
+     * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+     */
+    public boolean hasFourPlayersRankItem() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+     */
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getFourPlayersRankItem() {
+      return fourPlayersRankItem_ == null ? com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance() : fourPlayersRankItem_;
+    }
+    /**
+     * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+     */
+    public com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder getFourPlayersRankItemOrBuilder() {
+      return fourPlayersRankItem_ == null ? com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance() : fourPlayersRankItem_;
+    }
+
+    public static final int PLAYERGAMELOGS_FIELD_NUMBER = 3;
+    private java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem> playerGameLogs_;
+    /**
+     * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+     */
+    public java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem> getPlayerGameLogsList() {
+      return playerGameLogs_;
+    }
+    /**
+     * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+     */
+    public java.util.List<? extends com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItemOrBuilder> 
+        getPlayerGameLogsOrBuilderList() {
+      return playerGameLogs_;
+    }
+    /**
+     * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+     */
+    public int getPlayerGameLogsCount() {
+      return playerGameLogs_.size();
+    }
+    /**
+     * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+     */
+    public com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem getPlayerGameLogs(int index) {
+      return playerGameLogs_.get(index);
+    }
+    /**
+     * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+     */
+    public com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItemOrBuilder getPlayerGameLogsOrBuilder(
+        int index) {
+      return playerGameLogs_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeMessage(1, getTwoPlayersRankItem());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, getFourPlayersRankItem());
+      }
+      for (int i = 0; i < playerGameLogs_.size(); i++) {
+        output.writeMessage(3, playerGameLogs_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getTwoPlayersRankItem());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getFourPlayersRankItem());
+      }
+      for (int i = 0; i < playerGameLogs_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, playerGameLogs_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSProfile parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSProfile parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSProfile parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSProfile parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSProfile parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSProfile parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSProfile parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSProfile parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSProfile parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSProfile parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.zylear.proto.BlokusOuterClass.BLOKUSProfile prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code BLOKUSProfile}
+     *
+     * <pre>
+     *1.0.0
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:BLOKUSProfile)
+        com.zylear.proto.BlokusOuterClass.BLOKUSProfileOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSProfile_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSProfile_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.zylear.proto.BlokusOuterClass.BLOKUSProfile.class, com.zylear.proto.BlokusOuterClass.BLOKUSProfile.Builder.class);
+      }
+
+      // Construct using com.zylear.proto.BlokusOuterClass.BLOKUSProfile.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getTwoPlayersRankItemFieldBuilder();
+          getFourPlayersRankItemFieldBuilder();
+          getPlayerGameLogsFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        if (twoPlayersRankItemBuilder_ == null) {
+          twoPlayersRankItem_ = null;
+        } else {
+          twoPlayersRankItemBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (fourPlayersRankItemBuilder_ == null) {
+          fourPlayersRankItem_ = null;
+        } else {
+          fourPlayersRankItemBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        if (playerGameLogsBuilder_ == null) {
+          playerGameLogs_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        } else {
+          playerGameLogsBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.zylear.proto.BlokusOuterClass.internal_static_BLOKUSProfile_descriptor;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSProfile getDefaultInstanceForType() {
+        return com.zylear.proto.BlokusOuterClass.BLOKUSProfile.getDefaultInstance();
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSProfile build() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSProfile result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.zylear.proto.BlokusOuterClass.BLOKUSProfile buildPartial() {
+        com.zylear.proto.BlokusOuterClass.BLOKUSProfile result = new com.zylear.proto.BlokusOuterClass.BLOKUSProfile(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        if (twoPlayersRankItemBuilder_ == null) {
+          result.twoPlayersRankItem_ = twoPlayersRankItem_;
+        } else {
+          result.twoPlayersRankItem_ = twoPlayersRankItemBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (fourPlayersRankItemBuilder_ == null) {
+          result.fourPlayersRankItem_ = fourPlayersRankItem_;
+        } else {
+          result.fourPlayersRankItem_ = fourPlayersRankItemBuilder_.build();
+        }
+        if (playerGameLogsBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            playerGameLogs_ = java.util.Collections.unmodifiableList(playerGameLogs_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.playerGameLogs_ = playerGameLogs_;
+        } else {
+          result.playerGameLogs_ = playerGameLogsBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.zylear.proto.BlokusOuterClass.BLOKUSProfile) {
+          return mergeFrom((com.zylear.proto.BlokusOuterClass.BLOKUSProfile)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.zylear.proto.BlokusOuterClass.BLOKUSProfile other) {
+        if (other == com.zylear.proto.BlokusOuterClass.BLOKUSProfile.getDefaultInstance()) return this;
+        if (other.hasTwoPlayersRankItem()) {
+          mergeTwoPlayersRankItem(other.getTwoPlayersRankItem());
+        }
+        if (other.hasFourPlayersRankItem()) {
+          mergeFourPlayersRankItem(other.getFourPlayersRankItem());
+        }
+        if (playerGameLogsBuilder_ == null) {
+          if (!other.playerGameLogs_.isEmpty()) {
+            if (playerGameLogs_.isEmpty()) {
+              playerGameLogs_ = other.playerGameLogs_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensurePlayerGameLogsIsMutable();
+              playerGameLogs_.addAll(other.playerGameLogs_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.playerGameLogs_.isEmpty()) {
+            if (playerGameLogsBuilder_.isEmpty()) {
+              playerGameLogsBuilder_.dispose();
+              playerGameLogsBuilder_ = null;
+              playerGameLogs_ = other.playerGameLogs_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              playerGameLogsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getPlayerGameLogsFieldBuilder() : null;
+            } else {
+              playerGameLogsBuilder_.addAllMessages(other.playerGameLogs_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.zylear.proto.BlokusOuterClass.BLOKUSProfile parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.zylear.proto.BlokusOuterClass.BLOKUSProfile) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private com.zylear.proto.BlokusOuterClass.BLOKUSRankItem twoPlayersRankItem_ = null;
+      private com.google.protobuf.SingleFieldBuilder<
+          com.zylear.proto.BlokusOuterClass.BLOKUSRankItem, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> twoPlayersRankItemBuilder_;
+      /**
+       * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+       */
+      public boolean hasTwoPlayersRankItem() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getTwoPlayersRankItem() {
+        if (twoPlayersRankItemBuilder_ == null) {
+          return twoPlayersRankItem_ == null ? com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance() : twoPlayersRankItem_;
+        } else {
+          return twoPlayersRankItemBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+       */
+      public Builder setTwoPlayersRankItem(com.zylear.proto.BlokusOuterClass.BLOKUSRankItem value) {
+        if (twoPlayersRankItemBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          twoPlayersRankItem_ = value;
+          onChanged();
+        } else {
+          twoPlayersRankItemBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+       */
+      public Builder setTwoPlayersRankItem(
+          com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder builderForValue) {
+        if (twoPlayersRankItemBuilder_ == null) {
+          twoPlayersRankItem_ = builderForValue.build();
+          onChanged();
+        } else {
+          twoPlayersRankItemBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+       */
+      public Builder mergeTwoPlayersRankItem(com.zylear.proto.BlokusOuterClass.BLOKUSRankItem value) {
+        if (twoPlayersRankItemBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              twoPlayersRankItem_ != null &&
+              twoPlayersRankItem_ != com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance()) {
+            twoPlayersRankItem_ =
+              com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.newBuilder(twoPlayersRankItem_).mergeFrom(value).buildPartial();
+          } else {
+            twoPlayersRankItem_ = value;
+          }
+          onChanged();
+        } else {
+          twoPlayersRankItemBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+       */
+      public Builder clearTwoPlayersRankItem() {
+        if (twoPlayersRankItemBuilder_ == null) {
+          twoPlayersRankItem_ = null;
+          onChanged();
+        } else {
+          twoPlayersRankItemBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      /**
+       * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder getTwoPlayersRankItemBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getTwoPlayersRankItemFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder getTwoPlayersRankItemOrBuilder() {
+        if (twoPlayersRankItemBuilder_ != null) {
+          return twoPlayersRankItemBuilder_.getMessageOrBuilder();
+        } else {
+          return twoPlayersRankItem_ == null ?
+              com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance() : twoPlayersRankItem_;
+        }
+      }
+      /**
+       * <code>optional .BLOKUSRankItem twoPlayersRankItem = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.zylear.proto.BlokusOuterClass.BLOKUSRankItem, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> 
+          getTwoPlayersRankItemFieldBuilder() {
+        if (twoPlayersRankItemBuilder_ == null) {
+          twoPlayersRankItemBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.zylear.proto.BlokusOuterClass.BLOKUSRankItem, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder>(
+                  getTwoPlayersRankItem(),
+                  getParentForChildren(),
+                  isClean());
+          twoPlayersRankItem_ = null;
+        }
+        return twoPlayersRankItemBuilder_;
+      }
+
+      private com.zylear.proto.BlokusOuterClass.BLOKUSRankItem fourPlayersRankItem_ = null;
+      private com.google.protobuf.SingleFieldBuilder<
+          com.zylear.proto.BlokusOuterClass.BLOKUSRankItem, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> fourPlayersRankItemBuilder_;
+      /**
+       * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+       */
+      public boolean hasFourPlayersRankItem() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem getFourPlayersRankItem() {
+        if (fourPlayersRankItemBuilder_ == null) {
+          return fourPlayersRankItem_ == null ? com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance() : fourPlayersRankItem_;
+        } else {
+          return fourPlayersRankItemBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+       */
+      public Builder setFourPlayersRankItem(com.zylear.proto.BlokusOuterClass.BLOKUSRankItem value) {
+        if (fourPlayersRankItemBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          fourPlayersRankItem_ = value;
+          onChanged();
+        } else {
+          fourPlayersRankItemBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+       */
+      public Builder setFourPlayersRankItem(
+          com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder builderForValue) {
+        if (fourPlayersRankItemBuilder_ == null) {
+          fourPlayersRankItem_ = builderForValue.build();
+          onChanged();
+        } else {
+          fourPlayersRankItemBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+       */
+      public Builder mergeFourPlayersRankItem(com.zylear.proto.BlokusOuterClass.BLOKUSRankItem value) {
+        if (fourPlayersRankItemBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              fourPlayersRankItem_ != null &&
+              fourPlayersRankItem_ != com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance()) {
+            fourPlayersRankItem_ =
+              com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.newBuilder(fourPlayersRankItem_).mergeFrom(value).buildPartial();
+          } else {
+            fourPlayersRankItem_ = value;
+          }
+          onChanged();
+        } else {
+          fourPlayersRankItemBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+       */
+      public Builder clearFourPlayersRankItem() {
+        if (fourPlayersRankItemBuilder_ == null) {
+          fourPlayersRankItem_ = null;
+          onChanged();
+        } else {
+          fourPlayersRankItemBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder getFourPlayersRankItemBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getFourPlayersRankItemFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder getFourPlayersRankItemOrBuilder() {
+        if (fourPlayersRankItemBuilder_ != null) {
+          return fourPlayersRankItemBuilder_.getMessageOrBuilder();
+        } else {
+          return fourPlayersRankItem_ == null ?
+              com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.getDefaultInstance() : fourPlayersRankItem_;
+        }
+      }
+      /**
+       * <code>optional .BLOKUSRankItem fourPlayersRankItem = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.zylear.proto.BlokusOuterClass.BLOKUSRankItem, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder> 
+          getFourPlayersRankItemFieldBuilder() {
+        if (fourPlayersRankItemBuilder_ == null) {
+          fourPlayersRankItemBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.zylear.proto.BlokusOuterClass.BLOKUSRankItem, com.zylear.proto.BlokusOuterClass.BLOKUSRankItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSRankItemOrBuilder>(
+                  getFourPlayersRankItem(),
+                  getParentForChildren(),
+                  isClean());
+          fourPlayersRankItem_ = null;
+        }
+        return fourPlayersRankItemBuilder_;
+      }
+
+      private java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem> playerGameLogs_ =
+        java.util.Collections.emptyList();
+      private void ensurePlayerGameLogsIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          playerGameLogs_ = new java.util.ArrayList<com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem>(playerGameLogs_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem, com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItemOrBuilder> playerGameLogsBuilder_;
+
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem> getPlayerGameLogsList() {
+        if (playerGameLogsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(playerGameLogs_);
+        } else {
+          return playerGameLogsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public int getPlayerGameLogsCount() {
+        if (playerGameLogsBuilder_ == null) {
+          return playerGameLogs_.size();
+        } else {
+          return playerGameLogsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem getPlayerGameLogs(int index) {
+        if (playerGameLogsBuilder_ == null) {
+          return playerGameLogs_.get(index);
+        } else {
+          return playerGameLogsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public Builder setPlayerGameLogs(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem value) {
+        if (playerGameLogsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePlayerGameLogsIsMutable();
+          playerGameLogs_.set(index, value);
+          onChanged();
+        } else {
+          playerGameLogsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public Builder setPlayerGameLogs(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.Builder builderForValue) {
+        if (playerGameLogsBuilder_ == null) {
+          ensurePlayerGameLogsIsMutable();
+          playerGameLogs_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          playerGameLogsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public Builder addPlayerGameLogs(com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem value) {
+        if (playerGameLogsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePlayerGameLogsIsMutable();
+          playerGameLogs_.add(value);
+          onChanged();
+        } else {
+          playerGameLogsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public Builder addPlayerGameLogs(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem value) {
+        if (playerGameLogsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePlayerGameLogsIsMutable();
+          playerGameLogs_.add(index, value);
+          onChanged();
+        } else {
+          playerGameLogsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public Builder addPlayerGameLogs(
+          com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.Builder builderForValue) {
+        if (playerGameLogsBuilder_ == null) {
+          ensurePlayerGameLogsIsMutable();
+          playerGameLogs_.add(builderForValue.build());
+          onChanged();
+        } else {
+          playerGameLogsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public Builder addPlayerGameLogs(
+          int index, com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.Builder builderForValue) {
+        if (playerGameLogsBuilder_ == null) {
+          ensurePlayerGameLogsIsMutable();
+          playerGameLogs_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          playerGameLogsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public Builder addAllPlayerGameLogs(
+          java.lang.Iterable<? extends com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem> values) {
+        if (playerGameLogsBuilder_ == null) {
+          ensurePlayerGameLogsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, playerGameLogs_);
+          onChanged();
+        } else {
+          playerGameLogsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public Builder clearPlayerGameLogs() {
+        if (playerGameLogsBuilder_ == null) {
+          playerGameLogs_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          playerGameLogsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public Builder removePlayerGameLogs(int index) {
+        if (playerGameLogsBuilder_ == null) {
+          ensurePlayerGameLogsIsMutable();
+          playerGameLogs_.remove(index);
+          onChanged();
+        } else {
+          playerGameLogsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.Builder getPlayerGameLogsBuilder(
+          int index) {
+        return getPlayerGameLogsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItemOrBuilder getPlayerGameLogsOrBuilder(
+          int index) {
+        if (playerGameLogsBuilder_ == null) {
+          return playerGameLogs_.get(index);  } else {
+          return playerGameLogsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public java.util.List<? extends com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItemOrBuilder> 
+           getPlayerGameLogsOrBuilderList() {
+        if (playerGameLogsBuilder_ != null) {
+          return playerGameLogsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(playerGameLogs_);
+        }
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.Builder addPlayerGameLogsBuilder() {
+        return getPlayerGameLogsFieldBuilder().addBuilder(
+            com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.Builder addPlayerGameLogsBuilder(
+          int index) {
+        return getPlayerGameLogsFieldBuilder().addBuilder(
+            index, com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .BLOKUSPlayerGameLogItem playerGameLogs = 3;</code>
+       */
+      public java.util.List<com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.Builder> 
+           getPlayerGameLogsBuilderList() {
+        return getPlayerGameLogsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem, com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItemOrBuilder> 
+          getPlayerGameLogsFieldBuilder() {
+        if (playerGameLogsBuilder_ == null) {
+          playerGameLogsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem, com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItem.Builder, com.zylear.proto.BlokusOuterClass.BLOKUSPlayerGameLogItemOrBuilder>(
+                  playerGameLogs_,
+                  ((bitField0_ & 0x00000004) == 0x00000004),
+                  getParentForChildren(),
+                  isClean());
+          playerGameLogs_ = null;
+        }
+        return playerGameLogsBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:BLOKUSProfile)
+    }
+
+    // @@protoc_insertion_point(class_scope:BLOKUSProfile)
+    private static final com.zylear.proto.BlokusOuterClass.BLOKUSProfile DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.zylear.proto.BlokusOuterClass.BLOKUSProfile();
+    }
+
+    public static com.zylear.proto.BlokusOuterClass.BLOKUSProfile getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<BLOKUSProfile>
+        PARSER = new com.google.protobuf.AbstractParser<BLOKUSProfile>() {
+      public BLOKUSProfile parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
+          return new BLOKUSProfile(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
+      }
+    };
+
+    public static com.google.protobuf.Parser<BLOKUSProfile> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BLOKUSProfile> getParserForType() {
+      return PARSER;
+    }
+
+    public com.zylear.proto.BlokusOuterClass.BLOKUSProfile getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_BLOKUSVersion_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_BLOKUSVersion_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_BLOKUSAccount_descriptor;
   private static
@@ -4626,15 +11407,55 @@ public final class BlokusOuterClass {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_BLOKUSRoomPlayerList_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_BLOKUSChooseColor_descriptor;
+    internal_static_BLOKUSColor_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_BLOKUSChooseColor_fieldAccessorTable;
+      internal_static_BLOKUSColor_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_BLOKUSChessDoneInfo_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_BLOKUSChessDoneInfo_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_BLOKUSChatMessage_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_BLOKUSChatMessage_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_BLOKUSRoomInfo_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_BLOKUSRoomInfo_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_BLOKUSRoomList_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_BLOKUSRoomList_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_BLOKUSGameAccount_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_BLOKUSGameAccount_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_BLOKUSRankItem_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_BLOKUSRankItem_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_BLOKUSRankInfo_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_BLOKUSRankInfo_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_BLOKUSPlayerGameLogItem_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_BLOKUSPlayerGameLogItem_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_BLOKUSProfile_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_BLOKUSProfile_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -4644,20 +11465,39 @@ public final class BlokusOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\033protobuf/proto/blokus.proto\"2\n\rBLOKUSA" +
-      "ccount\022\017\n\007account\030\001 \001(\t\022\020\n\010password\030\002 \001(" +
-      "\t\"6\n\020BLOKUSCreateRoom\022\020\n\010roomName\030\001 \001(\t\022" +
-      "\020\n\010roomType\030\002 \001(\005\"\"\n\016BLOKUSRoomName\022\020\n\010r" +
-      "oomName\030\001 \001(\t\"G\n\024BLOKUSRoomPlayerInfo\022\017\n" +
-      "\007account\030\001 \001(\t\022\r\n\005color\030\002 \001(\005\022\017\n\007isReady" +
-      "\030\003 \001(\010\"<\n\024BLOKUSRoomPlayerList\022$\n\005itmes\030" +
-      "\001 \003(\0132\025.BLOKUSRoomPlayerInfo\"E\n\021BLOKUSCh" +
-      "ooseColor\022\017\n\007account\030\001 \001(\t\022\020\n\010roomName\030\002" +
-      " \001(\t\022\r\n\005color\030\003 \001(\005\"z\n\023BLOKUSChessDoneIn",
-      "fo\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\022\n\nsquareName\030\003" +
-      " \001(\t\022\024\n\014rotationFlag\030\004 \001(\005\022\024\n\014symmetryFl" +
-      "ag\030\005 \001(\005\022\r\n\005model\030\006 \001(\014B$\n\020com.zylear.pr" +
-      "otoB\020BlokusOuterClass"
+      "\n\033protobuf/proto/blokus.proto\" \n\rBLOKUSV" +
+      "ersion\022\017\n\007version\030\001 \001(\t\"2\n\rBLOKUSAccount" +
+      "\022\017\n\007account\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"6\n\020B" +
+      "LOKUSCreateRoom\022\020\n\010roomName\030\001 \001(\t\022\020\n\010gam" +
+      "eType\030\002 \001(\005\"\"\n\016BLOKUSRoomName\022\020\n\010roomNam" +
+      "e\030\001 \001(\t\"G\n\024BLOKUSRoomPlayerInfo\022\017\n\007accou" +
+      "nt\030\001 \001(\t\022\r\n\005color\030\002 \001(\005\022\017\n\007isReady\030\003 \001(\010" +
+      "\"<\n\024BLOKUSRoomPlayerList\022$\n\005itmes\030\001 \003(\0132" +
+      "\025.BLOKUSRoomPlayerInfo\"\034\n\013BLOKUSColor\022\r\n" +
+      "\005color\030\001 \001(\005\"z\n\023BLOKUSChessDoneInfo\022\t\n\001x",
+      "\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\022\n\nsquareName\030\003 \001(\t\022\024\n" +
+      "\014rotationFlag\030\004 \001(\005\022\024\n\014symmetryFlag\030\005 \001(" +
+      "\005\022\r\n\005model\030\006 \001(\014\"(\n\021BLOKUSChatMessage\022\023\n" +
+      "\013chatMessage\030\001 \001(\t\"`\n\016BLOKUSRoomInfo\022\020\n\010" +
+      "roomName\030\001 \001(\t\022\020\n\010gameType\030\002 \001(\005\022\022\n\nRoom" +
+      "Status\030\003 \001(\005\022\026\n\016currentPlayers\030\004 \001(\005\"4\n\016" +
+      "BLOKUSRoomList\022\"\n\troomItems\030\001 \003(\0132\017.BLOK" +
+      "USRoomInfo\"6\n\021BLOKUSGameAccount\022\017\n\007accou" +
+      "nt\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"|\n\016BLOKUSRank" +
+      "Item\022\017\n\007account\030\001 \001(\t\022\021\n\trankScore\030\002 \001(\005",
+      "\022\020\n\010winCount\030\003 \001(\005\022\021\n\tloseCount\030\004 \001(\005\022\023\n" +
+      "\013escapeCount\030\005 \001(\005\022\014\n\004rank\030\006 \001(\t\"m\n\016BLOK" +
+      "USRankInfo\022,\n\023twoPlayersRankItems\030\001 \003(\0132" +
+      "\017.BLOKUSRankItem\022-\n\024fourPlayersRankItems" +
+      "\030\002 \003(\0132\017.BLOKUSRankItem\"\202\001\n\027BLOKUSPlayer" +
+      "GameLogItem\022\016\n\006result\030\001 \001(\t\022\020\n\010gameType\030" +
+      "\002 \001(\005\022\022\n\nstepsCount\030\003 \001(\005\022\016\n\006detail\030\004 \001(" +
+      "\t\022\014\n\004time\030\005 \001(\t\022\023\n\013changeScore\030\006 \001(\005\"\234\001\n" +
+      "\rBLOKUSProfile\022+\n\022twoPlayersRankItem\030\001 \001" +
+      "(\0132\017.BLOKUSRankItem\022,\n\023fourPlayersRankIt",
+      "em\030\002 \001(\0132\017.BLOKUSRankItem\0220\n\016playerGameL" +
+      "ogs\030\003 \003(\0132\030.BLOKUSPlayerGameLogItemB$\n\020c" +
+      "om.zylear.protoB\020BlokusOuterClass"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -4671,48 +11511,102 @@ public final class BlokusOuterClass {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_BLOKUSAccount_descriptor =
+    internal_static_BLOKUSVersion_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_BLOKUSVersion_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_BLOKUSVersion_descriptor,
+        new java.lang.String[] { "Version", });
+    internal_static_BLOKUSAccount_descriptor =
+      getDescriptor().getMessageTypes().get(1);
     internal_static_BLOKUSAccount_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_BLOKUSAccount_descriptor,
         new java.lang.String[] { "Account", "Password", });
     internal_static_BLOKUSCreateRoom_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_BLOKUSCreateRoom_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_BLOKUSCreateRoom_descriptor,
-        new java.lang.String[] { "RoomName", "RoomType", });
+        new java.lang.String[] { "RoomName", "GameType", });
     internal_static_BLOKUSRoomName_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_BLOKUSRoomName_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_BLOKUSRoomName_descriptor,
         new java.lang.String[] { "RoomName", });
     internal_static_BLOKUSRoomPlayerInfo_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_BLOKUSRoomPlayerInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_BLOKUSRoomPlayerInfo_descriptor,
         new java.lang.String[] { "Account", "Color", "IsReady", });
     internal_static_BLOKUSRoomPlayerList_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_BLOKUSRoomPlayerList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_BLOKUSRoomPlayerList_descriptor,
         new java.lang.String[] { "Itmes", });
-    internal_static_BLOKUSChooseColor_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_BLOKUSChooseColor_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_BLOKUSChooseColor_descriptor,
-        new java.lang.String[] { "Account", "RoomName", "Color", });
-    internal_static_BLOKUSChessDoneInfo_descriptor =
+    internal_static_BLOKUSColor_descriptor =
       getDescriptor().getMessageTypes().get(6);
+    internal_static_BLOKUSColor_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_BLOKUSColor_descriptor,
+        new java.lang.String[] { "Color", });
+    internal_static_BLOKUSChessDoneInfo_descriptor =
+      getDescriptor().getMessageTypes().get(7);
     internal_static_BLOKUSChessDoneInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_BLOKUSChessDoneInfo_descriptor,
         new java.lang.String[] { "X", "Y", "SquareName", "RotationFlag", "SymmetryFlag", "Model", });
+    internal_static_BLOKUSChatMessage_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_BLOKUSChatMessage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_BLOKUSChatMessage_descriptor,
+        new java.lang.String[] { "ChatMessage", });
+    internal_static_BLOKUSRoomInfo_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_BLOKUSRoomInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_BLOKUSRoomInfo_descriptor,
+        new java.lang.String[] { "RoomName", "GameType", "RoomStatus", "CurrentPlayers", });
+    internal_static_BLOKUSRoomList_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_BLOKUSRoomList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_BLOKUSRoomList_descriptor,
+        new java.lang.String[] { "RoomItems", });
+    internal_static_BLOKUSGameAccount_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_BLOKUSGameAccount_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_BLOKUSGameAccount_descriptor,
+        new java.lang.String[] { "Account", "Password", });
+    internal_static_BLOKUSRankItem_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_BLOKUSRankItem_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_BLOKUSRankItem_descriptor,
+        new java.lang.String[] { "Account", "RankScore", "WinCount", "LoseCount", "EscapeCount", "Rank", });
+    internal_static_BLOKUSRankInfo_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_BLOKUSRankInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_BLOKUSRankInfo_descriptor,
+        new java.lang.String[] { "TwoPlayersRankItems", "FourPlayersRankItems", });
+    internal_static_BLOKUSPlayerGameLogItem_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_BLOKUSPlayerGameLogItem_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_BLOKUSPlayerGameLogItem_descriptor,
+        new java.lang.String[] { "Result", "GameType", "StepsCount", "Detail", "Time", "ChangeScore", });
+    internal_static_BLOKUSProfile_descriptor =
+      getDescriptor().getMessageTypes().get(15);
+    internal_static_BLOKUSProfile_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_BLOKUSProfile_descriptor,
+        new java.lang.String[] { "TwoPlayersRankItem", "FourPlayersRankItem", "PlayerGameLogs", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

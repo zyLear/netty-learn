@@ -1,17 +1,24 @@
 package com.zylear.netty.learn.dao.mybatis.blokusgame;
 
 import com.zylear.netty.learn.domain.GameAccount;
+import org.apache.ibatis.annotations.Param;
 
 public interface GameAccountMapper {
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(GameAccount record);
 
     int insertSelective(GameAccount record);
 
-    GameAccount selectByPrimaryKey(Long id);
+    GameAccount selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(GameAccount record);
 
     int updateByPrimaryKey(GameAccount record);
+
+
+    GameAccount findByAccountAndPassowrd(@Param("account") String account,
+                                         @Param("password") String password);
+
+    GameAccount findByAccount(@Param("account") String account);
 }

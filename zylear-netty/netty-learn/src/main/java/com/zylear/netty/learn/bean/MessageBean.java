@@ -24,10 +24,19 @@ public class MessageBean {
     public static final MessageBean LEAVE_ROOM_SUCCESS = new MessageBean(OperationCode.LEAVE_ROOM, StatusCode.SUCCESS);
     public static final MessageBean LEAVE_ROOM_FAIL = new MessageBean(OperationCode.LEAVE_ROOM, StatusCode.FAIL);
 
+    public static final MessageBean GIVE_UP_SUCCESS = new MessageBean(OperationCode.GIVE_UP, StatusCode.SUCCESS);
+
 
     public static final MessageBean QUIT = new MessageBean(OperationCode.QUIT, StatusCode.SUCCESS);
-    public static final MessageBean START_BLOKUS  = new MessageBean(OperationCode.START_BLOKUS, StatusCode.SUCCESS);
-    public static final MessageBean START_BLOKUS_TWO_PEOPLE  = new MessageBean(OperationCode.START_BLOKUS_TWO_PEOPLE, StatusCode.SUCCESS);
+    public static final MessageBean START_BLOKUS_SUCCESS = new MessageBean(OperationCode.START_BLOKUS, StatusCode.SUCCESS);
+    public static final MessageBean START_BLOKUS_TWO_PEOPLE = new MessageBean(OperationCode.START_BLOKUS_TWO_PEOPLE, StatusCode.SUCCESS);
+
+
+    public static final MessageBean REGISTER_SUCCESS = new MessageBean(OperationCode.REGISTER, StatusCode.SUCCESS);
+    public static final MessageBean REGISTER_FAIL = new MessageBean(OperationCode.REGISTER, StatusCode.FAIL);
+
+    public static final MessageBean CHECK_VERSION_SUCCESS = new MessageBean(OperationCode.CHECK_VERSION, StatusCode.SUCCESS);
+    public static final MessageBean CHECK_VERSION_FAIL = new MessageBean(OperationCode.CHECK_VERSION, StatusCode.FAIL);
 
     public MessageBean() {
 
@@ -38,7 +47,7 @@ public class MessageBean {
 //    }
 //
 //    public static MessageBean loginFail(Channel channel) {
-//        return new MessageBean(OperationCode.LOGIN, StatusCode.FAIL, channel);
+//        return new MessageBean(OperationCode.LOGIN, StatusCode.LOSE, channel);
 //    }
 //
 //    public static MessageBean createRoomSucess(Channel channel) {
@@ -46,7 +55,7 @@ public class MessageBean {
 //    }
 //
 //    public static MessageBean createRoomFail(Channel channel) {
-//        return new MessageBean(OperationCode.CREATE_ROOM, StatusCode.FAIL);
+//        return new MessageBean(OperationCode.CREATE_ROOM, StatusCode.LOSE);
 //    }
 //
     public MessageBean(short operationCode, short statusCode) {

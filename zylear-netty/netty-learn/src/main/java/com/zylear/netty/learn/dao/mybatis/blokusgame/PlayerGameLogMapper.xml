@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zylear.netty.learn.dao.mybatis.blokusgame.PlayerGameLogMapper">
+    <resultMap id="BaseResultMap" type="com.zylear.netty.learn.domain.PlayerGameLog">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
+        <result column="game_log_id" property="gameLogId" jdbcType="INTEGER"/>
+        <result column="game_result" property="gameResult" jdbcType="TINYINT"/>
+        <result column="steps_count" property="stepsCount" jdbcType="TINYINT"/>
+        <result column="change_score" property="changeScore" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, account, game_log_id, game_result, steps_count, change_score, create_time, last_update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_player_game_log
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        DELETE FROM t_player_game_log
+        WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.zylear.netty.learn.domain.PlayerGameLog">
+        INSERT INTO t_player_game_log (id, account, game_log_id,
+                                       game_result, steps_count, change_score,
+                                       create_time, last_update_time)
+        VALUES (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{gameLogId,jdbcType=INTEGER},
+                #{gameResult,jdbcType=TINYINT}, #{stepsCount,jdbcType=TINYINT}, #{changeScore,jdbcType=TINYINT},
+                #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.zylear.netty.learn.domain.PlayerGameLog">
+        insert into t_player_game_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="account != null">
+                account,
+            </if>
+            <if test="gameLogId != null">
+                game_log_id,
+            </if>
+            <if test="gameResult != null">
+                game_result,
+            </if>
+            <if test="stepsCount != null">
+                steps_count,
+            </if>
+            <if test="changeScore != null">
+                change_score,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="account != null">
+                #{account,jdbcType=VARCHAR},
+            </if>
+            <if test="gameLogId != null">
+                #{gameLogId,jdbcType=INTEGER},
+            </if>
+            <if test="gameResult != null">
+                #{gameResult,jdbcType=TINYINT},
+            </if>
+            <if test="stepsCount != null">
+                #{stepsCount,jdbcType=TINYINT},
+            </if>
+            <if test="changeScore != null">
+                #{changeScore,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateTime != null">
+                #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zylear.netty.learn.domain.PlayerGameLog">
+        update t_player_game_log
+        <set>
+            <if test="account != null">
+                account = #{account,jdbcType=VARCHAR},
+            </if>
+            <if test="gameLogId != null">
+                game_log_id = #{gameLogId,jdbcType=INTEGER},
+            </if>
+            <if test="gameResult != null">
+                game_result = #{gameResult,jdbcType=TINYINT},
+            </if>
+            <if test="stepsCount != null">
+                steps_count = #{stepsCount,jdbcType=TINYINT},
+            </if>
+            <if test="changeScore != null">
+                change_score = #{changeScore,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zylear.netty.learn.domain.PlayerGameLog">
+        UPDATE t_player_game_log
+        SET account          = #{account,jdbcType=VARCHAR},
+            game_log_id      = #{gameLogId,jdbcType=INTEGER},
+            game_result      = #{gameResult,jdbcType=TINYINT},
+            steps_count      = #{stepsCount,jdbcType=TINYINT},
+            change_score     = #{changeScore,jdbcType=TINYINT},
+            create_time      = #{createTime,jdbcType=TIMESTAMP},
+            last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="findByAccount" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_player_game_log
+        WHERE account=#{account,jdbcType=VARCHAR}
+        ORDER BY create_time DESC
+        LIMIT 20
+    </select>
+
+
+    <select id="findByGameLogId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_player_game_log
+        WHERE game_log_id = #{gameLogId,jdbcType=INTEGER}
+    </select>
+
+
+</mapper>

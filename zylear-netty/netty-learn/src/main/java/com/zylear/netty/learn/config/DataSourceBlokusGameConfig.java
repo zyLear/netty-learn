@@ -28,7 +28,7 @@ public class DataSourceBlokusGameConfig {
     public final static String SCAN_PACKAGE = "com.zylear.netty.learn.dao.mybatis.blokusgame";
     public final static String SQL_SESSION_FACTORY = "sqlSessionFactoryBlokusGame";
     public final static String TX_MANAGER = "txManagerBlokusGame";
-    public final static String SQL_SESSION_TEMPLATE = "sqlSessionTemplateBlokusGame";
+    public final static String SQL_SESSION_TEMPLATE = "sqlSessionTemplateBlokusGame";   //don't set this is ok
     public final static List<String> XML_PATHS = Arrays.asList("classpath:com/zylear/netty/learn/dao/mybatis/blokusgame/*.xml");
     @Value("${database.blokusgame.username}")
     private String username;
@@ -56,7 +56,6 @@ public class DataSourceBlokusGameConfig {
 
     @Bean(SQL_SESSION_TEMPLATE)
     public SqlSessionTemplate sqlSessionTemplate(@Qualifier(SQL_SESSION_FACTORY) SqlSessionFactory sqlSessionFactory) {
-        System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 

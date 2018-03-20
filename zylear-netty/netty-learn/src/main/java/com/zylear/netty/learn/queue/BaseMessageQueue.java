@@ -33,7 +33,7 @@ public class BaseMessageQueue<T> {
         try {
             queue.put(t);
         } catch (Exception e) {
-            logger.info("put message into queue fail. ", e);
+            logger.info("put message into queue lose. ", e);
         }
     }
 
