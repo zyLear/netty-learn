@@ -496,13 +496,15 @@ public class MessageManager implements MessageHandler<TransferBean, List<Transfe
                 MessageBean messageBean = MessageFormater.formatJoinRoomMessage(roomInfo.getRoomName(), roomInfo.getGameType());
                 responses.add(new TransferBean(messageBean, transferBean.getChannel()));
                 updateRoomPlayersInfoNotify(blokusRoomName.getRoomName(), responses);
+            }else {
+                transferBean.setMessage(MessageBean.JOIN_ROOM_FAIL);
+                responses.add(transferBean);
             }
 
 //            List<RoomInfo> rooms = ServerCache.getAllRooms();
 //            List<Channel> var2 = ServerCache.getPlayersInLobby();
 
-            transferBean.setMessage(MessageBean.JOIN_ROOM_FAIL);
-            responses.add(transferBean);
+
         }
     }
 
