@@ -1,7 +1,7 @@
 package com.zylear.netty.learn.test;
 
 import com.zylear.netty.learn.bean.PlayerInfo;
-import org.apache.commons.math3.random.RandomDataGenerator;
+import org.apache.commons.lang3.RandomUtils;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -53,14 +53,24 @@ public class PureTest {
         System.out.println(map.values().toString());
     }
 
+//    @Test
+//    public void testApacheMathRandom(){
+//        System.out.println( new RandomDataGenerator().nextInt(0,1));
+//        System.out.println( new RandomDataGenerator().nextInt(0,1));
+//        System.out.println( new RandomDataGenerator().nextInt(0,1));
+//        System.out.println( new RandomDataGenerator().nextInt(0,1));
+//        System.out.println( new RandomDataGenerator().nextInt(0,1));
+//        System.out.println( new RandomDataGenerator().nextInt(0,1));
+//    }
+
     @Test
-    public void testApacheMathRandom(){
-        System.out.println( new RandomDataGenerator().nextInt(0,1));
-        System.out.println( new RandomDataGenerator().nextInt(0,1));
-        System.out.println( new RandomDataGenerator().nextInt(0,1));
-        System.out.println( new RandomDataGenerator().nextInt(0,1));
-        System.out.println( new RandomDataGenerator().nextInt(0,1));
-        System.out.println( new RandomDataGenerator().nextInt(0,1));
+    public void testApacheRandomUtils(){
+        System.out.println(RandomUtils.nextInt(0,1));
+        System.out.println(RandomUtils.nextInt(0,1));
+        System.out.println(RandomUtils.nextInt(0,1));
+        System.out.println(RandomUtils.nextInt(0,1));
+        System.out.println(RandomUtils.nextInt(0,1));
+        System.out.println(RandomUtils.nextInt(0,1));
     }
 
     /*

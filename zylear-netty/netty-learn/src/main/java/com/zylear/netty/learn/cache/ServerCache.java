@@ -154,6 +154,7 @@ public class ServerCache {
 //                        return;
                         if (roomInfo.canStartGame()) {
                             roomInfo.setRoomStatus(RoomStatus.gaming);
+                            roomInfo.setCurrentLoseCount(0);
                             for (Entry<String, PlayerRoomInfo> entry : roomInfo.getPlayers().entrySet()) {
                                 entry.getValue().setReady(false);
                                 entry.getValue().setStepsCount(0);
